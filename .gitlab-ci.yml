@@ -9,7 +9,7 @@ test:
   image: python:3.13
   script:
     - pip install -r requirements.txt
-    - pytest  
+    - pytest tests 
 
 # Build stage to create a Docker image
 build:
