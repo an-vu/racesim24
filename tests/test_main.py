@@ -1,3 +1,6 @@
 import pytest
 
-return True
+def test():
+    return True
+
+test()
