@@ -25,7 +25,7 @@ build:
     - docker:dind
   script:
     - docker build -t group1:latest .
-    - docker tag group1:latest registry.gitlab.com/24fa-csci4830/group-1:latest
+    - docker tag group1:latest $DOCKER_HUB_USERNAME/group1:latest
   only:
     - main  # Build only on pushes to the main branch
 
