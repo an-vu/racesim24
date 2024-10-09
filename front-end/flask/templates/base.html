@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NASCAR Manager '24{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Disable scrolling -->
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden; /* Disables scrolling */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" style="text-decoration: none; color: inherit;">
+            <h1 id="dynamicColorHeader">NASCAR Manager '24</h1>
+        </a>
+    </header>
+    
+    <!-- Main content area, full viewport height and width -->
+    <div class="content" style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 60px);">
+        {% block content %}
+        <!-- Specific page content will go here -->
+        {% endblock %}
+    </div>
+
+    <footer id="footer-sections" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; width: 100%; box-sizing: border-box;">
+        <button id="nav-button" class="start-button" style="flex-shrink: 0;"><b>🪟 Navigation</b></button>
+        <div class="footer-text" style="flex-grow: 1; text-align: center;">© NASCAR Manager '24</div>
+        <button id="clock-button" class="clock" style="flex-shrink: 0;">⏳</button>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
