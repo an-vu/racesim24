@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}🐒{% endblock %}
+
+{% block content %}
+<div class="article page-404" style="width: 50%; text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
+    <h1 class="title-404" style="font-size: 100px;">4️⃣ 0️⃣ 4️⃣</h1>
+    <p class="message-404" style="font-size: 40px;">Page Not Found</p>
+    <a href="{{ url_for('home') }}" class="button">Go Back Home</a>
+</div>
+{% endblock %}

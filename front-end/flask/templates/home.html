@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Home - NASCAR Manager '24{% endblock %}
+
+{% block content %}
+<div class="content" style="text-align: center;">
+    <h1 class="home-welcome">Welcome to NASCAR Manager '24</h1>
+    <h2 class="home-subheader">Vrooommmm 🚗</h2>
+    
+    <!-- Game container to hold the input/output box, centered on the page -->
+    <div class="game-box" style="display: inline-block; text-align: left; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+        
+        <!-- Output box (window for game output) -->
+        <div class="output-box" style="border: 1px solid #333; height: 200px; width: 400px; padding: 10px; margin-bottom: 10px; overflow-y: auto;">
+            <p>Game output will be displayed here...</p>
+        </div>
+        
+        <!-- Input box and submit button container -->
+        <div class="input-box" style="display: flex;">
+            <input type="text" placeholder="Enter your command..." style="flex-grow: 1; padding: 10px; border: 1px solid #333; margin-right: 10px; border-radius: 5px;">
+            <button style="padding: 10px 20px; border: none; background-color: #333; color: white; cursor: pointer;">Submit</button>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
