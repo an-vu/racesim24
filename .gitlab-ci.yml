@@ -1,0 +1,36 @@
+stages:
+  - test
+  - build
+  - deploy
+
+# Test stage to check Python code quality (you can use a linter or run tests here)
+test:
+  stage: test
+  image: python:3.13
+  script:
+    - pip install -r requirements.txt
+    - pytest tests 
+
+# Build stage to create a Docker image
+build:
+  stage: build
+  image: docker:24
+  services:
+    - docker:dind
+  script:
+    - docker build -t group1:latest .
+    - docker tag group1:latest $DOCKER_HUB_USERNAME/group1:latest
+  only:
+    - main  # Build only on pushes to the main branch
+
+# Deploy stage (optional if you want to push the Docker image)
+deploy:
+  stage: deploy
+  image: docker:24
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push registry.gitlab.com/24fa-csci4830/group-1:latest
+  only:
+    - main
