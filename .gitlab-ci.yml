@@ -35,7 +35,7 @@ deploy:
  services:
    - docker:dind
  script:
-   - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password--stdin
+   - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
    - docker load -i image.tar  # Load the image from the artifact
    - docker tag group1csci4830:latest $DOCKER_HUB_USERNAME/group1csci4830:latest  # Tag the image for Docker Hub
    - docker push $DOCKER_HUB_USERNAME/group1csci4830:latest --log-level debug
