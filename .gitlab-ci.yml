@@ -20,6 +20,11 @@ build:
   script:
     - docker build -t group1csci4830:latest .
     - docker tag group1csci4830:latest $DOCKER_HUB_USERNAME/group1csci4830:latest
+    - docker save group1csci4830:latest > image.tar  # Save the image to a tar file
+  artifacts:
+    paths:
+      - image.tar  # This will store the image as an artifact
+    expire_in: 1 hour  # You can adjust this as needed
   only:
     - main  # Build only on pushes to the main branch
 
@@ -30,7 +35,8 @@ deploy:
  services:
    - docker:dind
  script:
-   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+   - docker login -u $CI_REGISTRY_USER --password--stdin $CI_REGISTRY_PASSWORD $CI_REGISTRY
+   - docker load -i image.tar  # Load the image from the artifact
    - docker push $DOCKER_HUB_USERNAME/group1csci4830:latest
  only:
    - main
