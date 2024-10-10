@@ -35,7 +35,7 @@ deploy:
  services:
    - docker:dind
  script:
-   - docker login -u $CI_REGISTRY_USER --password--stdin $CI_REGISTRY_PASSWORD $CI_REGISTRY
+   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
    - docker load -i image.tar  # Load the image from the artifact
    - docker push $DOCKER_HUB_USERNAME/group1csci4830:latest
  only:
