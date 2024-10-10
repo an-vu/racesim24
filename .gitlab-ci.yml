@@ -20,7 +20,7 @@ build:
   script:
     - docker build -t group1csci4830:latest .
     - docker tag group1csci4830:latest $DOCKER_HUB_USERNAME/group1csci4830:latest
-    - docker save group1csci4830:latest > image.tar  # Save the image to a tar file
+    - docker save -o image.tar group1csci4830:latest  # Save the image to a tar file
   artifacts:
     paths:
       - image.tar  # This will store the image as an artifact
@@ -38,6 +38,6 @@ deploy:
    - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
    - docker load -i image.tar  # Load the image from the artifact
    - docker tag group1csci4830:latest $DOCKER_HUB_USERNAME/group1csci4830:latest  # Tag the image for Docker Hub
-   - docker push $DOCKER_HUB_USERNAME/group1csci4830:latest --log-level debug
+   - docker push $DOCKER_HUB_USERNAME/group1csci4830:latest
  only:
    - main
