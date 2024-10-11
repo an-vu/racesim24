@@ -29,7 +29,7 @@ class Race:
                     pass
                 elif gap_ahead <= 0.4:
                     odds_of_pass = (sorted_cars[i-1].defending + abs(sorted_cars[i].passing)) / 2
-                    odds_no_pass = abs(int((60 - odds_of_pass) * 100))
+                    odds_no_pass = abs(int((30 - odds_of_pass) * 100))
                     seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)/100)) / 100
                     print(seconds_of_dirty_air)
                     sorted_cars[i].update_time_for_dirty_air(seconds_of_dirty_air)
@@ -66,9 +66,10 @@ class Race:
 def start():
     state = Race()
     cars = [
+        #Driver | Car Num | Base Lap Time | Pass Eff. | Def. Rat. | Race State
         Car("CHA", 1, 30.5, 22.45, -10.65, state),
         Car("LAR", 5, 30.5, 24.68, -6.72, state),
-        Car("HAM", 11, 30.5, 23.42,-13.02, state),
+        AI("HAM", 11, 30.5, 23.42,-13.02, state),
         AI("LOG", 22, 30.5, 20, -20, state)
     ]
     for car in cars: state.add_car(car)
