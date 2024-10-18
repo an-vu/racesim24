@@ -42,7 +42,7 @@ class Race:
         for car in self.cars:
             car.drive()
 
-    def calc_dirty_air(self): # needs work
+    def calc_dirty_air(self, force_dirty_air=False): # needs work
         """
         Calculates the effects of 'dirty air' on the cars. 'Dirty air' refers to reduced performance 
         due to aerodynamic turbulence when following closely behind another car. Cars affected by dirty 
@@ -50,22 +50,32 @@ class Race:
         
         The current implementation only penalizes cars that are close to another car based on race time.
         """
-
         sorted_cars = sorted(self.cars, key=lambda car: car.total_race_time)
-        for i in range(len(sorted_cars)):
+
+        for i in range(1, len(sorted_cars)):
             car = sorted_cars[i]
-            if i == 0:
-                pass
+            gap_ahead = car.total_race_time - sorted_cars[i-1].total_race_time
+            
+            # If force_dirty_air is True, skip probability calculation and apply 100% dirty air
+            if force_dirty_air:
+                seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
+                # Apply dirty air penalty
+                car.update_time_for_dirty_air(seconds_of_dirty_air)
+                print(f"Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
-                gap_ahead = sorted_cars[i].total_race_time - sorted_cars[i-1].total_race_time
                 if gap_ahead <= 0.06:
-                    pass
+                    # Cars too close, might not be affected
+                    continue
                 elif gap_ahead <= 0.4:
-                    odds_of_pass = (sorted_cars[i-1].defending + abs(sorted_cars[i].passing)) / 2
+                
+                    # Normal dirty air calculation based on odds of passing
+                    odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
                     odds_no_pass = abs(int((30 - odds_of_pass) * 100))
-                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)/100)) / 100
-                    print(seconds_of_dirty_air)
-                    sorted_cars[i].update_time_for_dirty_air(seconds_of_dirty_air)
+                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass) / 100)) / 100
+
+                    # Apply dirty air penalty
+                    car.update_time_for_dirty_air(seconds_of_dirty_air)
+                    print(f"Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
     def get_standings(self):
         """
