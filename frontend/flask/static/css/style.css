@@ -40,6 +40,28 @@ h1, h2, h3 {
     padding: 20px;
 }
 
+/* Common table styles */
+.standings-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+/* Header styles */
+.standings-table th {
+    padding: 10px;
+    color: #333;
+    border-bottom: 2px solid #333;
+}
+
+/* Cell styles */
+.standings-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+
 /* Article box styling */
 .article {
     background-color: #FFF8DC;  /* Light cream background for articles */
