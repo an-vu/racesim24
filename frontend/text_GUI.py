@@ -115,10 +115,11 @@ def update(race_state):
     print_standings(race_state)
     user_input = None
     while user_input != "":
-        user_input = input('Advance[ENTER], Stratagy[s], Pit[p]:')
+        user_input = input('Advance[ENTER], Stratagy[s], Pit[p], Quit[q]: ')
         match user_input:
             case 's': race_state = update_strategy(race_state)
             case 'p': race_state = update_pit(race_state)
+            case 'q': exit(1)
             case '' : pass
             case _: print("Invalid Input")
     return race_state
