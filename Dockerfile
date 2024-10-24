@@ -3,6 +3,9 @@ FROM python:3.12-alpine
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
+# Expose Application Port
+EXPOSE 5001
+
 # Create a working directory inside the container
 WORKDIR .
 
