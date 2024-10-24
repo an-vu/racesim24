@@ -33,7 +33,7 @@ def test_advance_lap(race_state):
 def test_get_standings(race_state):
     """Test if standings are sorted by total race time."""
     race_state.advance_lap()
-    standings = race_state.get_standings()
+    standings = race_state.standings()
     # Ensure standings are sorted
     assert standings[0].total_race_time <= standings[1].total_race_time
 
@@ -59,7 +59,7 @@ def test_dirty_air_effect(race_state):
     
     race_state.advance_lap()  # Simulate at least one lap
     race_state.calc_dirty_air(force_dirty_air=True)  # Calculate dirty air effect
-    standings = race_state.get_standings()
+    standings = race_state.standings()
     
     # Check if dirty air has been applied and the second car's race time has increased
     assert standings[1].total_race_time > standings[0].total_race_time
