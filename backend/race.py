@@ -41,6 +41,7 @@ class Race:
         self.lap += 1
         for car in self.cars:
             car.drive()
+        # self.get_standings()
 
     def calc_dirty_air(self, force_dirty_air=False): # needs work
         """
@@ -61,32 +62,38 @@ class Race:
                 seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
                 # Apply dirty air penalty
                 car.update_time_for_dirty_air(seconds_of_dirty_air)
-                print(f"Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
+                print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
                 if gap_ahead <= 0.06:
-                    # Cars too close, might not be affected
-                    continue
-                elif gap_ahead <= 0.4:
-                
-                    # Normal dirty air calculation based on odds of passing
+                    # Cars are extremely close, higher likelihood of dirty air
+                    # Apply the strongest dirty air penalty or effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
-                    odds_no_pass = abs(int((30 - odds_of_pass) * 100))
-                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass) / 100)) / 100
-
-                    # Apply dirty air penalty
+                    odds_no_pass = abs(int((10 - odds_of_pass) * 100))  # Smaller range for stronger effect
+                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)) / 100)
                     car.update_time_for_dirty_air(seconds_of_dirty_air)
-                    print(f"Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
+                    print(f"Strong dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
-    def get_standings(self):
-        """
-        Returns the current race standings by sorting the cars based on their total race time.
+                elif gap_ahead <= 0.4:
+                    # Still close but less intense dirty air effect
+                    odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
+                    odds_no_pass = abs(int((30 - odds_of_pass) * 100))  # Less intense effect
+                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)) / 100)
+                    car.update_time_for_dirty_air(seconds_of_dirty_air)
+                    print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
-        Returns:
-            list: A sorted list of cars, with the leading car (shortest race time) first.
-        """
+                else:
+                    # Cars are far apart, no dirty air effect
+                    print(f"No dirty air effect applied to {car.name}")
 
-        self.standings = sorted(self.cars, key=lambda car: car.total_race_time)
-        return self.standings
+    # def get_standings(self):
+    #     """
+    #     Returns the current race standings by sorting the cars based on their total race time.
+
+    #     Returns:
+    #         list: A sorted list of cars, with the leading car (shortest race time) first.
+    #     """
+    #     self.standings = sorted(self.cars, key=lambda car: car.total_race_time)
+    #     return self.standings
 
     def update_AI_push(self): # needs work
         """
@@ -98,26 +105,53 @@ class Race:
         #meant to go before lap is run [avg_lap_time_for_strat, stops, laps_per_stint, push_avalible, init_push_level]
         sorted_cars = sorted(self.cars, key=lambda car: car.total_race_time)
         for slot in range(len(sorted_cars)):
-            if isinstance(sorted_cars[slot], AI) and sorted_cars[slot].strategy[4] != 5:
-                if sorted_cars[slot].strategy[3] > sorted_cars[slot].strategy[2]:
-                    sorted_cars[slot].edit_push(sorted_cars[slot].strategy[4] + 1)
-                elif slot != 0:
-                    if sorted_cars[slot].total_race_time - sorted_cars[slot - 1].total_race_time < 0.4 and sorted_cars[slot].strategy[3] > 0:
-                        sorted_cars[slot].edit_push(sorted_cars[slot].strategy[4] + 1)
-                elif slot != 3:
-                    if sorted_cars[slot + 1].total_race_time - sorted_cars[slot].total_race_time < 0.4 and sorted_cars[slot].strategy[3] > 0:
-                        sorted_cars[slot].edit_push(sorted_cars[slot].strategy[4] + 1)
-                else:
-                    sorted_cars[slot].edit_push(sorted_cars[slot].strategy[4])
+            car = sorted_cars[slot]
+            
+            # Call check_pit_stop() for AI cars before updating push level
+            if isinstance(car, AI):
+                car.check_pit_stop()  # Check if the AI car needs to pit
+
+                if isinstance(car, AI) and car.strategy[4] != 5:
+                    if car.strategy[3] > car.strategy[2]:
+                        car.edit_push(car.strategy[4] + 1)
+                    elif slot != 0:
+                        if car.total_race_time - sorted_cars[slot - 1].total_race_time < 0.4 and car.strategy[3] > 0:
+                            car.edit_push(car.strategy[4] + 1)
+                    elif slot != 3:
+                        if sorted_cars[slot + 1].total_race_time - car.total_race_time < 0.4 and car.strategy[3] > 0:
+                            car.edit_push(car.strategy[4] + 1)
+                    else:
+                        car.edit_push(car.strategy[4])
+
+
+    
+    def get_best_time(self):
+        # Initialize a variable to store the car with the smallest total race time
+        smallest_race_time = float('inf')  # Start with a large number so any race time will be smaller
+        print(smallest_race_time)
+        # Loop through all cars to find the one with the smallest total race time
+        for car in self.cars:
+            if car.total_race_time < smallest_race_time:
+                smallest_race_time = car.total_race_time
+                #print(smallest_race_time)
+            
+        for car in self.cars:
+            car.best_race_time = smallest_race_time
+            #print(car.number, car.best_race_time, car.total_race_time, 'car.')
+            car.to_leader = car.total_race_time - car.best_race_time
+            print(car.to_leader)
 
     def next_lap(self):
         """
         Advances the race by one lap, updating the AI push levels and recalculating dirty air effects.
         """
-
+        self.get_best_time()
         self.update_AI_push()
         self.advance_lap()
         self.calc_dirty_air()
+        for car in self.cars:
+            car.force_pit()
+        
 
     def race_end(self):
         """
@@ -126,9 +160,22 @@ class Race:
         Returns:
             bool: True if the current lap is greater than or equal to the total lap count, False otherwise.
         """
-
+        print("checking race end")
         return self.lap >= self.lap_count
     
+def restart(race_instance):
+    """
+    Restarts the race by resetting the lap number, total race time, and other relevant attributes of the provided Race instance.
+    
+    Args:
+        race_instance (Race): The race object to be restarted.
+    """
+    print("Restarting the race...")
+    race_instance.lap = 1
+    for car in race_instance.cars:
+        car.reset_for_race()  # Call reset on each car
+    race_instance.standings = []
+    print("Race has been reset.")
 
 def start():
     """

@@ -40,28 +40,6 @@ h1, h2, h3 {
     padding: 20px;
 }
 
-/* Common table styles */
-.standings-table {
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-    background-color: white;
-}
-
-/* Header styles */
-.standings-table th {
-    padding: 10px;
-    color: #333;
-    border-bottom: 2px solid #333;
-}
-
-/* Cell styles */
-.standings-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-
 /* Article box styling */
 .article {
     background-color: #FFF8DC;  /* Light cream background for articles */
@@ -144,6 +122,35 @@ html, body {
     background-color: #4B5320;
     color: white;
 }
+
+/* Slider */
+.container {
+    margin: auto;
+    width: 75vw;
+  }
+  
+  .numbers,
+  .slider {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .numbers span,
+  .slider span {
+    width: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .slider span {
+    flex-grow: 1;
+  }
+  
+  .slider input {
+    flex-grow: 24;
+    margin-left: -2px; /* account for UI sizing */
+    margin-right: -2px; /* account for UI sizing */
+  }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

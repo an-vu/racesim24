@@ -13,6 +13,7 @@ class Car:
         tire_life (float): The percentage of tire life remaining (100 = new tires, 0 = worn out).
         fuel_level (float): The fuel level percentage (100 = full tank, 0 = empty).
         push_tire (int): The current push level of the car, impacting tire and lap time performance.
+        to_leader (float): The current time off the lead car.
     """
 
     def __init__(self, name, number, fast_lap_time, passing, defending, race_state):
@@ -38,6 +39,8 @@ class Car:
         self.tire_life = 100
         self.fuel_level = 100
         self.push_tire = 3
+        self.best_race_time = 0.0
+        self.to_leader = self.best_race_time - self.total_race_time
 
     def drive(self):
         """
@@ -104,6 +107,27 @@ class Car:
         """
 
         self.push_tire = push_level
+
+    def force_pit(self):
+        """
+        Checks for blown tire or no gas and forces a pit stop and applies a penalty.
+        """
+        
+        if min(self.tire_life, self.fuel_level) <= 0:
+            self.pit_stop()
+            self.total_race_time += 80
+            print(f"{self} Tire blown or ran out of fuel, penalty applied!")
+    
+    def reset_for_race(self):
+        """
+        Resets race-specific attributes for the car.
+        """
+        self.total_race_time = 0.0
+        self.tire_life = 100.0  # Reset tire life
+        self.fuel_level = 100.0  # Reset fuel level
+        self.best_race_time = 0
+        self.to_leader = 0
+        print(f"{self.name} (Car #{self.number}) has been reset for a new race.")
 
     def __str__(self):
         """

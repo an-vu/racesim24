@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setInterval(updateClock, 1000); // Update the clock every second
 
-    // Hide the nav menu when clicking outside of it
-    document.addEventListener('click', function (event) {
-        if (!navButton.contains(event.target) && !navMenu.contains(event.target)) {
-            navMenu.style.display = 'none';
-        }
-    });
+    // // Hide the nav menu when clicking outside of it
+    // document.addEventListener('click', function (event) {
+    //     if (!navButton.contains(event.target) && !navMenu.contains(event.target)) {
+    //         navMenu.style.display = 'none';
+    //     }
+    // });
 });
