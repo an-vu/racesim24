@@ -1,0 +1,163 @@
+/* Reset default browser styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styling with subtle cream color */
+body {
+    font-family: "Roboto Mono", "Courier New", monospace;
+    background-color: #fdfffc;
+    color: #333333;  /* Slightly darker text for contrast */
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'MS Sans Serif', sans-serif;
+    color: #333333;
+}
+
+/* Home page header and subheader colors */
+.home-welcome, .home-subheader {
+    color: #4B5320;  
+}
+
+.home-subheader {
+    font-size: 16px;
+}
+
+/* Center and simplify images */
+.centered-image {
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0.05;
+}
+
+.content, .article {
+    padding: 20px;
+}
+
+/* Article box styling */
+.article {
+    background-color: #FFF8DC;  /* Light cream background for articles */
+    border: 1px solid #D3D3D3;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+/* Footer styling and ensuring it sticks to the bottom */
+footer {
+    text-align: center;
+    background-color: #fdfffc;  /* Subtle pale yellow footer */
+    color: #333333;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;  /* Ensure footer has enough height */
+    border-top: 1px solid #ffffff;
+}
+
+/* Force the footer to stick to the bottom of the page */
+html, body {
+    height: 100%;
+}
+
+.content {
+    min-height: calc(100vh - 60px);  /* Make sure content area takes up the full height minus footer */
+}
+
+/* Adjust footer button placement */
+.start-button, .clock {
+    background-color: #fdfffc;
+    color: #333333;
+    border: 1px solid #555555;
+    padding: 5px 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.start-button {
+    left: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.clock {
+    right: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* Simple nav menu styling */
+.nav-menu {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    background-color: #EEE8AA;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 200px;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-menu ul li a {
+    color: #333333;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    text-align: left;
+}
+
+/* Hover effects */
+.nav-menu ul li a:hover {
+    background-color: #4B5320;
+    color: white;
+}
+
+/* Slider */
+.container {
+    margin: auto;
+    width: 75vw;
+  }
+  
+  .numbers,
+  .slider {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .numbers span,
+  .slider span {
+    width: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .slider span {
+    flex-grow: 1;
+  }
+  
+  .slider input {
+    flex-grow: 24;
+    margin-left: -2px; /* account for UI sizing */
+    margin-right: -2px; /* account for UI sizing */
+  }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content {
+        padding: 10px;
+    }
+    footer {
+        position: relative;
+    }
+}

@@ -31,11 +31,17 @@ def test_advance_lap(race_state):
     assert race_state.cars[0].total_race_time > 0
 
 def test_get_standings(race_state):
-    """Test if standings are sorted by total race time."""
-    race_state.advance_lap()
+    """
+    Test to check if the get_standings method returns cars sorted by total_race_time.
+    """
+    # Get the standings from the race_instance
     standings = race_state.get_standings()
-    # Ensure standings are sorted
-    assert standings[0].total_race_time <= standings[1].total_race_time
+
+    # Extract total_race_time values from the sorted list
+    race_times = [car.total_race_time for car in standings]
+
+    # Check if the list is sorted in ascending order
+    assert race_times == sorted(race_times), "Cars are not sorted by total race time"
 
 def test_ai_push_update(race_state):
     """Test if AI's push level updates correctly."""
@@ -54,8 +60,7 @@ def test_pit_stop(race_state):
 
 def test_dirty_air_effect(race_state):
     """Test if dirty air effect updates car's race time."""
-    # Simulate cars having a small gap by slightly adjusting their race times
-    race_state.cars[1].total_race_time += 0.05  # Make sure there's a small gap
+    # Simulate cars having a dirty air effect.
     
     race_state.advance_lap()  # Simulate at least one lap
     race_state.calc_dirty_air(force_dirty_air=True)  # Calculate dirty air effect

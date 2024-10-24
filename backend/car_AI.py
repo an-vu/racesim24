@@ -28,6 +28,10 @@ class AI(car.Car):
 
         super().__init__(name, number, fast_lap_time, passing, defending, race_state)
         self.strategy = self.choose_strat(race_state.lap_count)
+        self.push_level = self.strategy[-1]  # Get the push level from the strategy
+        self.tire_life_threshold = 10  # Arbitrary tire wear threshold to trigger pit stop
+        self.fuel_threshold = 5  # Arbitrary fuel level threshold to trigger pit stop
+
 
     def calc_strat(self, laps_to_go, laps_able_to_go_on_tires, base_lap_time, tire_falloff, wear_percent, init_push_level):
         """
@@ -93,4 +97,26 @@ class AI(car.Car):
                 return strats[1]
         else:
             return strats[0]
+
+    def check_pit_stop(self):
+        """
+        Checks whether the AI car needs to pit based on tire life and fuel levels.
+        Calls the pit_stop() method if conditions are met.
+        """
+        tire_life = self.tire_life  # Method to get current tire life (out of 100)
+        fuel_level = self.fuel_level  # Method to get current fuel level (out of 100)
+        # Decide to pit based on tire life and fuel level
+        if tire_life < self.tire_life_threshold or fuel_level < self.fuel_threshold:
+            print(f"{self.name} (Car {self.number}) is entering the pit due to low tire life ({tire_life}%) or low fuel ({fuel_level}%)")
+            self.pit_stop()  # Trigger the pit stop
+
+    def race_lap(self):
+        """
+        Simulates a lap for the AI car, adjusting tire life and fuel, then checks if a pit stop is needed.
+        """
+        # Simulate tire wear and fuel consumption based on push level
+        self.adjust_tire_life(self.push_level)  # Adjust tire life based on push level
+        self.adjust_fuel_level(self.push_level)  # Adjust fuel level based on push level
         
+        # Check if the car needs to enter the pit
+        self.check_pit_stop()
