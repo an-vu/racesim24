@@ -85,15 +85,15 @@ class Race:
                     # Cars are far apart, no dirty air effect
                     print(f"No dirty air effect applied to {car.name}")
 
-    # def get_standings(self):
-    #     """
-    #     Returns the current race standings by sorting the cars based on their total race time.
+    def get_standings(self):
+        """
+        Returns the current race standings by sorting the cars based on their total race time.
 
-    #     Returns:
-    #         list: A sorted list of cars, with the leading car (shortest race time) first.
-    #     """
-    #     self.standings = sorted(self.cars, key=lambda car: car.total_race_time)
-    #     return self.standings
+        Returns:
+            list: A sorted list of cars, with the leading car (shortest race time) first.
+        """
+        self.cars.sort(key=lambda car: car.total_race_time)
+        return self.cars
 
     def update_AI_push(self): # needs work
         """
