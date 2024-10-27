@@ -6,7 +6,7 @@
 <body>
     <div class="content" style="text-align: center;">
         <h1 class="home-welcome">NASCAR Manager '24</h1>
-        <h2 class="home-subheader">Update October 17 2024</h2>
+        <h2 class="home-subheader">Update October 27 2024</h2>
 
         <!-- GAME LAYOUT -->
         <div class="container" style="display: flex; gap: 20px; margin-top: 5px;">
@@ -42,7 +42,7 @@
         
                     <!-- Strategy Level (Conserve to Attack) -->
                     <div style="margin-top: 20px;">
-                        <p><strong>Strategy Level:</strong></p>
+                        <p id="player-car-1-current-strategy"><strong>Strategy Level: </strong></p>
                         <div style="display: flex; justify-content: space-between;">
                             <label style="display: flex; flex-direction: column; align-items: center;">
                                 <input type="radio" name="strategy1" value="1">
@@ -81,7 +81,7 @@
         
                     <!-- Strategy Level (Conserve to Attack) -->
                     <div style="margin-top: 20px;">
-                        <p><strong>Strategy Level:</strong></p>
+                        <p id="player-car-2-current-strategy"><strong>Strategy Level: </strong></p>
                         <div style="display: flex; justify-content: space-between;">
                             <label style="display: flex; flex-direction: column; align-items: center;">
                                 <input type="radio" name="strategy2" value="1">
@@ -128,6 +128,8 @@
     </div>
     <script>
         let player_racer_array = [];
+        let player_car_1_pit_boolean = [];
+        let player_car_2_pit_boolean = [];
     
         // Data for the cars
         const carData = Array.from({ length: 16 }, (_, i) => ({
@@ -165,7 +167,7 @@
                 const data = await response.json();
                 
                 // Identify player-controlled cars
-                player_racer_array = data.cars.filter(car => car.push_tire !== null);
+                player_racer_array = data.cars.filter(car => car.ai_or_player != 3);
                 
                 if (player_racer_array[0]) {
                     document.getElementById('car-1-title').textContent = `#${player_racer_array[0].number} ${player_racer_array[0].name}`;
@@ -183,7 +185,11 @@
             try {
                 const response = await fetch('/api/race');
                 const data = await response.json();
-    
+                
+                player_racer_array = data.cars.filter(car => car.ai_or_player != 3);
+                player_racer_array.sort((a, b) => a.ai_or_player - b.ai_or_player);
+
+
                 // Update lap count
                 document.getElementById('standings-title').textContent = `Standings - Lap: ${data.lap} of ${data.lap_count}`;
     
@@ -201,11 +207,13 @@
     
                 // Update Player Car Control Centers
                 if (player_racer_array[0]) {
+                    document.getElementById('player-car-1-current-strategy').textContent = `Strategy Level: ${player_racer_array[0].push_tire}`;
                     document.getElementById('player-car-1-tire').textContent = `Tire %: ${player_racer_array[0].tire_life.toFixed(2)}%`;
                     document.getElementById('player-car-1-fuel').textContent = `Fuel %: ${player_racer_array[0].fuel_level.toFixed(2)}%`;
                 }
     
                 if (player_racer_array[1]) {
+                    document.getElementById('player-car-2-current-strategy').textContent = `Strategy Level: ${player_racer_array[1].push_tire}`;
                     document.getElementById('player-car-2-tire').textContent = `Tire %: ${player_racer_array[1].tire_life.toFixed(2)}%`;
                     document.getElementById('player-car-2-fuel').textContent = `Fuel %: ${player_racer_array[1].fuel_level.toFixed(2)}%`;
                 }
@@ -219,6 +227,8 @@
             try {
                 await fetch('/api/race/lap', { method: 'POST' });
                 getRaceData();  // Refresh data after advancing the lap
+                player_car_1_pit_boolean = false;
+                player_car_2_pit_boolean = false;
             } catch (error) {
                 console.error('Error advancing lap:', error);
             }
@@ -227,12 +237,18 @@
         function handlePitButtons() {
             document.getElementById('player-car-1-pit').addEventListener('click', async () => {
                 try {
-                    await fetch('/api/race/pit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ number: player_racer_array[0].number })
-                    });
-                    getRaceData();  // Refresh data after performing pit stop
+                    if (player_car_1_pit_boolean != true) {
+                        player_car_1_pit_boolean = true;
+                        await fetch('/api/race/pit', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ number: player_racer_array[0].number })
+                        });
+                        console.log(`${player_racer_array[0].number} Entered pit`);
+                        getRaceData();  // Refresh data after performing pit stop
+                    } else {
+                        console.log(`${player_racer_array[0]} already entered pit!`)
+                    }
                 } catch (error) {
                     console.error('Error performing pit stop for Car #1:', error);
                 }
@@ -240,12 +256,18 @@
     
             document.getElementById('player-car-2-pit').addEventListener('click', async () => {
                 try {
-                    await fetch('/api/race/pit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ number: player_racer_array[1].number })
-                    });
-                    getRaceData();  // Refresh data after performing pit stop
+                    if (player_car_2_pit_boolean != true) {
+                        player_car_2_pit_boolean = true;
+                        await fetch('/api/race/pit', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ number: player_racer_array[1].number })
+                        });
+                        console.log(`${player_racer_array[1].number} Entered pit`);
+                        getRaceData();  // Refresh data after performing pit stop
+                    } else {
+                        console.log(`${player_racer_array[1]} already entered pit!`)
+                    }
                 } catch (error) {
                     console.error('Error performing pit stop for Car #2:', error);
                 }
@@ -290,6 +312,17 @@
             try {
                 await fetch('/api/race/reset', { method: 'POST' });
                 getRaceData();  // Refresh data after resetting the race
+                
+                // Unselect all strategy1 radio buttons
+                document.querySelectorAll('input[name="strategy1"]').forEach(radio => {
+                    radio.checked = false;
+                });
+
+                // Unselect all strategy2 radio buttons
+                document.querySelectorAll('input[name="strategy2"]').forEach(radio => {
+                    radio.checked = false;
+                });
+
             } catch (error) {
                 console.error('Error resetting race:', error);
             }

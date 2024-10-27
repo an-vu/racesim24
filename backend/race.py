@@ -20,7 +20,7 @@ class Race:
 
         self.lap = 1
         self.cars = []
-        self.lap_count = 267
+        self.lap_count = 25
         self.standings = [] # sorted list of cars
 
     def add_car(self, car):
@@ -55,8 +55,7 @@ class Race:
 
         for i in range(1, len(sorted_cars)):
             car = sorted_cars[i]
-            gap_ahead = car.total_race_time - sorted_cars[i-1].total_race_time
-            
+            gap_ahead = sorted_cars[i-1].total_race_time - car.total_race_time
             # If force_dirty_air is True, skip probability calculation and apply 100% dirty air
             if force_dirty_air:
                 seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
@@ -68,7 +67,7 @@ class Race:
                     # Cars are extremely close, higher likelihood of dirty air
                     # Apply the strongest dirty air penalty or effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
-                    odds_no_pass = abs(int((10 - odds_of_pass) * 100))  # Smaller range for stronger effect
+                    odds_no_pass = abs(int((7 - odds_of_pass) * 100))  # Small range for stronger effect
                     seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)) / 100)
                     car.update_time_for_dirty_air(seconds_of_dirty_air)
                     print(f"Strong dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
@@ -76,8 +75,8 @@ class Race:
                 elif gap_ahead <= 0.4:
                     # Still close but less intense dirty air effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
-                    odds_no_pass = abs(int((30 - odds_of_pass) * 100))  # Less intense effect
-                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)) / 100)
+                    odds_no_pass = abs(int((3 - odds_of_pass) * 100))  # Smaller range for less intense effect
+                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass) / 2) / 100)
                     car.update_time_for_dirty_air(seconds_of_dirty_air)
                     print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
@@ -128,18 +127,14 @@ class Race:
     def get_best_time(self):
         # Initialize a variable to store the car with the smallest total race time
         smallest_race_time = float('inf')  # Start with a large number so any race time will be smaller
-        print(smallest_race_time)
         # Loop through all cars to find the one with the smallest total race time
         for car in self.cars:
             if car.total_race_time < smallest_race_time:
                 smallest_race_time = car.total_race_time
-                #print(smallest_race_time)
             
         for car in self.cars:
             car.best_race_time = smallest_race_time
-            #print(car.number, car.best_race_time, car.total_race_time, 'car.')
             car.to_leader = car.total_race_time - car.best_race_time
-            print(car.to_leader)
 
     def next_lap(self):
         """
@@ -160,7 +155,6 @@ class Race:
         Returns:
             bool: True if the current lap is greater than or equal to the total lap count, False otherwise.
         """
-        print("checking race end")
         return self.lap >= self.lap_count
     
 def restart(race_instance):
@@ -170,31 +164,31 @@ def restart(race_instance):
     Args:
         race_instance (Race): The race object to be restarted.
     """
-    print("Restarting the race...")
     race_instance.lap = 1
     for car in race_instance.cars:
         car.reset_for_race()  # Call reset on each car
     race_instance.standings = []
     print("Race has been reset.")
 
-def start():
-    """
-    Initializes a race with a set of predefined cars (both human-controlled and AI) and adds them to the race.
+# depricated
+# def start(): 
+#     """
+#     Initializes a race with a set of predefined cars (both human-controlled and AI) and adds them to the race.
 
-    Returns:
-        Race: The initialized race object with the cars added.
-    """
+#     Returns:
+#         Race: The initialized race object with the cars added.
+#     """
 
-    state = Race()
-    cars = [
-        #Driver | Car Num | Base Lap Time | Pass Eff. | Def. Rat. | Race State
-        Car("CHA", 1, 30.5, 22.45, -10.65, state),
-        Car("LAR", 5, 30.5, 24.68, -6.72, state),
-        AI("HAM", 11, 30.5, 23.42,-13.02, state),
-        AI("LOG", 22, 30.5, 20, -20, state)
-    ]
-    for car in cars: state.add_car(car)
-    return state
+#     state = Race()
+#     cars = [
+#         #Driver | Car Num | Base Lap Time | Pass Eff. | Def. Rat. | Race State
+#         Car("CHA", 1, 30.5, 22.45, -10.65, state),
+#         Car("LAR", 5, 30.5, 24.68, -6.72, state),
+#         AI("HAM", 11, 30.5, 23.42,-13.02, state),
+#         AI("LOG", 22, 30.5, 20, -20, state)
+#     ]
+#     for car in cars: state.add_car(car)
+#     return state
 
 def race_end(state):
     """
@@ -206,5 +200,4 @@ def race_end(state):
     Returns:
         bool: True if the race has ended, False otherwise.
     """
-
     return state.race_end()

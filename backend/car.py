@@ -16,7 +16,7 @@ class Car:
         to_leader (float): The current time off the lead car.
     """
 
-    def __init__(self, name, number, fast_lap_time, passing, defending, race_state):
+    def __init__(self, name, number, fast_lap_time, passing, defending, race_state, ai_or_player):
         """
         Initializes the Car object with the above attributes.
 
@@ -41,6 +41,7 @@ class Car:
         self.push_tire = 3
         self.best_race_time = 0.0
         self.to_leader = self.best_race_time - self.total_race_time
+        self.ai_or_player = ai_or_player
 
     def drive(self):
         """
@@ -123,11 +124,11 @@ class Car:
         Resets race-specific attributes for the car.
         """
         self.total_race_time = 0.0
-        self.tire_life = 100.0  # Reset tire life
-        self.fuel_level = 100.0  # Reset fuel level
+        self.tire_life = 100.0  
+        self.fuel_level = 100.0 
         self.best_race_time = 0
         self.to_leader = 0
-        print(f"{self.name} (Car #{self.number}) has been reset for a new race.")
+        self.push_tire = 3
 
     def __str__(self):
         """
