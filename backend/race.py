@@ -145,12 +145,12 @@ class Race:
         """
         Advances the race by one lap, updating the AI push levels and recalculating dirty air effects.
         """
-        self.get_best_time()
         self.update_AI_push()
         self.advance_lap()
         self.calc_dirty_air()
         for car in self.cars:
             car.force_pit()
+        self.get_best_time()
         
 
     def race_end(self):

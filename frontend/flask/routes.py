@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, csv
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
@@ -12,12 +12,31 @@ app = Flask(__name__)
 
 # Initialize the actual race instance
 race = Race()
-cars = [
-    Car("CHA", 1, 30.5, 22.45, -10.65, race),
-    Car("LAR", 5, 30.5, 24.68, -6.72, race),
-    AI("HAM", 11, 30.5, 23.42, -13.02, race),
-    AI("LOG", 22, 30.5, 20, -20, race)
-]
+cars = []
+
+# Load AI cars from CSV
+with open("ai_car_info.csv", mode="r", encoding="utf-8-sig") as file:
+    reader = csv.reader(file)
+    headers = next(reader)  # Read the header row
+        
+    for row in reader:
+        # Map row values to specific variables based on expected column order
+        name = row[0]
+        number = int(row[1])
+        fast_lap_time = float(row[2])
+        passing = float(row[3])
+        defending = float(row[4])
+        
+        # Create AI car and add it to the list
+        ai_car = AI(name, number, fast_lap_time, passing, defending, race)
+        cars.append(ai_car)
+
+player_car_1 = Car("TES", 2, 30.5, 22.45, -10.65, race)
+player_car_2 = Car("NEW", 3, 30.5, 22.45, -10.65, race)
+cars.append(player_car_1)
+cars.append(player_car_2)
+
+# Add all cars to the race
 for car in cars:
     race.add_car(car)
 
