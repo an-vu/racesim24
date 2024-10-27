@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, csv
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
@@ -12,12 +12,31 @@ app = Flask(__name__)
 
 # Initialize the actual race instance
 race = Race()
-cars = [
-    Car("CHA", 1, 30.5, 22.45, -10.65, race),
-    Car("LAR", 5, 30.5, 24.68, -6.72, race),
-    AI("HAM", 11, 30.5, 23.42, -13.02, race),
-    AI("LOG", 22, 30.5, 20, -20, race)
-]
+cars = []
+
+# Load AI cars from CSV
+with open("ai_car_info.csv", mode="r", encoding="utf-8-sig") as file:
+    reader = csv.reader(file)
+    headers = next(reader)  # Read the header row
+        
+    for row in reader:
+        # Map row values to specific variables based on expected column order
+        name = row[0]
+        number = int(row[1])
+        fast_lap_time = float(row[2])
+        passing = float(row[3])
+        defending = float(row[4])
+        
+        # Create AI car and add it to the list
+        ai_car = AI(name, number, fast_lap_time, passing, defending, race, 3)
+        cars.append(ai_car)
+
+player_car_1 = Car("Player 1", 2, 30.5, 22.45, -10.65, race, 1)
+player_car_2 = Car("Player 2", 3, 30.5, 22.45, -10.65, race, 2)
+cars.append(player_car_1)
+cars.append(player_car_2)
+
+# Add all cars to the race
 for car in cars:
     race.add_car(car)
 
@@ -47,16 +66,19 @@ def get_race_state():
             "total_race_time": car.total_race_time,
             "tire_life": car.tire_life,
             "fuel_level": car.fuel_level,
-            "push_tire": car.push_tire if not isinstance(car, AI) else None  # Only for non-AI cars
+            "ai_or_player": car.ai_or_player,
+            "push_tire": car.push_tire if not isinstance(car, AI) else None
         })
     
     # Sort cars_data by 'total_race_time'
     cars_data = sorted(cars_data, key=lambda car: car["total_race_time"])
+    player_cars_data = sorted(cars_data, key=lambda car: car["ai_or_player"])
     
     return jsonify({
         "lap": race.lap,
         "lap_count": race.lap_count,
-        "cars": cars_data
+        "cars": cars_data,
+        "player_cars_data": player_cars_data
     })
 
 # API route to advance the race by one lap
@@ -64,6 +86,7 @@ def get_race_state():
 def advance_lap():
     """Advance the race by one lap using the actual race object."""
     try:
+        race.race_end()
         race.next_lap()  # This will trigger all cars to advance their race time
         return jsonify({"message": "Lap advanced", "lap": race.lap})
     except Exception as e:

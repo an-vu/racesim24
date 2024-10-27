@@ -10,7 +10,7 @@ class AI(car.Car):
         strategy (list): List of calculated strategy values for the AI's race plan.
     """
 
-    def __init__(self, name, number, fast_lap_time, passing, defending, race_state):
+    def __init__(self, name, number, fast_lap_time, passing, defending, race_state, ai_or_player):
         """
         Initializes the AI object with car attributes and selects a race strategy.
 
@@ -26,7 +26,7 @@ class AI(car.Car):
             strategy (list): The chosen race strategy based on lap count and performance metrics.
         """
 
-        super().__init__(name, number, fast_lap_time, passing, defending, race_state)
+        super().__init__(name, number, fast_lap_time, passing, defending, race_state, ai_or_player)
         self.strategy = self.choose_strat(race_state.lap_count)
         self.push_level = self.strategy[-1]  # Get the push level from the strategy
         self.tire_life_threshold = 10  # Arbitrary tire wear threshold to trigger pit stop

@@ -8,10 +8,10 @@ def race_state():
     """Fixture that initializes a race state with some cars."""
     race = Race()
     cars = [
-        Car("CHA", 1, 30.5, 22.45, -10.65, race),
-        Car("LAR", 5, 30.5, 24.68, -6.72, race),
-        AI("HAM", 11, 30.5, 23.42, -13.02, race),
-        AI("LOG", 22, 30.5, 20, -20, race)
+        Car("Player 1", 2, 30.5, 22.45, -10.65, race, 1),
+        Car("Player 2", 3, 30.5, 24.68, -6.72, race, 2),
+        AI("HAM", 11, 30.5, 23.42, -13.02, race, 3),
+        AI("LOG", 22, 30.5, 20, -20, race, 3)
     ]
     for car in cars:
         race.add_car(car)
