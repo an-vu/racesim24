@@ -2,6 +2,8 @@
 
 A Flask-based web application that simulates a race, including multiple cars with dynamic attributes such as lap time, tire life, and fuel levels. The web interface allows users to view race data, advance laps, and interact with the race via an API.
 
+Temporary Development Link: http://174.70.60.110:800
+
 ## Table of Contents
 
 - [Overview](#overview)
