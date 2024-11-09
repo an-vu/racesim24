@@ -56,7 +56,6 @@ def about():
     return render_template('about.html')
 
 
-
 # API route to get the current race state using the actual race object
 @app.route('/api/race', methods=['GET'])
 def get_race_state():

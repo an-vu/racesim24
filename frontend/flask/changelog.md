@@ -15,7 +15,10 @@
   
 - **home.html**: 
   - Added JavaScript to retrieve and display player info from `setup.html`.
-  - (Consider moving the growing script to `main.js` to keep `home.html` short and just html...)
+  - Moved all the JS scripts to `main.js`
+
+- **main.js**:
+  - Added all the scripts from `home.html`.
   
 - **base.html**: 
   - Minor adjustments to header and footer for improved alignment and uniformity.
