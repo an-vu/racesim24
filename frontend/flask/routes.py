@@ -44,13 +44,16 @@ for car in cars:
 list_car_numbers = [car.number for car in race.cars if not isinstance(car, AI)]
 
 @app.route('/')
+def setup():
+    return render_template('setup.html')
+
+@app.route('/home')
 def home():
     return render_template('home.html')
 
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 
 # API route to get the current race state using the actual race object
