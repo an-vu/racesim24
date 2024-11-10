@@ -42,30 +42,26 @@ body, html {
     margin-bottom: 15px;
 }
 
-/* Box Styling for Containers */
+/* General Box Styling */
 .box {
     background-color: #fff;
     border: 1px solid #333;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Default width can be adjusted as needed */
 }
 
-.box-large {
-    width: 80%;
-}
-
-.box-small {
-    width: 200px;
-    height: auto;
-}
-
-/* Profile Picture Placeholder */
+/* Profile Picture Styling */
 .profile-picture {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: #ddd; /* Placeholder color for when no image is set */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #333; /* Optional border */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,17 +77,16 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
+    background-color: #4CAF50; /* Primary color */
+    color: white;
+    transition: background-color 0.3s;
 }
 
-.button-primary {
-    background-color: #4CAF50;
-    color: white;
+/* Optional: Hover effect */
+.button:hover {
+    background-color: #45a049; /* Slightly darker shade for hover */
 }
 
-.button-danger {
-    background-color: #ff5c5c;
-    color: white;
-}
 
 /* Input Field Styling */
 .input-field {
@@ -151,13 +146,3 @@ body, html {
     }
 }
 
-/* Profile picture setting */
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-size: cover; /* Image covers the whole area */
-    background-position: center; /* Centers the image within the circle */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    border: 2px solid #333; /* Optional: Add a border if needed */
-}
