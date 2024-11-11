@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize elements
-    const navButton = document.getElementById('nav-button');
+    const aboutButton = document.getElementById('about-button');
     const navMenu = document.getElementById('nav-menu');
     const clockButton = document.getElementById('clock-button');
     const tableBody = document.getElementById("standings-table-body");
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateClock();
     });
 
-    // Navigation menu toggle
-    navButton.onclick = () => {
-        navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+    // About button toggle
+    aboutButton.onclick = function () {
+        window.location.href = '/about';
     };
 
     setInterval(updateClock, 1000);
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('input[name="strategy2"]').forEach(radio => 
         radio.addEventListener('change', () => handleStrategyChange(1, radio.value)));
 
-    // Other Initializations
+    // Lap Button & Reset Button
     document.getElementById('lap-button').addEventListener('click', advanceLap);
     document.getElementById('reset-button').addEventListener('click', resetRace);
 

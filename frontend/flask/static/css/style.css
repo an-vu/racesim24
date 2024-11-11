@@ -80,6 +80,7 @@ body, html {
     background-color: #4CAF50; /* Primary color */
     color: white;
     transition: background-color 0.3s;
+    flex-shrink: 0; /* Prevents the buttons from affecting the centered text */
 }
 
 /* Optional: Hover effect */
@@ -117,7 +118,6 @@ body, html {
 
 /* Footer */
 .footer {
-    text-align: center;
     background-color: #c0c0c0;
     color: #333;
     padding: 10px 20px;
@@ -129,10 +129,14 @@ body, html {
     align-items: center;
 }
 
+.button, .footer-text {
+    flex: .3;
+    text-align: center;
+}
+
 .footer-text {
     flex-grow: 1;
     text-align: center;
-    margin: 0 120px;
 }
 
 /* Responsive adjustments */
