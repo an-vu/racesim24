@@ -1,34 +1,43 @@
-# Nov 7 Changelog:
+# Nov 10 Changelog
 
 ### New Files and Features:
-- **setup.html**: Created a new player setup page with fields for profile picture, player name, and car number.
-  - **Profile Picture Selection**: Added 6 images in `/static/images/profiles`. Clicking the profile picture circle will shuffle through these images.
-  - **Player Info Input**: Added fields for Player Name and Car Number.
-  - **Start the Race Button**: Navigates to `home.html` when clicked.
+- **setup.html**: Introduced a new player setup page with fields for selecting a profile picture, entering player name, and specifying car number.
+  - **Profile Picture Selection**: Added six images in `/static/images/profiles` for player selection. Clicking the profile picture cycles through these images.
+  - **Player Info Input**: Added input fields for **Player Name** and **Car Number**.
+  - **Start the Race Button**: Navigates to `home.html` upon clicking, launching the main game interface.
 
 ### File Updates:
 - **routes.py**: 
-  - Updated routes: the root (`/`) now points to `setup.html`, and `home.html` is accessed at `/home` (lines 46-52).
-  
+  - Updated route mappings: the root path (`/`) now serves `setup.html`, and `home.html` is accessible at `/home` (see lines 46-52 for reference).
+
 - **style.css**: 
-  - Cleaned up and sorted out styling for a more consistent look across pages.
-  
+  - Cleaned up and organized styles for a more consistent look across all pages.
+
 - **home.html**: 
-  - Added JavaScript to retrieve and display player info from `setup.html`.
-  - (Consider moving the growing script to `main.js` to keep `home.html` short and just html...)
-  
+  - Integrated JavaScript to retrieve and display player data from `setup.html`.
+  - Moved JavaScript functions from `home.html` to `main.js` for better code management.
+
 - **base.html**: 
-  - Minor adjustments to header and footer for improved alignment and uniformity.
+  - Refined header and footer for improved alignment and uniformity.
+  - The "About" button is now functional, linking to `about.html`.
 
 ---
 
-## What's Next:
-- Ensure player name and car number display correctly in `home.html`.
-- Enable the "About" button functionality in `home.html`.
-- Highlight Player 1 and Player 2 on the standings board for visibility.
-- General cleanup to improve layout and visual consistency across pages.
+### Known Issues:
+- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+- **Profile Sync Issue**: Player profile pictures and information fail to sync correctly between `setup.html` and `home.html`: Player 1’s profile picture appearing in Player 2’s control center.
 
 ---
+
+### Next Updates:
+- Make sure player name and car number display accurately in `home.html`.
+- Highlight Player 1 and Player 2 on the standings board for better visibility.
+- Continue general layout and visual cleanup for consistency across pages.
+- Finalize designs for `about.html` and `404.html`.
+- Add support for dark mode/theme options.
+
+---
+
 
 # Approach for player setup
 
