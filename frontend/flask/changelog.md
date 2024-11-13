@@ -1,0 +1,84 @@
+# Nov 10 Changelog
+
+### New Files and Features:
+- **setup.html**: Introduced a new player setup page with fields for selecting a profile picture, entering player name, and specifying car number.
+  - **Profile Picture Selection**: Added six images in `/static/images/profiles` for player selection. Clicking the profile picture cycles through these images.
+  - **Player Info Input**: Added input fields for **Player Name** and **Car Number**.
+  - **Start the Race Button**: Navigates to `home.html` upon clicking, launching the main game interface.
+
+### File Updates:
+- **routes.py**: 
+  - Updated route mappings: the root path (`/`) now serves `setup.html`, and `home.html` is accessible at `/home` (see lines 46-52 for reference).
+
+- **style.css**: 
+  - Cleaned up and organized styles for a more consistent look across all pages.
+
+- **home.html**: 
+  - Integrated JavaScript to retrieve and display player data from `setup.html`.
+  - Moved JavaScript functions from `home.html` to `main.js` for better code management.
+
+- **base.html**: 
+  - Refined header and footer for improved alignment and uniformity.
+  - The "About" button is now functional, linking to `about.html`.
+
+---
+
+### Known Issues:
+- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+- **Profile Sync Issue**: Player profile pictures and information fail to sync correctly between `setup.html` and `home.html`: Player 1’s profile picture appearing in Player 2’s control center.
+
+---
+
+### Next Updates:
+- Make sure player name and car number display accurately in `home.html`.
+- Highlight Player 1 and Player 2 on the standings board for better visibility.
+- Continue general layout and visual cleanup for consistency across pages.
+- Finalize designs for `about.html` and `404.html`.
+- Add support for dark mode/theme options.
+
+---
+
+
+# Approach for player setup
+
+## Phase 1: Build the visual layout and input fields in setup.html (no back-end changes needed yet).
+
+## Phase 2: Plan data flow and set up a form submission that passes data to the back end.
+
+## Phase 3: Add basic backend logic in routes.py to handle and store player info, then update home.html to display this data.
+
+
+# Planned Universal Classes and Their Placement
+
+## Headers & Subheaders:
+.main-title (for primary headers, like page titles): Replace inline header styles in setup.html, home.html, and base.html.
+.sub-title (for subtitles): Use in areas like the update message in home.html and player titles in setup.html.
+
+## Containers:
+.content: Central container that centers content, used across pages. Ensures vertical and horizontal alignment.
+.box: Core styling for any container (background color, padding, border radius, shadow). Use for player setup boxes, standings, and control centers.
+.box-large and .box-small can be subclasses of .box for resizing.
+.centered-container: Apply in base.html and .content divs to centralize content across the entire viewport.
+
+## Buttons:
+.button: Base button style for uniform padding, border-radius.
+.button-primary, .button-danger for different actions (e.g., start race, reset).
+Replace inline button styles for the "Start Race" and pit/reset buttons in home.html and setup.html.
+
+## Profile Picture Placeholder:
+.profile-picture: Standardize for the circular image placeholder. This ensures it’s easy to customize if you change image sizes or colors across themes.
+
+## Table:
+.standings-table: For tables in home.html, using .standings-table ensures a consistent look.
+Add header and cell styles for alignment, border-bottom, padding, etc., so each page with tables will follow the same setup.
+
+## Input Fields:
+.input-field: Standardize for text and number input styling in setup.html. It replaces the inline input styles with a class for consistent padding, border, and radius.
+
+footer for base.html
+
+    <footer id="footer-sections" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; width: 100%; box-sizing: border-box;">
+        <button id="nav-button" class="start-button" style="flex-shrink: 0;">About</button>
+        <div class="footer-text" style="flex-grow: 1; text-align: center;">© NASCAR Manager '24</div>
+        <button id="clock-button" class="clock" style="flex-shrink: 0;">⏳</button>
+    </footer>
