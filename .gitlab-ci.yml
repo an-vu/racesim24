@@ -28,7 +28,7 @@ build:
   only:
     - main 
 
-#Deploy stage (optional if you want to push the Docker image)
+#Deploy stage 
 deploy:
  stage: deploy
  image: docker:24

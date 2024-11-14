@@ -1,6 +1,8 @@
+""" Module to run tests for CI Pipeline """
+
 import pytest
 from backend.car import Car
-from backend.car_AI import AI
+from backend.car_ai import AI
 from backend.race import Race
 
 @pytest.fixture
@@ -45,7 +47,7 @@ def test_get_standings(race_state):
 
 def test_ai_push_update(race_state):
     """Test if AI's push level updates correctly."""
-    race_state.update_AI_push()
+    race_state.update_ai_push()
     ai_car = race_state.cars[2]  # HAM is an AI car
     assert ai_car.push_tire >= 3  # Assuming the push level should increase
 
@@ -61,11 +63,11 @@ def test_pit_stop(race_state):
 def test_dirty_air_effect(race_state):
     """Test if dirty air effect updates car's race time."""
     # Simulate cars having a dirty air effect.
-    
+
     race_state.advance_lap()  # Simulate at least one lap
     race_state.calc_dirty_air(force_dirty_air=True)  # Calculate dirty air effect
     standings = race_state.get_standings()
-    
+
     # Check if dirty air has been applied and the second car's race time has increased
     assert standings[1].total_race_time > standings[0].total_race_time
 

@@ -99,6 +99,36 @@
             localStorage.setItem("player2Car", player2Car);
             localStorage.setItem("player2Picture", profileImages[player2Index]);
 
+            // Prepare data for POST request
+            const data = {
+                player1_name: player1Name,
+                car1_number: parseInt(player1Car),
+                player2_name: player2Name,
+                car2_number: parseInt(player2Car)
+            };
+
+            // Send data to Flask backend
+            fetch("/initialize_race", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Redirect to home.html after successful initialization
+                    window.location.href = "/home";
+                } else {
+                    alert("Error initializing players.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+
             // Redirect to home.html
             window.location.href = "/home";
         }

@@ -1,3 +1,5 @@
+""" Module providing the Car class """
+
 class Car:
     """
     Car class representing a race car with attributes related to its performance, tire life, fuel, and race time.
@@ -113,19 +115,19 @@ class Car:
         """
         Checks for blown tire or no gas and forces a pit stop and applies a penalty.
         """
-        
+
         if min(self.tire_life, self.fuel_level) <= 0:
             self.pit_stop()
             self.total_race_time += 80
             print(f"{self} Tire blown or ran out of fuel, penalty applied!")
-    
+
     def reset_for_race(self):
         """
         Resets race-specific attributes for the car.
         """
         self.total_race_time = 0.0
-        self.tire_life = 100.0  
-        self.fuel_level = 100.0 
+        self.tire_life = 100.0
+        self.fuel_level = 100.0
         self.best_race_time = 0
         self.to_leader = 0
         self.push_tire = 3

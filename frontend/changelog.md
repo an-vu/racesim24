@@ -1,3 +1,37 @@
+# Nov 13 Changelog
+
+### New Files and Features
+- **.gitignore**: Re-added and will ignore all future cache files to clean repo
+
+### File Updates:
+  **car_AI.py -> car_ai.py**: Renamed for valid snake_case and cleaned up via linter
+  **car.py**: Cleaned up via linter
+  **race.py**: Cleaned up via linter, removed unused import
+  **routes.py**:
+  - Moved to root directory to clean imports, didn't make sense to have in the frontend
+  - Cleanded via linter, 
+  - added static and templates references
+  - added favicon.ico route
+  - removed static player names and numbers
+  - added initialize_race route to get player names and numbers and start race
+  **test_race.py**: Cleaned up via linter
+  **Dockerfile**: Updated reference to routes.py
+  **setup.html**: Fixed script to update player names and numbers
+---
+
+### Known Issues:
+- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+
+---
+
+### Next Updates:
+- Highlight Player 1 and Player 2 on the standings board for better visibility.
+- Continue general layout and visual cleanup for consistency across pages.
+- Finalize designs for `about.html` and `404.html`.
+- Add support for dark mode/theme options.
+
+---
+
 # Nov 10 Changelog
 
 ### New Files and Features:

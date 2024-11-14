@@ -1,6 +1,7 @@
-from backend.car import Car
-from backend.car_AI import AI
+""" Module that imports the Car and AI classed to run the races """
+
 import random
+from backend.car_ai import AI
 
 class Race:
     """
@@ -68,7 +69,7 @@ class Race:
                     # Apply the strongest dirty air penalty or effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
                     odds_no_pass = abs(int((7 - odds_of_pass) * 100))  # Small range for stronger effect
-                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass)) / 100)
+                    seconds_of_dirty_air = int(random.randint(0, odds_no_pass)) / 100
                     car.update_time_for_dirty_air(seconds_of_dirty_air)
                     print(f"Strong dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
@@ -76,7 +77,7 @@ class Race:
                     # Still close but less intense dirty air effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
                     odds_no_pass = abs(int((3 - odds_of_pass) * 100))  # Smaller range for less intense effect
-                    seconds_of_dirty_air = (int(random.randint(0, odds_no_pass) / 2) / 100)
+                    seconds_of_dirty_air = int(random.randint(0, odds_no_pass) / 2) / 100
                     car.update_time_for_dirty_air(seconds_of_dirty_air)
                     print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
@@ -94,7 +95,7 @@ class Race:
         self.cars.sort(key=lambda car: car.total_race_time)
         return self.cars
 
-    def update_AI_push(self): # needs work
+    def update_ai_push(self): # needs work
         """
         Adjusts the push level of AI-controlled cars based on their strategy and race conditions.
         This method checks if AI cars should increase their push level based on available tire life 
@@ -103,14 +104,11 @@ class Race:
 
         #meant to go before lap is run [avg_lap_time_for_strat, stops, laps_per_stint, push_avalible, init_push_level]
         sorted_cars = sorted(self.cars, key=lambda car: car.total_race_time)
-        for slot in range(len(sorted_cars)):
-            car = sorted_cars[slot]
-            
+        for slot, car in enumerate(sorted_cars):
             # Call check_pit_stop() for AI cars before updating push level
             if isinstance(car, AI):
                 car.check_pit_stop()  # Check if the AI car needs to pit
-
-                if isinstance(car, AI) and car.strategy[4] != 5:
+                if car.strategy[4] != 5:
                     if car.strategy[3] > car.strategy[2]:
                         car.edit_push(car.strategy[4] + 1)
                     elif slot != 0:
@@ -123,15 +121,17 @@ class Race:
                         car.edit_push(car.strategy[4])
 
 
-    
+
     def get_best_time(self):
+        """
+        Iterates through the cars and returns the best current total time.
+        """
         # Initialize a variable to store the car with the smallest total race time
         smallest_race_time = float('inf')  # Start with a large number so any race time will be smaller
         # Loop through all cars to find the one with the smallest total race time
         for car in self.cars:
-            if car.total_race_time < smallest_race_time:
-                smallest_race_time = car.total_race_time
-            
+            smallest_race_time = min(smallest_race_time, car.total_race_time)
+
         for car in self.cars:
             car.best_race_time = smallest_race_time
             car.to_leader = car.total_race_time - car.best_race_time
@@ -140,13 +140,13 @@ class Race:
         """
         Advances the race by one lap, updating the AI push levels and recalculating dirty air effects.
         """
-        self.update_AI_push()
+        self.update_ai_push()
         self.advance_lap()
         self.calc_dirty_air()
         for car in self.cars:
             car.force_pit()
         self.get_best_time()
-        
+
 
     def race_end(self):
         """
@@ -156,7 +156,7 @@ class Race:
             bool: True if the current lap is greater than or equal to the total lap count, False otherwise.
         """
         return self.lap >= self.lap_count
-    
+
 def restart(race_instance):
     """
     Restarts the race by resetting the lap number, total race time, and other relevant attributes of the provided Race instance.
@@ -169,26 +169,6 @@ def restart(race_instance):
         car.reset_for_race()  # Call reset on each car
     race_instance.standings = []
     print("Race has been reset.")
-
-# depricated
-# def start(): 
-#     """
-#     Initializes a race with a set of predefined cars (both human-controlled and AI) and adds them to the race.
-
-#     Returns:
-#         Race: The initialized race object with the cars added.
-#     """
-
-#     state = Race()
-#     cars = [
-#         #Driver | Car Num | Base Lap Time | Pass Eff. | Def. Rat. | Race State
-#         Car("CHA", 1, 30.5, 22.45, -10.65, state),
-#         Car("LAR", 5, 30.5, 24.68, -6.72, state),
-#         AI("HAM", 11, 30.5, 23.42,-13.02, state),
-#         AI("LOG", 22, 30.5, 20, -20, state)
-#     ]
-#     for car in cars: state.add_car(car)
-#     return state
 
 def race_end(state):
     """
