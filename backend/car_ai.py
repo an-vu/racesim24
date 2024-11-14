@@ -1,5 +1,7 @@
-from backend import car
+"""Module providing the AI car class based upon the Car class"""
+
 import random
+from backend import car
 
 class AI(car.Car):
     """
@@ -53,7 +55,7 @@ class AI(car.Car):
                 - push_available (float): The remaining ability to "push" during the race based on tire wear.
                 - init_push_level (int): The initial push level for this strategy.
         """
-        
+
         stops = laps_to_go // laps_able_to_go_on_tires
         stints = stops + 1
         laps_per_stint = laps_to_go // stints
@@ -115,8 +117,9 @@ class AI(car.Car):
         Simulates a lap for the AI car, adjusting tire life and fuel, then checks if a pit stop is needed.
         """
         # Simulate tire wear and fuel consumption based on push level
-        self.adjust_tire_life(self.push_level)  # Adjust tire life based on push level
-        self.adjust_fuel_level(self.push_level)  # Adjust fuel level based on push level
-        
+        # non-functional, commented out for now
+        # self.adjust_tire_life(self.push_level)  # Adjust tire life based on push level
+        # self.adjust_fuel_level(self.push_level)  # Adjust fuel level based on push level
+
         # Check if the car needs to enter the pit
         self.check_pit_stop()
