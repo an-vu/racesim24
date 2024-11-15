@@ -53,6 +53,7 @@ class Race:
         The current implementation only penalizes cars that are close to another car based on race time.
         """
         sorted_cars = sorted(self.cars, key=lambda car: car.total_race_time)
+        updates_needed = [0]
 
         for i in range(1, len(sorted_cars)):
             car = sorted_cars[i]
@@ -64,26 +65,23 @@ class Race:
                 car.update_time_for_dirty_air(seconds_of_dirty_air)
                 print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
-                if gap_ahead <= 0.06:
-                    # Cars are extremely close, higher likelihood of dirty air
-                    # Apply the strongest dirty air penalty or effect
-                    odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
-                    odds_no_pass = abs(int((7 - odds_of_pass) * 100))  # Small range for stronger effect
-                    seconds_of_dirty_air = int(random.randint(0, odds_no_pass)) / 100
-                    car.update_time_for_dirty_air(seconds_of_dirty_air)
-                    print(f"Strong dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
-
-                elif gap_ahead <= 0.4:
+                if gap_ahead <= 0.4:
                     # Still close but less intense dirty air effect
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
                     odds_no_pass = abs(int((3 - odds_of_pass) * 100))  # Smaller range for less intense effect
                     seconds_of_dirty_air = int(random.randint(0, odds_no_pass) / 2) / 100
-                    car.update_time_for_dirty_air(seconds_of_dirty_air)
+                    updates_needed.append(seconds_of_dirty_air)
                     print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
                 else:
+                    updates_needed.append(0)
                     # Cars are far apart, no dirty air effect
                     print(f"No dirty air effect applied to {car.name}")
+
+        for i in range(1, len(sorted_cars)):
+            car.update_time_for_dirty_air(updates_needed[i])
+
+
 
     def get_standings(self):
         """
