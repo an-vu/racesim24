@@ -62,7 +62,7 @@ class Race:
             if force_dirty_air:
                 seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
                 # Apply dirty air penalty
-                car.update_time_for_dirty_air(seconds_of_dirty_air)
+                updates_needed.append(seconds_of_dirty_air)
                 print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
                 if gap_ahead <= 0.4:
