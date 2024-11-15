@@ -78,7 +78,7 @@ class Race:
                     # Cars are far apart, no dirty air effect
                     print(f"No dirty air effect applied to {car.name}")
 
-        for i in range(1, len(sorted_cars)):
+        for i in range(len(sorted_cars)):
             car.update_time_for_dirty_air(updates_needed[i])
 
 
