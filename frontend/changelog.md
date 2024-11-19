@@ -1,3 +1,29 @@
+# Nov 18 Changelog
+### File Updates:
+ **car.py**: Added lap time calculations
+ **race.py**:
+- Fixed dirty air, swapped updates_needed from list to dictionary
+- Added map_helper method, creates dictionary for use for map building
+**main.js**: staged area for map updates
+**home.html**: staged area for map
+**routes.py**: staged area for possible map API calls
+
+---
+
+### Known Issues:
+- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+
+---
+
+### Next Updates:
+- Get map added and working
+- Highlight Player 1 and Player 2 on the standings board for better visibility.
+- Continue general layout and visual cleanup for consistency across pages.
+- Finalize designs for `about.html` and `404.html`.
+- Add support for dark mode/theme options.
+
+---
+
 # Nov 13 Changelog
 
 ### New Files and Features

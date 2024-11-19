@@ -165,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('input[name="strategy1"], input[name="strategy2"]').forEach(radio => radio.checked = false);
     }
 
+    function updateMap() {
+        // Future development here
+        document.getElementById('map')
+    }
+
+
     // Event Listeners for Pit and Strategy Buttons
     document.getElementById('player-car-1-pit').addEventListener('click', () => handlePitStop(0, player_racer_array[0].number));
     document.getElementById('player-car-2-pit').addEventListener('click', () => handlePitStop(1, player_racer_array[1].number));
