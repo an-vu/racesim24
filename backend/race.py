@@ -21,8 +21,10 @@ class Race:
 
         self.lap = 1
         self.cars = []
+        self.lap_map = None
         self.lap_count = 25
         self.standings = [] # sorted list of cars
+        self.lap_data = {} # init dictionary for lap data
 
     def add_car(self, car):
         """
@@ -42,9 +44,9 @@ class Race:
         self.lap += 1
         for car in self.cars:
             car.drive()
-        # self.get_standings()
+        
 
-    def calc_dirty_air(self, force_dirty_air=False): # needs work
+    def calc_dirty_air(self, force_dirty_air=False):
         """
         Calculates the effects of 'dirty air' on the cars. 'Dirty air' refers to reduced performance 
         due to aerodynamic turbulence when following closely behind another car. Cars affected by dirty 
@@ -53,7 +55,7 @@ class Race:
         The current implementation only penalizes cars that are close to another car based on race time.
         """
         sorted_cars = sorted(self.cars, key=lambda car: car.total_race_time)
-        updates_needed = [0]
+        updates_needed = {}
 
         for i in range(1, len(sorted_cars)):
             car = sorted_cars[i]
@@ -62,7 +64,7 @@ class Race:
             if force_dirty_air:
                 seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
                 # Apply dirty air penalty
-                updates_needed.append(seconds_of_dirty_air)
+                updates_needed[car.number] = seconds_of_dirty_air
                 print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
                 if gap_ahead <= 0.4:
@@ -70,16 +72,17 @@ class Race:
                     odds_of_pass = (sorted_cars[i-1].defending + abs(car.passing)) / 2
                     odds_no_pass = abs(int((3 - odds_of_pass) * 100))  # Smaller range for less intense effect
                     seconds_of_dirty_air = int(random.randint(0, odds_no_pass) / 2) / 100
-                    updates_needed.append(seconds_of_dirty_air)
+                    updates_needed[car.number] = seconds_of_dirty_air
                     print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
                 else:
-                    updates_needed.append(0)
+                    updates_needed[car.number] = 0
                     # Cars are far apart, no dirty air effect
                     print(f"No dirty air effect applied to {car.name}")
 
-        for i in range(len(sorted_cars)):
-            car.update_time_for_dirty_air(updates_needed[i])
+        for car_number, time in updates_needed.items():
+            car = next(c for c in sorted_cars if c.number == car_number)
+            car.update_time_for_dirty_air(time)
 
 
 
@@ -144,6 +147,7 @@ class Race:
         for car in self.cars:
             car.force_pit()
         self.get_best_time()
+        self.map_helper()
 
 
     def race_end(self):
@@ -154,6 +158,35 @@ class Race:
             bool: True if the current lap is greater than or equal to the total lap count, False otherwise.
         """
         return self.lap >= self.lap_count
+
+    def map_helper(self):
+        """
+        Map Helper Function
+        """
+        standings = self.get_standings()
+
+        for car in self.cars:
+            if car.number in self.lap_data: # Check if the car's data exists
+                # Update last lap time and append it to the lap times list
+                last_lap_time_rounded = round(self.lap_data[car.number]["last_lap_time"], 2)
+                self.lap_data[car.number]["lap_times"].append(last_lap_time_rounded)
+                self.lap_data[car.number]["last_lap_time"] = round(car.last_lap_time, 2)
+                self.lap_data[car.number]["total_time"] = round(car.total_race_time, 2)
+                for i, car_posn in enumerate(standings):
+                    if car_posn.number == car.number:
+                        self.lap_data[car.number]["place"] = i + 1
+            else:
+                self.lap_data[car.number] = {
+                    "last_lap_time" : round(car.last_lap_time, 2),
+                    "lap_times" : [], # init lap times list
+                    "total_time" : round(car.total_race_time, 2),
+                    "place" : next(
+                        (idx + 1 for idx, standing_car in enumerate(standings) if standing_car.number == car.number),
+                        0
+                    )
+                }
+        print(self.lap_data)
+
 
 def restart(race_instance):
     """
@@ -166,6 +199,7 @@ def restart(race_instance):
     for car in race_instance.cars:
         car.reset_for_race()  # Call reset on each car
     race_instance.standings = []
+    race_instance.lap_data = {} # init dictionary for lap data
     print("Race has been reset.")
 
 def race_end(state):

@@ -88,6 +88,16 @@ body, html {
     background-color: #45a049; /* Slightly darker shade for hover */
 }
 
+/* Car styling for track */
+.track_cars {
+    width: 20px;
+    height: 20px;
+    background-color: blue;  /* Default color */
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
 
 /* Input Field Styling */
 .input-field {

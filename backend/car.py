@@ -36,6 +36,8 @@ class Car:
         self.passing = passing
         self.defending = defending
         self.total_race_time = 0
+        self.last_lap_time = 0
+        self.last_race_time = 0
         self.fast_lap_time = fast_lap_time
         self.current_laptime_standing = fast_lap_time
         self.tire_life = 100
@@ -78,7 +80,9 @@ class Car:
         self.current_laptime_standing += lap_time_increase
         self.tire_life -= tire_decrease
         self.fuel_level -= 1.6  # Constant fuel level decrease
+        self.last_race_time = self.total_race_time
         self.total_race_time += self.current_laptime_standing + race_time_adjustment
+        self.last_lap_time = self.total_race_time - self.last_race_time
 
     def update_time_for_dirty_air(self, dirty_air_update):
         """
@@ -131,6 +135,8 @@ class Car:
         self.best_race_time = 0
         self.to_leader = 0
         self.push_tire = 3
+        self.last_lap_time = 0
+        self.last_race_time = 0
 
     def __str__(self):
         """
