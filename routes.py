@@ -1,6 +1,6 @@
 """ Module to run the flask api """
 
-import csv
+import csv, random
 from flask import Flask, render_template, jsonify, request, send_from_directory
 from backend.car import Car
 from backend.car_ai import AI
@@ -31,7 +31,8 @@ def initialize_race():
             # Map row values to specific variables based on expected column order
             name = row[0]
             number = int(row[1])
-            fast_lap_time = float(row[2])
+            random_adjustment =  random.randint(1,30)/1000
+            fast_lap_time = float(row[2]) + random_adjustment
             passing = float(row[3])
             defending = float(row[4])
 
