@@ -22,7 +22,7 @@ class Race:
         self.lap = 1
         self.cars = []
         self.lap_map = None
-        self.lap_count = 25
+        self.lap_count = 267
         self.standings = [] # sorted list of cars
         self.lap_data = {} # init dictionary for lap data
 
