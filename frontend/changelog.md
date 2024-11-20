@@ -1,12 +1,13 @@
-# Nov 18 Changelog
+# Nov 19 Changelog
 ### File Updates:
  **car.py**: Added lap time calculations
  **race.py**:
 - Fixed dirty air, swapped updates_needed from list to dictionary
 - Added map_helper method, creates dictionary for use for map building
-**main.js**: staged area for map updates
-**home.html**: staged area for map
-**routes.py**: staged area for possible map API calls
+**main.js**: created updateMap() function, updates elements on home.html
+**home.html**: created rudimentary map elements
+**routes.py**: /api/map route created, pulls race.lap_data
+**style.css**: Created .track_cars styling for track
 
 ---
 

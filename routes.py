@@ -182,16 +182,13 @@ def restart_race():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-@app.route('/map', methods=['POST'])
+@app.route('/api/map', methods=['GET'])
 def get_map():
     """
     API Route to pull the map data
     """
     try:
-        map_data = {
-            # future development here
-        }
-        return jsonify({"status": "success", "message": "Map pulled successfully", "data": map_data}), 200
+        return jsonify(race.lap_data), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 

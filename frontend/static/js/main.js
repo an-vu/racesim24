@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await fetch('/api/race/lap', { method: 'POST' });
             getRaceData();
+            updateMap();
             player_car_1_pit_boolean = false;
             player_car_2_pit_boolean = false;
         } catch (error) {
@@ -166,9 +167,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateMap() {
-        // Future development here
-        document.getElementById('map')
-    }
+        // Fetch the race map data from the Flask API
+    fetch('/api/map')
+        .then(response => response.json())  // Parse JSON response
+        .then(data => {
+            // Sort the cars based on their placement
+            const sortedCars = Object.entries(data)
+                .sort((a, b) => a[1].place - b[1].place);  // Sort by carData["place"]
+
+            // Update each pre-placed car div based on its position in the standings
+            sortedCars.forEach(([carNumber, carData], index) => {
+                const carDiv = document.getElementById((index + 1).toString());  // Get the div by its rank ID
+                if (carDiv) {
+                    carDiv.textContent = carNumber;  // Display the car number in the div
+
+                    // Optionally, update other properties like color based on the car's place
+                    if (carData.place === 1) {
+                        carDiv.style.backgroundColor = 'gold';  // First place car gets gold
+                    } else if (carData.place === 2) {
+                        carDiv.style.backgroundColor = 'silver';  // Second place car gets silver
+                    } else if (carData.place === 3) {
+                        carDiv.style.backgroundColor = 'red';  // Third place car gets bronze
+                    } else {
+                        carDiv.style.backgroundColor = 'blue';  // Default color for others
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching race map data:', error));
+}
 
 
     // Event Listeners for Pit and Strategy Buttons
