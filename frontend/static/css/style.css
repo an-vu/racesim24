@@ -30,6 +30,11 @@ body, html {
     text-align: center;
 }
 
+.home-container {
+    transform: scale(0.8); /* Scales the content to 90% */
+    transform-origin: center; /* The scaling originates from the center */
+}
+
 .main-title {
     font-size: 2em;
     font-weight: bold;
