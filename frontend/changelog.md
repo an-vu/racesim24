@@ -1,3 +1,8 @@
+# Nov 21 Changelog
+### File Updates:
+ **main.js**: Fixed player pit functions and stat updates
+
+
 # Nov 19 Changelog
 ### File Updates:
  **car.py**: Added lap time calculations
