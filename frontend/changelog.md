@@ -1,4 +1,7 @@
 # Nov 19 Changelog
+
+- TLDR: small update that resizes the home screen layout to 80% & moved the advance lap reset buttons to the player control center column.
+
 ### File Updates:
  **car.py**: Added lap time calculations
  **race.py**:
