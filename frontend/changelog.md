@@ -5,24 +5,26 @@
 - Added 2 new profile pictures
 
 **`main.js`**:
-- Moved all the scripts from `setup.html` here.
 
 **`home.html`**:
+- Updated the layout a bit...
+
+**`setup.html`**:
+- Updated to follow `base.html` rules.
 
 **`routes.py`**:
 - Cleaned up and moved some functions around for better readability.
 - Added shebang line.
 
 **`style.css`**:
-- Cleaned up a bunch:
-
+- Cleaned up a bunch, removed unused classes, polished some elements etc etc...
 
 
 ---
 
 ### Known Issues:
 - **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
-- Why tf the scripts in setup.html stop working when moved to `main.js`...???
+- yo why tf the js scripts in `setup.html` stop working when moved to `main.js`...???
 
 ---
 
