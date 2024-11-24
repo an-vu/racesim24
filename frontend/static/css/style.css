@@ -49,12 +49,22 @@ body, html {
 
 /* General Box Styling */
 .box {
-    background-color: #fff;
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%; /* Default width can be adjusted as needed */
+    padding: 20px;
+    /*
+    height: ;
+    margin: ;
+    background-color: #fff;
+    border: .1px solid #333;
+    */
+    background: rgb(0 0 0 / 5%);
+    box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
+      0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
+      0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
+      0 10px 10px -3.75px #00000010;
+    backdrop-filter: blur(40px);
+    border-radius: 30px;
+    position: relative;
 }
 
 /* Profile Picture Styling */
@@ -77,20 +87,23 @@ body, html {
 
 /* Button Styling */
 .button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: .5px solid #ff0000; /* Replace $red with #ff0000 */
+    border-radius: 30em;
+    font-size: 16px;
+    padding: 6px 12px;
+    color: #ff0000;
+    text-decoration: none;
+    transition: background-color 0.25s, box-shadow 300ms ease-in-out, color 300ms ease-in-out;    
     cursor: pointer;
-    font-size: 1em;
-    background-color: #4CAF50; /* Primary color */
-    color: white;
-    transition: background-color 0.3s;
-    flex-shrink: 0; /* Prevents the buttons from affecting the centered text */
+
 }
 
-/* Optional: Hover effect */
 .button:hover {
-    background-color: #45a049; /* Slightly darker shade for hover */
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+    outline: 0;
+    box-shadow: 0 0 15px 15px #ff0000 inset;
 }
 
 /* Car styling for track */

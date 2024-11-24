@@ -15,8 +15,8 @@ list_car_numbers = [] # Define global variable to store non-AI car numbers
 
 @app.route('/favicon.ico')
 def favicon():
-    """ Created to get rid of the favicon load error """
-    return send_from_directory(app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    """Created to get rid of the favicon load error"""
+    return send_from_directory(f"{app.static_folder}/images", 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/initialize_race', methods=['POST'])
 def initialize_race():

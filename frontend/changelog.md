@@ -1,3 +1,39 @@
+# Nov 24 Changelog
+
+### File Updates:
+- Moved `favicon.ico` to /frontend/static/images/
+- Added 2 new profile pictures
+
+**`main.js`**:
+
+**`home.html`**:
+
+
+**`routes.py`**:
+- Cleaned up and moved some functions around for better readability.
+- Added a shebang line.
+
+**`style.css`**:
+- Cleaned up a bunch:
+  - class `.box` is now `.card`
+
+
+---
+
+### Known Issues:
+- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+
+---
+
+### Next Updates:
+- Get map added and working
+- Highlight Player 1 and Player 2 on the standings board for better visibility.
+- Continue general layout and visual cleanup for consistency across pages.
+- Finalize designs for `about.html` and `404.html`.
+- Add support for dark mode/theme options.
+
+---
+
 # Nov 21 Changelog
 ### File Updates:
  **main.js**: Fixed player pit functions and stat updates
@@ -57,6 +93,7 @@
   **test_race.py**: Cleaned up via linter
   **Dockerfile**: Updated reference to routes.py
   **setup.html**: Fixed script to update player names and numbers
+
 ---
 
 ### Known Issues:
