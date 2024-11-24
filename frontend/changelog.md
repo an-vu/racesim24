@@ -22,6 +22,7 @@
 
 ### Known Issues:
 - **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
+- Why tf the scripts in setup.html stop working when moved to `main.js`...???
 
 ---
 

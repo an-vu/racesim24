@@ -6,6 +6,7 @@
     <title>{% block title %}NASCAR Manager '24{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <header>
         <a href="{{ url_for('home') }}" class="main-title" style="text-decoration: none; color: inherit;">
@@ -25,11 +26,10 @@
     <!-- Footer -->
     <footer class="footer">
         <button id="about-button" class="button">About</button>
-        <div class="footer-text">Update November 7, 2024</div>
+        <div class="footer-text">Update November 24, 2024</div>
         <button id="clock-button" class="button">⏳</button>
     </footer>
 
-    
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
