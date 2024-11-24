@@ -4,15 +4,23 @@
 
 
 # Nov 19 Changelog
+
+- TLDR: Small update resizing the home screen layout to 80% and moving the "Advance Lap" and "Reset" buttons to the Player Control Center column.
+
 ### File Updates:
  **car.py**: Added lap time calculations
  **race.py**:
 - Fixed dirty air, swapped updates_needed from list to dictionary
 - Added map_helper method, creates dictionary for use for map building
 **main.js**: created updateMap() function, updates elements on home.html
-**home.html**: created rudimentary map elements
+**home.html**:
+- Created rudimentary map elements
+- Moved Reset and Advance Lap buttons to the Control Center columns
+- Game Layout is now `.home-container` class
 **routes.py**: /api/map route created, pulls race.lap_data
-**style.css**: Created .track_cars styling for track
+**style.css**:
+- Created .track_cars styling for track
+- Added `.home-container` class: scaled down to 80% for smaller screen
 
 ---
 
@@ -140,11 +148,3 @@ Add header and cell styles for alignment, border-bottom, padding, etc., so each 
 
 ## Input Fields:
 .input-field: Standardize for text and number input styling in setup.html. It replaces the inline input styles with a class for consistent padding, border, and radius.
-
-footer for base.html
-
-    <footer id="footer-sections" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; width: 100%; box-sizing: border-box;">
-        <button id="nav-button" class="start-button" style="flex-shrink: 0;">About</button>
-        <div class="footer-text" style="flex-grow: 1; text-align: center;">© NASCAR Manager '24</div>
-        <button id="clock-button" class="clock" style="flex-shrink: 0;">⏳</button>
-    </footer>
