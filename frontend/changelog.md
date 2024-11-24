@@ -5,17 +5,17 @@
 - Added 2 new profile pictures
 
 **`main.js`**:
+- Moved all the scripts from `setup.html` here.
 
 **`home.html`**:
 
-
 **`routes.py`**:
 - Cleaned up and moved some functions around for better readability.
-- Added a shebang line.
+- Added shebang line.
 
 **`style.css`**:
 - Cleaned up a bunch:
-  - class `.box` is now `.card`
+
 
 
 ---
