@@ -5,19 +5,27 @@
     box-sizing: border-box;
 }
 
-body, html {
+body {
     background: url(https://9to5mac.com/wp-content/uploads/sites/6/2019/07/apple_champs_elysees_boardroom.jpg?quality=82&strip=all&w=1600);
-    font-family: 'Roboto Mono', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    perspective: 1000px;
+    width: 100vw;
+    height: 100vh;
     margin: 0; /* Remove default margin */
+    padding: 50px;
+    box-sizing: border-box;
     display: flex; /* Enable flexbox layout for centering */
-    flex-direction: column; /* For vertical alignment of content */
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
-    text-align: center; /* Center text */
-    gap: 20px; /* Add space between children */
+    font-family: sans-serif;
+    color: #333;
+    /*
+    text-align: center;
+    flex-direction: column;
+    gap: 20px;
+    */
 }
 
 .home-container {
@@ -39,14 +47,10 @@ body, html {
 
 /* General card Styling */
 .card {
-    width: 100%; /* Default width can be adjusted as needed */
+    width: auto;
+    height: auto;
     padding: 20px;
-    /*
-    height: ;
-    margin: ;
-    background-color: #fff;
-    border: .1px solid #333;
-    */
+    margin: 20px 0;
     background: rgb(0 0 0 / 5%);
     box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
       0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
@@ -55,6 +59,73 @@ body, html {
     backdrop-filter: blur(40px);
     border-radius: 30px;
     position: relative;
+    /*
+    background-color: #fff;
+    border: .1px solid #333;
+    */
+}
+
+/* Side Styling */
+.side {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s;
+}
+  
+.left-side {
+    transform: rotateY(45deg) translateX(-1000px);
+    animation: animate-left 1s forwards;
+}
+
+.right-side {
+    transform: rotateY(-45deg) translateX(1000px);
+    animation: animate-right 1s forwards;
+}
+
+.center-side {
+    transform: rotateX(0deg) scale(0.9) translateY(-1000px);
+    animation: animate-center 0.7s forwards;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.small {
+    width: 150px;
+    height: 150px;
+}
+
+.right-side .card {
+    width: auto;
+    height: auto;
+}
+
+/* Button Styling */
+.button {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: .5px solid #ff0000; /* Replace $red with #ff0000 */
+    border-radius: 30em;
+    font-size: 16px;
+    padding: 6px 12px;
+    color: #ff0000;
+    text-decoration: none;
+    transition: background-color 0.25s, box-shadow 300ms ease-in-out, color 300ms ease-in-out;    
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+    outline: 0;
+    box-shadow: 0 0 15px 15px #ff0000 inset;
 }
 
 /* Profile Picture Styling */
@@ -73,27 +144,6 @@ body, html {
     font-size: 24px;
     color: #555;
     margin: 0 auto;
-}
-
-/* Button Styling */
-.button {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: .5px solid #ff0000; /* Replace $red with #ff0000 */
-    border-radius: 30em;
-    font-size: 16px;
-    padding: 6px 12px;
-    color: #ff0000;
-    text-decoration: none;
-    transition: background-color 0.25s, box-shadow 300ms ease-in-out, color 300ms ease-in-out;    
-    cursor: pointer;
-
-}
-
-.button:hover {
-    background-color: rgba(255, 255, 255, 0.4);
-    color: #fff;
-    outline: 0;
-    box-shadow: 0 0 15px 15px #ff0000 inset;
 }
 
 /* Car styling for track */
@@ -163,10 +213,20 @@ body, html {
     text-align: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .footer {
-        position: relative;
+@keyframes animate-left {
+    100% {
+        transform: rotateY(45deg) translateX(0px);
     }
 }
 
+@keyframes animate-right {
+    100% {
+        transform: rotateY(-45deg) translateX(0px);
+    }
+}
+
+@keyframes animate-center {
+    100% {
+        transform: rotateX(0deg) scale(0.9) translateY(0px);
+    }
+}

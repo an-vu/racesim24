@@ -8,20 +8,12 @@
 </head>
 
 <body>
-    <header>
-        <a href="{{ url_for('home') }}" class="main-title" style="text-decoration: none; color: inherit;">
-            CSCI 4830 Project
-        </a>
-    </header>
 
     <!-- Main content area -->
-    <div class="centered-container">
-        <div class="content">
-            {% block content %}
-            <!-- Specific page content will go here -->
-            {% endblock %}
-        </div>
-    </div>
+    {% block content %}
+    <!-- Specific page content will go here -->
+    {% endblock %}
+
 
     <!-- Footer -->
     <footer class="footer">

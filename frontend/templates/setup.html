@@ -4,11 +4,8 @@
 
 {% block content %}
 <body>
-    <h1 class="main-title">NASCAR Manager '24 - Player Setup</h1>
-    
     <!-- Player Setup Container -->
-    <div class="setup-container" style="display: flex; gap: 20px;">
-        
+    <div class="side center-side">
         <!-- Player 1 Setup card -->
         <div class="card">
             <h3 class="sub-title">Player 1</h3>
@@ -26,7 +23,9 @@
             <label for="car1-number">Car #</label>
             <input type="number" id="car1-number" name="car1_number" placeholder="Enter car number" class="input-field">
         </div>
+    </div>
 
+    <div class="side center-side">
         <!-- Player 2 Setup card -->
         <div class="card">
             <h3 class="sub-title">Player 2</h3>
@@ -46,11 +45,11 @@
         </div>
     </div>
 
-    <!-- Start Race Button -->
-    <div style="margin-top: 30px;">
-        <button onclick="startRace()" class="button">
-            START THE RACE
-        </button>
+    <div class="side center-side">
+        <!-- Start Race Button -->
+        <div style="margin-top: 30px;">
+            <button onclick="startRace()" class="button">START THE RACE</button>
+        </div>
     </div>
 
     <script>
