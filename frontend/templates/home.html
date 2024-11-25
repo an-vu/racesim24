@@ -5,8 +5,8 @@
 {% block content %}
 <body>
     <div class="side left-side">
+        <!-- Map -->
         <div class="card">
-            <!-- Map -->
             <!-- <label>Map</label> -->
             <div id="track" style="position: relative; width: 400px; height: 200px; margin: auto; background-color: #000000; border-radius: 40%; overflow: hidden;">
                 <!-- Predefined car divs for 16 positions along the oval -->
@@ -31,8 +31,8 @@
     </div>
 
     <div class="side center-side">
+        <!-- Standings Table -->
         <div class="card">
-            <!-- Standings Table -->
             <h3 id="standings-title" style="text-align: center;">Standings - Lap: 1</h3>
             <table class="standings-table">
                 <thead>
@@ -55,10 +55,11 @@
 
     <div class="side right-side">
         <!-- Player Control Centers -->
-        <!-- Control Center for Car 1 -->
-        <div class="card">
+        <div class="card">  <!-- Control Center for Car 1 -->
             <div id="player1-profile" class="profile-picture" style="margin-bottom: 10px;"></div>
+
             <h3 id="car-1-title" class="sub-title">Car #1</h3>
+
             <p id="player-car-1-tire"><strong>Tire %:</strong> 85%</p>
             <p id="player-car-1-fuel"><strong>Fuel %:</strong> 75%</p>
             
@@ -82,8 +83,7 @@
             <button id="player-car-1-pit" class="button">Pit</button>
         </div>
 
-        <!-- Control Center for Car 2 -->
-        <div class="card">
+        <div class="card">  <!-- Control Center for Car 2 -->
             <div id="player2-profile" class="profile-picture" style="margin-bottom: 10px;"></div>
             <h3 id="car-2-title" class="sub-title">Car #2</h3>
             <p id="player-car-2-tire"><strong>Tire %:</strong> 85%</p>

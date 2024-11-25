@@ -170,6 +170,7 @@ def get_map():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Path for pages
 @app.route('/')
 def setup():
     """

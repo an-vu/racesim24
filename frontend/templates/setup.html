@@ -4,48 +4,46 @@
 
 {% block content %}
 <body>
-    <!-- Player Setup Container -->
-    <div class="side center-side">
-        <!-- Player 1 Setup card -->
-        <div class="card">
-            <h3 class="sub-title">Player 1</h3>
-            
-            <!-- Profile Picture Placeholder -->
-            <div class="profile-picture" id="player1-picture" style="cursor: pointer;">
-                <!-- Placeholder text replaced by image -->
+    <div class="column-container">
+        <!-- Player Setup Container -->
+        <div class="row-container">
+            <!-- Player 1 Setup card -->
+            <div class="card">
+                <h3 class="sub-title">Player 1</h3>
+                
+                <!-- Profile Picture Placeholder -->
+                <div class="profile-picture" id="player1-picture" style="cursor: pointer;">
+                    <!-- Placeholder text replaced by image -->
+                </div>
+                
+                <!-- Player Name Input -->
+                <label for="player1-name">Name</label>
+                <input type="text" id="player1-name" name="player1_name" placeholder="Enter name" class="input-field">
+                
+                <!-- Car Number Input -->
+                <label for="car1-number">Car #</label>
+                <input type="number" id="car1-number" name="car1_number" placeholder="Enter car number" class="input-field">
             </div>
-            
-            <!-- Player Name Input -->
-            <label for="player1-name">Name</label>
-            <input type="text" id="player1-name" name="player1_name" placeholder="Enter name" class="input-field">
-            
-            <!-- Car Number Input -->
-            <label for="car1-number">Car #</label>
-            <input type="number" id="car1-number" name="car1_number" placeholder="Enter car number" class="input-field">
-        </div>
-    </div>
 
-    <div class="side center-side">
-        <!-- Player 2 Setup card -->
-        <div class="card">
-            <h3 class="sub-title">Player 2</h3>
-            
-            <!-- Profile Picture Placeholder -->
-            <div class="profile-picture" id="player2-picture" style="cursor: pointer;">
-                <!-- Placeholder text replaced by image -->
+            <!-- Player 2 Setup card -->
+            <div class="card">
+                <h3 class="sub-title">Player 2</h3>
+                
+                <!-- Profile Picture Placeholder -->
+                <div class="profile-picture" id="player2-picture" style="cursor: pointer;">
+                    <!-- Placeholder text replaced by image -->
+                </div>
+                
+                <!-- Player Name Input -->
+                <label for="player2-name">Name</label>
+                <input type="text" id="player2-name" name="player2_name" placeholder="Enter name" class="input-field">
+                
+                <!-- Car Number Input -->
+                <label for="car2-number">Car #</label>
+                <input type="number" id="car2-number" name="car2_number" placeholder="Enter car number" class="input-field">
             </div>
-            
-            <!-- Player Name Input -->
-            <label for="player2-name">Name</label>
-            <input type="text" id="player2-name" name="player2_name" placeholder="Enter name" class="input-field">
-            
-            <!-- Car Number Input -->
-            <label for="car2-number">Car #</label>
-            <input type="number" id="car2-number" name="car2_number" placeholder="Enter car number" class="input-field">
         </div>
-    </div>
-
-    <div class="side center-side">
+    
         <!-- Start Race Button -->
         <div style="margin-top: 30px;">
             <button onclick="startRace()" class="button">START THE RACE</button>

@@ -28,11 +28,28 @@ body {
     */
 }
 
+.row-container {
+    display: flex;
+    flex-direction: row; /* Stack the cards and button vertically */
+    align-items: center; /* Center the cards and button horizontally */
+    justify-content: center;
+    gap:20px;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column; /* Stack the cards and button vertically */
+    align-items: center; /* Center the cards and button horizontally */
+    justify-content: center;
+    gap:20px;
+}
+
 .home-container {
     transform: scale(0.8); /* Scales the content to 90% */
     transform-origin: center; /* The scaling originates from the center */
 }
 
+/* Title and Text Styling */
 .main-title {
     font-size: 2em;
     font-weight: bold;
@@ -137,13 +154,17 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid #333; /* Optional border */
+    border: 0.5px solid rgba(51, 51, 51, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     color: #555;
     margin: 0 auto;
+    box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
+      0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
+      0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
+      0 10px 10px -3.75px #00000010;
 }
 
 /* Car styling for track */
@@ -171,12 +192,13 @@ body {
     width: 100%;
     text-align: left;
     border-collapse: collapse;
+    border-radius: 20px;
     background-color: white;
 }
 
 .standings-table th, .standings-table td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0px solid #ddd;
 }
 
 .standings-table thead {
