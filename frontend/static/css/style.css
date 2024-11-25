@@ -62,17 +62,31 @@ body {
     margin-bottom: 15px;
 }
 
+.card-label {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 26px;
+    color: white;
+}
+
+.right-side .card {
+width: auto;
+height: auto;
+}
+
 /* General card Styling */
 .card {
     width: auto;
     height: auto;
     padding: 20px;
-    margin: 20px 0;
+    margin: 10px 0;
     background: rgb(0 0 0 / 5%);
     box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
       0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
       0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
       0 10px 10px -3.75px #00000010;
+    -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     border-radius: 30px;
     position: relative;

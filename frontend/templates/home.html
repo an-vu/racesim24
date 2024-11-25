@@ -7,7 +7,7 @@
     <div class="side left-side">
         <!-- Map -->
         <div class="card">
-            <!-- <label>Map</label> -->
+            <label class="card-label">Map</label>
             <div id="track" style="position: relative; width: 400px; height: 200px; margin: auto; background-color: #000000; border-radius: 40%; overflow: hidden;">
                 <!-- Predefined car divs for 16 positions along the oval -->
                 <div id="1" class="track_cars" style="position: absolute; top: 180px; left: 200px;"></div>
@@ -33,7 +33,7 @@
     <div class="side center-side">
         <!-- Standings Table -->
         <div class="card">
-            <h3 id="standings-title" style="text-align: center;">Standings - Lap: 1</h3>
+            <label id="standings-title" class="card-label">Standings - Lap: 1</label>
             <table class="standings-table">
                 <thead>
                     <tr>
@@ -58,10 +58,10 @@
         <div class="card">  <!-- Control Center for Car 1 -->
             <div id="player1-profile" class="profile-picture" style="margin-bottom: 10px;"></div>
 
-            <h3 id="car-1-title" class="sub-title">Car #1</h3>
+            <label id="car-1-title" class="card-label" style="margin-bottom: 10px;">Car #1</label>
 
-            <p id="player-car-1-tire"><strong>Tire %:</strong> 85%</p>
-            <p id="player-car-1-fuel"><strong>Fuel %:</strong> 75%</p>
+            <p id="player-car-1-tire"><strong>Tire Level:</strong> 85%</p>
+            <p id="player-car-1-fuel"><strong>Fuel Level:</strong> 75%</p>
             
             <!-- Strategy Level -->
             <div style="margin-top: 20px;">
@@ -85,9 +85,11 @@
 
         <div class="card">  <!-- Control Center for Car 2 -->
             <div id="player2-profile" class="profile-picture" style="margin-bottom: 10px;"></div>
+            
             <h3 id="car-2-title" class="sub-title">Car #2</h3>
-            <p id="player-car-2-tire"><strong>Tire %:</strong> 85%</p>
-            <p id="player-car-2-fuel"><strong>Fuel %:</strong> 75%</p>
+            
+            <p id="player-car-2-tire"><strong>Tire Level:</strong> 85%</p>
+            <p id="player-car-2-fuel"><strong>Fuel Level:</strong> 75%</p>
             
             <!-- Strategy Level -->
             <div style="margin-top: 20px;">
@@ -110,7 +112,7 @@
         </div>
 
         <!-- Advance and Reset Buttons -->
-        <div style="margin-top: 30px;">
+        <div>
             <button id="lap-button" class="button">Advance Lap</button>
             <button id="reset-button" class="button">Reset</button>
         </div>
