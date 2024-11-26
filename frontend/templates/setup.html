@@ -9,38 +9,38 @@
         <div class="row-container">
             <!-- Player 1 Setup card -->
             <div class="card">
-                <h3 class="sub-title">Player 1</h3>
+                <label class="card-label">Player 1</label>
                 
-                <!-- Profile Picture Placeholder -->
-                <div class="profile-picture" id="player1-picture" style="cursor: pointer;">
-                    <!-- Placeholder text replaced by image -->
+                <!-- Profile Picture -->
+                <div class="profile-picture" id="player1-picture" style="cursor: pointer;"></div>
+                
+                <!-- Player 1 Inputs -->
+                <div class="floating-label">
+                    <input type="text" id="player1-name" name="player1_name" class="input-field" required>
+                    <label for="player1-name">Name</label>
                 </div>
-                
-                <!-- Player Name Input -->
-                <label for="player1-name">Name</label>
-                <input type="text" id="player1-name" name="player1_name" placeholder="Enter name" class="input-field">
-                
-                <!-- Car Number Input -->
-                <label for="car1-number">Car #</label>
-                <input type="number" id="car1-number" name="car1_number" placeholder="Enter car number" class="input-field">
+                <div class="floating-label">
+                    <input type="number" id="car1-number" name="car1_number" class="input-field" required>
+                    <label for="car1-number">Car #</label>
+                </div>
             </div>
 
             <!-- Player 2 Setup card -->
             <div class="card">
-                <h3 class="sub-title">Player 2</h3>
+                <label class="card-label">Player 2</label>
                 
-                <!-- Profile Picture Placeholder -->
-                <div class="profile-picture" id="player2-picture" style="cursor: pointer;">
-                    <!-- Placeholder text replaced by image -->
+                <!-- Profile Picture -->
+                <div class="profile-picture" id="player2-picture" style="cursor: pointer;"></div>
+                
+                <!-- Player 2 Inputs -->
+                <div class="floating-label">
+                    <input type="text" id="player2-name" name="player2_name" class="input-field">
+                    <label for="player2-name">Name</label>
                 </div>
-                
-                <!-- Player Name Input -->
-                <label for="player2-name">Name</label>
-                <input type="text" id="player2-name" name="player2_name" placeholder="Enter name" class="input-field">
-                
-                <!-- Car Number Input -->
-                <label for="car2-number">Car #</label>
-                <input type="number" id="car2-number" name="car2_number" placeholder="Enter car number" class="input-field">
+                <div class="floating-label">
+                    <input type="number" id="car2-number" name="car2_number" class="input-field">
+                    <label for="car2-number">Car #</label>
+                </div>
             </div>
         </div>
     
