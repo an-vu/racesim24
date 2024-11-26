@@ -1,3 +1,5 @@
+
+
 # Nov 24 Changelog
 
 ### File Updates:
@@ -25,6 +27,7 @@
 ### Known Issues:
 - **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
 - yo why tf the js scripts in `setup.html` stop working when moved to `main.js`...???
+- Returning to the setup page and changing input values does not update the displayed values in the game interface. This issue seems related to the recent changes in the `setup.html` structure, including the removal of the required attribute and the introduction of floating labels. The backend or JavaScript may be reusing previously stored values instead of capturing the updated inputs.
 
 ---
 
