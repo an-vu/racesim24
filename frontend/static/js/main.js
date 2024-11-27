@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const aboutButton = document.getElementById('about-button');
     const clockButton = document.getElementById('clock-button');
     const tableBody = document.getElementById("standings-table-body");
+    
     let showDate = false;
     let player_racer_array = [];
     let pitStops = {
@@ -155,14 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(player_racer_array[0])
         if (player_racer_array[0]) {
             document.getElementById('player-car-1-current-strategy').textContent = `Strategy Level: ${player_racer_array[0].push_tire}`;
-            document.getElementById('player-car-1-tire').textContent = `Tire %: ${player_racer_array[0].tire_life.toFixed(2)}%`;
-            document.getElementById('player-car-1-fuel').textContent = `Fuel %: ${player_racer_array[0].fuel_level.toFixed(2)}%`;
+            document.getElementById('player-car-1-tire').textContent = `Tire Level: ${player_racer_array[0].tire_life.toFixed(2)}%`;
+            document.getElementById('player-car-1-fuel').textContent = `Fuel Level: ${player_racer_array[0].fuel_level.toFixed(2)}%`;
         }
         console.log(player_racer_array[1])
         if (player_racer_array[1]) {
             document.getElementById('player-car-2-current-strategy').textContent = `Strategy Level: ${player_racer_array[1].push_tire}`;
-            document.getElementById('player-car-2-tire').textContent = `Tire %: ${player_racer_array[1].tire_life.toFixed(2)}%`;
-            document.getElementById('player-car-2-fuel').textContent = `Fuel %: ${player_racer_array[1].fuel_level.toFixed(2)}%`;
+            document.getElementById('player-car-2-tire').textContent = `Tire Level: ${player_racer_array[1].tire_life.toFixed(2)}%`;
+            document.getElementById('player-car-2-fuel').textContent = `Fuel Level: ${player_racer_array[1].fuel_level.toFixed(2)}%`;
         }
     }
 

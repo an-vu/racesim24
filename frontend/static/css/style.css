@@ -115,9 +115,19 @@ body {
     animation: animate-left 1s forwards;
 }
 
+.left-side .card {
+    width: 100%;
+    height: auto;
+}
+
 .right-side {
     transform: rotateY(-45deg) translateX(1000px);
     animation: animate-right 1s forwards;
+}
+
+.right-side .card {
+    width: 100%;
+    height: auto;
 }
 
 .center-side {
@@ -125,13 +135,8 @@ body {
     animation: animate-center 0.7s forwards;
 }
 
-.right-side .card {
-    width: auto;
-    height: auto;
-}
-    
-.left-side .card {
-    width: auto;
+.center-side .card {
+    width: 100%;
     height: auto;
 }
 
@@ -200,6 +205,18 @@ body {
     margin-bottom: 25px;
 }
 
+/* Floating Label Styling */
+.floating-label label {
+    position: absolute;
+    top: 50%; /* Center the label vertically in the input */
+    left: 15px; /* Space the label from the left */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 16px;
+    color: #999; /* Light gray color for the label */
+    pointer-events: none; /* Prevent the label from being interacted with */
+    transition: all 0.3s ease; /* Smooth transition for label movement */
+}
+
 /* Input Field Styling */
 .input-field {
     width: 100%; /* Ensure it adapts to the container width */
@@ -214,19 +231,7 @@ body {
 }
 
 .input-field:focus {
-    border-color: #03e9f4; /* Add a focus effect to match the label */
-}
-
-/* Floating Label Styling */
-.floating-label label {
-    position: absolute;
-    top: 50%; /* Center the label vertically in the input */
-    left: 15px; /* Space the label from the left */
-    transform: translateY(-50%); /* Adjust vertical alignment */
-    font-size: 16px;
-    color: #999; /* Light gray color for the label */
-    pointer-events: none; /* Prevent the label from being interacted with */
-    transition: all 0.3s ease; /* Smooth transition for label movement */
+    border-color: white; /* Add a focus effect to match the label */
 }
 
 .input-field:focus ~ label,
@@ -234,7 +239,7 @@ body {
     top: -10px;
     left: 10px;
     font-size: 12px;
-    color: #03e9f4;
+    color: white;
 }
 
 /* Table Styling */
@@ -267,6 +272,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     border-radius: 30px;
     box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
