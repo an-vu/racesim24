@@ -8,7 +8,8 @@
         <!-- Map -->
         <div class="card card-map">
             <label class="card-label">Map</label>
-            <div id="track" style="position: relative; width: 400px; height: 200px; margin: auto; background-color: #000000; border-radius: 40%; overflow: hidden;">
+
+            <div id="track" class="track">
                 <!-- Predefined car divs for 16 positions along the oval -->
                 <div id="1" class="track_cars" style="position: absolute; top: 180px; left: 200px;"></div>
                 <div id="2" class="track_cars" style="position: absolute; top: 178px; left: 175px;"></div>
@@ -27,6 +28,12 @@
                 <div id="15" class="track_cars" style="position: absolute; top: 10px; left: 75px;"></div>
                 <div id="16" class="track_cars" style="position: absolute; top: 6px; left: 100px;"></div>
             </div>
+            
+        </div>
+
+        <div class="card">
+            <button id="about-button" class="button">About</button>
+            <button id="clock-button" class="button">⏳</button>
         </div>
     </div>
 
@@ -50,6 +57,12 @@
                     <!-- Rows will be generated here by JavaScript -->
                 </tbody>
             </table>
+        </div>
+
+        <!-- Advance and Reset Buttons -->
+        <div>
+            <button id="lap-button" class="button">Advance Lap</button>
+            <button id="reset-button" class="button">Reset</button>
         </div>
     </div>
 
@@ -113,11 +126,7 @@
             <button id="player-car-2-pit" class="button">Pit</button>
         </div>
 
-        <!-- Advance and Reset Buttons -->
-        <div>
-            <button id="lap-button" class="button">Advance Lap</button>
-            <button id="reset-button" class="button">Reset</button>
-        </div>
+
     </div>
 </body>
 {% endblock %}

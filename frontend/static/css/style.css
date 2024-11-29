@@ -6,13 +6,14 @@
 }
 
 body {
-    background: url(https://images.unsplash.com/photo-1506818144585-74b29c980d4b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background: url(https://images.unsplash.com/photo-1554034483-04fda0d3507b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     perspective: 1000px;
     width: 100vw;
     height: 100vh;
+    /* gap: 20px; */
     margin: 0; /* Remove default margin */
     padding: 50px;
     box-sizing: border-box;
@@ -113,6 +114,7 @@ body {
 .left-side {
     transform: rotateY(45deg) translateX(-1000px);
     animation: animate-left 1s forwards;
+    flex: 1;
 }
 
 .left-side .card {
@@ -120,22 +122,24 @@ body {
     height: auto;
 }
 
-.right-side {
-    transform: rotateY(-45deg) translateX(1000px);
-    animation: animate-right 1s forwards;
+.center-side {
+    transform: rotateX(0deg) translateY(-1000px);
+    animation: animate-center 0.7s forwards;
+    flex: 2;
 }
 
-.right-side .card {
+.center-side .card {
     width: 100%;
     height: auto;
 }
 
-.center-side {
-    transform: rotateX(0deg) scale(0.9) translateY(-1000px);
-    animation: animate-center 0.7s forwards;
+.right-side {
+    transform: rotateY(-45deg) scale(0.9) translateX(1000px);
+    animation: animate-right 1s forwards;
+    flex: 1;
 }
 
-.center-side .card {
+.right-side .card {
     width: 100%;
     height: auto;
 }
@@ -148,7 +152,7 @@ body {
 /* Button Styling */
 .button {
     background-color: rgba(255, 255, 255, 0.5);
-    border: .5px solid #ff0000; /* Replace $red with #ff0000 */
+    border: .5px solid #ff0000;
     border-radius: 30em;
     font-size: 16px;
     padding: 6px 12px;
@@ -185,6 +189,17 @@ body {
       0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
       0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
       0 10px 10px -3.75px #00000010;
+}
+
+/* Map styling */
+.track {
+    position: relative;
+    width: auto; /* Initial width, can be adjusted for responsiveness */
+    height: auto; /* Initial height */
+    margin: auto; /* Center the track horizontally */
+    background-color: #000000; /* Black background for the map */
+    border-radius: 40%; /* Oval shape */
+    overflow: hidden; /* Hide overflowing elements */
 }
 
 /* Car styling for track */
@@ -263,13 +278,14 @@ body {
 
 /* Footer */
 .footer {
+    display: none;
+    /* display: flex; */
     background: rgb(0 0 0 / 5%);
     color: #333;
     padding: 10px 20px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     -webkit-backdrop-filter: blur(40px);
@@ -306,5 +322,13 @@ body {
 @keyframes animate-center {
     100% {
         transform: rotateX(0deg) scale(0.9) translateY(0px);
+    }
+}
+
+/* Optional: Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .track {
+        width: 300px; /* Adjust width for smaller screens */
+        height: 150px; /* Adjust height for smaller screens */
     }
 }
