@@ -1,0 +1,39 @@
+<body>
+    <div class="content">
+        <h3>Race Over!</h3>
+        <h3 id="winner">Winner: TBD</h3>
+        <h3>Here are the standings:</h3>
+        <div class="container" style="display: flex; gap: 20px;">
+            <table class="standings-table" id="end-standings">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Car #</th>
+                        <th>Driver</th>
+                        <th>To Leader</th>
+                        <th>Total</th>
+                        <th>Tire %</th>
+                        <th>Fuel %</th>
+                    </tr>
+                </thead>
+                <tbody id="end-standings-table-body">
+                    <!-- Rows will be generated here by JavaScript -->
+                </tbody>
+            </table>
+            <div>
+                <button id="reset-button-2" class="button">New Game?</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function resetRace() {
+        try {
+            await fetch('/api/race/reset', { method: 'POST' });
+            window.location.href = "/";
+        } catch (error) {
+            console.error('Error resetting race:', error);
+        }
+    }
+    document.getElementById('reset-button-2').addEventListener('click', resetRace);
+</script>
