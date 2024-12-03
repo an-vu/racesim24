@@ -47,6 +47,11 @@ class Car:
         self.to_leader = self.best_race_time - self.total_race_time
         self.ai_or_player = ai_or_player
 
+
+    def set_starting_pos(self, starting_gap):
+        self.total_race_time += starting_gap
+
+
     def drive(self):
         """
         Updates the car's performance based on the current push level (push_tire).
