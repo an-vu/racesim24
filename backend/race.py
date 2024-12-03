@@ -185,7 +185,6 @@ class Race:
                         0
                     )
                 }
-        print(self.lap_data)
 
 
 def restart(race_instance):
@@ -196,8 +195,7 @@ def restart(race_instance):
         race_instance (Race): The race object to be restarted.
     """
     race_instance.lap = 1
-    for car in race_instance.cars:
-        car.reset_for_race()  # Call reset on each car
+    race_instance.cars = []
     race_instance.standings = []
     race_instance.lap_data = {} # init dictionary for lap data
     print("Race has been reset.")

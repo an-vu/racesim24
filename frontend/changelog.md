@@ -1,3 +1,35 @@
+# Dec 1 Changelog
+### File Updates:
+ **car.py**: Removed reset_for_race, unused.
+ **race.py**: 
+ - Removed test print statements
+ - adjusted restart() to set the race.cars to empty list
+ - removed need for reset_for_race
+
+**main.js**:
+ - added logic to test for race_end
+ - added endRace()
+ - resetRace() now brings user back to '/'
+ - added message for pit stop
+ - removed testing console.log statements
+ - removed unused resetStrategySelections
+ - removed player car numbers
+
+**end.html**: added file with basic info
+**setup.html**: 
+ - removed player car number inputs
+ - added error handling for no names entered
+**routes.py**: 
+ - hard coded in player numbers as 2 and 3
+ - removed race_reset on loading of home.html
+ - added /end route
+
+---
+
+### Next Updates:
+- Update map?
+- Add race ending stuff
+
 # Nov 21 Changelog
 ### File Updates:
  **main.js**: Fixed player pit functions and stat updates

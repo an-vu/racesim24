@@ -42,13 +42,11 @@ def initialize_race():
 
     data = request.json
     player1_name = data.get("player1_name")
-    car1_number = data.get("car1_number")
     player2_name = data.get("player2_name")
-    car2_number = data.get("car2_number")
-    
+
     # Create Car instances based on input
-    player_car_1 = Car(player1_name, car1_number, 30.5, 22.45, -10.65, race, 1)
-    player_car_2 = Car(player2_name, car2_number, 30.5, 22.45, -10.65, race, 2)
+    player_car_1 = Car(player1_name, 2, 30.5, 22.45, -10.65, race, 1)
+    player_car_2 = Car(player2_name, 3, 30.5, 22.45, -10.65, race, 2)
     cars.append(player_car_1)
     cars.append(player_car_2)
 
@@ -72,7 +70,6 @@ def home():
     """
     Function to bring user to home.html when navigating to the home subdirectory webpage
     """
-    restart_race()
     return render_template('home.html')
 
 @app.route('/about')
@@ -190,6 +187,16 @@ def get_map():
     """
     try:
         return jsonify(race.lap_data), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route("/end", methods=['POST', 'GET'])
+def end_race():
+    """
+    API Route to end the race and display the final standings
+    """
+    try:
+        return render_template('end.html')
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 

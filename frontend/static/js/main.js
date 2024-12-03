@@ -72,9 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/api/race');
             const data = await response.json();
-            updateRaceStandings(data);
-            updatePlayerCars(data.cars);
-            updatePlayerControlCenters();
+            
+            if(data.lap == (data.lap_count+1)){
+                endRace();
+            } else {
+                updateRaceStandings(data);
+                updatePlayerCars(data.cars);
+                updatePlayerControlCenters();
+            }
+
             } catch (error) {
             console.error('Error fetching race data:', error);
         }
@@ -95,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function resetRace() {
         try {
             await fetch('/api/race/reset', { method: 'POST' });
-            getRaceData();
-            resetStrategySelections();
+            window.location.href = "/";
         } catch (error) {
             console.error('Error resetting race:', error);
         }
@@ -104,9 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handlePitStop(carIndex, carNumber) {
         const carKey = carIndex === 0 ? 'player_car_1' : 'player_car_2';
-        // Check if the car is already in the pit stop
-        if (pitStops[carKey]) return;  // If true, exit early
-
+        // Check if the car is already set to pit
+        if (pitStops[carKey]) {
+            alert(`${carKey === 'player_car_1' ? 'Player Car 1' : 'Player Car 2'} is already set to pit after this lap.`);
+            return;  // If true, exit early
+        }
         // Mark the car as in the pit stop
         pitStops[carKey] = true;
 
@@ -153,13 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePlayerControlCenters() {
-        console.log(player_racer_array[0])
         if (player_racer_array[0]) {
             document.getElementById('player-car-1-current-strategy').textContent = `Strategy Level: ${player_racer_array[0].push_tire}`;
             document.getElementById('player-car-1-tire').textContent = `Tire %: ${player_racer_array[0].tire_life.toFixed(2)}%`;
             document.getElementById('player-car-1-fuel').textContent = `Fuel %: ${player_racer_array[0].fuel_level.toFixed(2)}%`;
         }
-        console.log(player_racer_array[1])
         if (player_racer_array[1]) {
             document.getElementById('player-car-2-current-strategy').textContent = `Strategy Level: ${player_racer_array[1].push_tire}`;
             document.getElementById('player-car-2-tire').textContent = `Tire %: ${player_racer_array[1].tire_life.toFixed(2)}%`;
@@ -167,41 +172,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function resetStrategySelections() {
-        document.querySelectorAll('input[name="strategy1"], input[name="strategy2"]').forEach(radio => radio.checked = false);
-    }
-
     function updateMap() {
         // Fetch the race map data from the Flask API
-    fetch('/api/map')
-        .then(response => response.json())  // Parse JSON response
-        .then(data => {
-            // Sort the cars based on their placement
-            const sortedCars = Object.entries(data)
-                .sort((a, b) => a[1].place - b[1].place);  // Sort by carData["place"]
+        fetch('/api/map')
+            .then(response => response.json())  // Parse JSON response
+            .then(data => {
+                // Sort the cars based on their placement
+                const sortedCars = Object.entries(data)
+                    .sort((a, b) => a[1].place - b[1].place);  // Sort by carData["place"]
 
-            // Update each pre-placed car div based on its position in the standings
-            sortedCars.forEach(([carNumber, carData], index) => {
-                const carDiv = document.getElementById((index + 1).toString());  // Get the div by its rank ID
-                if (carDiv) {
-                    carDiv.textContent = carNumber;  // Display the car number in the div
+                // Update each pre-placed car div based on its position in the standings
+                sortedCars.forEach(([carNumber, carData], index) => {
+                    const carDiv = document.getElementById((index + 1).toString());  // Get the div by its rank ID
+                    if (carDiv) {
+                        carDiv.textContent = carNumber;  // Display the car number in the div
 
-                    // Optionally, update other properties like color based on the car's place
-                    if (carData.place === 1) {
-                        carDiv.style.backgroundColor = 'gold';  // First place car gets gold
-                    } else if (carData.place === 2) {
-                        carDiv.style.backgroundColor = 'silver';  // Second place car gets silver
-                    } else if (carData.place === 3) {
-                        carDiv.style.backgroundColor = 'red';  // Third place car gets bronze
-                    } else {
-                        carDiv.style.backgroundColor = 'blue';  // Default color for others
+                        // Optionally, update other properties like color based on the car's place
+                        if (carData.place === 1) {
+                            carDiv.style.backgroundColor = 'gold';  // First place car gets gold
+                        } else if (carData.place === 2) {
+                            carDiv.style.backgroundColor = 'silver';  // Second place car gets silver
+                        } else if (carData.place === 3) {
+                            carDiv.style.backgroundColor = 'red';  // Third place car gets bronze
+                        } else {
+                            carDiv.style.backgroundColor = 'blue';  // Default color for others
+                        }
                     }
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching race map data:', error));
-}
+                });
+            })
+            .catch(error => console.error('Error fetching race map data:', error));
+    }
 
+    async function endRace() {
+        try{
+            await fetch('/end', {method: 'POST'});
+            window.location.href = "/end";
+        } catch (error) {
+            console.error('Error ending the race', error);
+        }
+    }
 
     // Event Listeners for Pit and Strategy Buttons
     document.getElementById('player-car-1-pit').addEventListener('click', () => handlePitStop(0, player_racer_array[0].number));
@@ -216,11 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('reset-button').addEventListener('click', resetRace);
 
     // Load player data from localStorage
-    const player1Data = { name: localStorage.getItem("player1Name") || "Player 1", car: localStorage.getItem("player1Car") || "00", pic: localStorage.getItem("player1Picture") || "profile1.png" };
-    const player2Data = { name: localStorage.getItem("player2Name") || "Player 2", car: localStorage.getItem("player2Car") || "00", pic: localStorage.getItem("player2Picture") || "profile2.png" };
+    const player1Data = { name: localStorage.getItem("player1Name") || "Player 1", car: 2 || "00", pic: localStorage.getItem("player1Picture") || "profile1.png" };
+    const player2Data = { name: localStorage.getItem("player2Name") || "Player 2", car: 3 || "00", pic: localStorage.getItem("player2Picture") || "profile2.png" };
 
-    document.getElementById("car-1-title").textContent = `${player1Data.name} - Car #${player1Data.car}`;
-    document.getElementById("car-2-title").textContent = `${player2Data.name} - Car #${player2Data.car}`;
+    document.getElementById("car-1-title").textContent = `${player1Data.name} - Car #2`;
+    document.getElementById("car-2-title").textContent = `${player2Data.name} - Car #3`;
     document.getElementById("player1-profile").style.backgroundImage = `url('/static/images/profiles/${player1Data.pic}')`;
     document.getElementById("player2-profile").style.backgroundImage = `url('/static/images/profiles/${player2Data.pic}')`;
 
