@@ -1,27 +1,23 @@
 # Nov 27 Changelog
 
+- This big ass update brings a whole new look to the simulation: glassmorphism, 3d vision pro vibe,... you name it our project looks 3024 now.
+- It also fixes the display issue with smaller screen - now it does work on my 13 inch macbook pro now fuck yeah!
+- It also comes with some new bugs... for sum reason html and javascript kinda glitchy right now... example if we got this element <bold>car</bold> it doesnt render as bold anymore... something happening and i dont know what is happening...
+
+
 ### File Updates:
 - Added 2 new profile pictures
 
-**`main.js`**:
-
-**`home.html`**:
-
-
-**`setup.html`**:
-
-
-**`routes.py`**:
-
-
 **`style.css`**:
+- Cleaned up, change classes names, this .css is now 90% new.
 
+**`404.html`**:
+- Redesigned the whole page
 
 ---
 
 ### Known Issues:
-- **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
-- yo why tf the js scripts in `setup.html` stop working when moved to `main.js`...???
+- yo why tf the js scripts in `setup.html` stop working when moved to `main.js`...
 - Returning to the setup page and changing input values does not update the displayed values in the game interface. This issue seems related to the recent changes in the `setup.html` structure, including the removal of the required attribute and the introduction of floating labels. The backend or JavaScript may be reusing previously stored values instead of capturing the updated inputs.
 
 ---

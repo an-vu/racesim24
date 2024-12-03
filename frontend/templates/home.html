@@ -10,6 +10,7 @@
             <label class="card-label">Map</label>
 
             <div id="track" class="track">
+                <div class="car-wrapper">
                 <!-- Predefined car divs for 16 positions along the oval -->
                 <div id="1" class="track_cars" style="position: absolute; top: 180px; left: 200px;"></div>
                 <div id="2" class="track_cars" style="position: absolute; top: 178px; left: 175px;"></div>
@@ -27,13 +28,32 @@
                 <div id="14" class="track_cars" style="position: absolute; top: 18px; left: 50px;"></div>
                 <div id="15" class="track_cars" style="position: absolute; top: 10px; left: 75px;"></div>
                 <div id="16" class="track_cars" style="position: absolute; top: 6px; left: 100px;"></div>
-            </div>
-            
+                </div>    
+            </div>    
         </div>
 
         <div class="card">
-            <button id="about-button" class="button">About</button>
-            <button id="clock-button" class="button">⏳</button>
+            <label class="card-label">Manage</label>
+
+            <button id="export-button" class="button secondary-button">Export to CSV</button>
+            <button id="reset-button" class="button secondary-button">Reset Race</button>
+        </div>
+
+        <div class="card">
+            <label class="card-label">About</label>
+            
+            <div style="align-items: center;">
+                <p>NASCAR Manager '24</p>
+                <p>A racing simulator project</p>
+                <p>Update December 1 2024</p>
+            </div>
+            
+            <button id="gitlab-button" class="button secondary-button">GitLab 🦊</button>
+            <button id="about-button" class="button secondary-button">Learn more</button>
+        </div>
+
+        <div>
+            <button id="clock-button" class="button tertiary-button">⏳</button>
         </div>
     </div>
 
@@ -59,10 +79,12 @@
             </table>
         </div>
 
-        <!-- Advance and Reset Buttons -->
+        <br>
+
         <div>
-            <button id="lap-button" class="button">Advance Lap</button>
-            <button id="reset-button" class="button">Reset</button>
+            <button id="nav-button" class="button tertiary-button"><</button>
+            <button id="lap-button" class="button primary-button">Advance Lap</button>
+            <button id="nav-button" class="button tertiary-button">></button>
         </div>
     </div>
 
@@ -88,13 +110,13 @@
                         </label>
                     {% endfor %}
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <span style="font-size: 0.9em; color: #555;">Conserve</span>
-                    <span style="font-size: 0.9em; color: #555;">Attack</span>
+                <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                    <span style="font-size: 0.9em; color: rgba(255, 255, 255, 0.7);">Conserve</span>
+                    <span style="font-size: 0.9em; color: rgba(255, 255, 255, 0.7);">Attack</span>
                 </div>
             </div>
 
-            <button id="player-car-1-pit" class="button">Pit</button>
+            <button id="player-car-1-pit" class="button secondary-button">Pit</button>
         </div>
         
         <!-- Control Center for Car 2 -->
@@ -118,14 +140,13 @@
                     {% endfor %}
                 </div>
                 <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <span style="font-size: 0.9em; color: #555;">Conserve</span>
-                    <span style="font-size: 0.9em; color: #555;">Attack</span>
+                    <span style="font-size: 0.9em; color: rgba(255, 255, 255, 0.7);">Conserve</span>
+                    <span style="font-size: 0.9em; color: rgba(255, 255, 255, 0.7);">Attack</span>
                 </div>
             </div>
 
-            <button id="player-car-2-pit" class="button">Pit</button>
+            <button id="player-car-2-pit" class="button secondary-button">Pit</button>
         </div>
-
 
     </div>
 </body>
