@@ -38,7 +38,7 @@ class Race:
         self.cars.append(car)
         random_number = random.choice(self.starting_gaps)
         car.set_starting_pos(random_number)
-        starting_gaps.remove(random_number)
+        self.starting_gaps.remove(random_number)
 
 
     def advance_lap(self):
