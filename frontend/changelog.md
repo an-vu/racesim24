@@ -6,7 +6,7 @@
 
 
 ### File Updates:
-- Added 2 new profile pictures
+- Added 6 new profile pictures.
 
 **`style.css`**:
 - Cleaned up, change classes names, this .css is now 90% new.
