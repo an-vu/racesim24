@@ -203,6 +203,7 @@ def restart(race_instance):
     race_instance.cars = []
     race_instance.standings = []
     race_instance.lap_data = {} # init dictionary for lap data
+    race_instance.starting_gaps = [i * 0.2 for i in range(16)] # re init for reset
     print("Race has been reset.")
 
 def race_end(state):
