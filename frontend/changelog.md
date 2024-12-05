@@ -1,3 +1,12 @@
+# Dec 4 Changelog
+ **race.py**: Added starting_gaps to restart() function
+ **main.js**: Changed player car update functions to use player car numbers instead of index in list
+ **end.html**: Added base.html blocking to have the file use the same css
+ 
+### Next Updates:
+ - An's GUI update
+ - End standings javascript
+
 # Dec 1 Changelog
 ### File Updates:
  **car.py**: Removed reset_for_race, unused.

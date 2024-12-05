@@ -125,11 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error(`Error performing pit stop for Car #${carNumber}:`, error));
     }
 
-    function handleStrategyChange(carIndex, strategyLevel) {
+    function handleStrategyChange(carNumber, strategyLevel) {
         fetch('/api/race/strategy', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ number: player_racer_array[carIndex].number, push_level: strategyLevel })
+            body: JSON.stringify({ number: carNumber, push_level: strategyLevel })
         })
         .then(getRaceData)
         .catch(error => console.error(`Error updating strategy for Car #${carIndex + 1}:`, error));
@@ -137,11 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updatePlayerCars(cars) {
         player_racer_array = cars.filter(car => car.ai_or_player !== 3);
-        if (player_racer_array[0]) {
-            document.getElementById('car-1-title').textContent = `#${player_racer_array[0].number} ${player_racer_array[0].name}`;
+        car1 = player_racer_array.find(car => car.number === 2);
+        car2 = player_racer_array.find(car => car.number === 3);
+
+        if (car1) {
+            document.getElementById('car-1-title').textContent = `#${car1.number} ${car1.name}`;
         }
-        if (player_racer_array[1]) {
-            document.getElementById('car-2-title').textContent = `#${player_racer_array[1].number} ${player_racer_array[1].name}`;
+        if (car2) {
+            document.getElementById('car-2-title').textContent = `#${car2.number} ${car2.name}`;
         }
     }
 
@@ -160,15 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePlayerControlCenters() {
-        if (player_racer_array[0]) {
-            document.getElementById('player-car-1-current-strategy').textContent = `Strategy Level: ${player_racer_array[0].push_tire}`;
-            document.getElementById('player-car-1-tire').textContent = `Tire %: ${player_racer_array[0].tire_life.toFixed(2)}%`;
-            document.getElementById('player-car-1-fuel').textContent = `Fuel %: ${player_racer_array[0].fuel_level.toFixed(2)}%`;
+        car1 = player_racer_array.find(car => car.number === 2);
+        car2 = player_racer_array.find(car => car.number === 3);
+    
+        if (car1) {
+            document.getElementById('player-car-1-current-strategy').textContent = `Strategy Level: ${car1.push_tire}`;
+            document.getElementById('player-car-1-tire').textContent = `Tire %: ${car1.tire_life.toFixed(2)}%`;
+            document.getElementById('player-car-1-fuel').textContent = `Fuel %: ${car1.fuel_level.toFixed(2)}%`;
         }
-        if (player_racer_array[1]) {
-            document.getElementById('player-car-2-current-strategy').textContent = `Strategy Level: ${player_racer_array[1].push_tire}`;
-            document.getElementById('player-car-2-tire').textContent = `Tire %: ${player_racer_array[1].tire_life.toFixed(2)}%`;
-            document.getElementById('player-car-2-fuel').textContent = `Fuel %: ${player_racer_array[1].fuel_level.toFixed(2)}%`;
+        if (car2) {
+            document.getElementById('player-car-2-current-strategy').textContent = `Strategy Level: ${car2.push_tire}`;
+            document.getElementById('player-car-2-tire').textContent = `Tire %: ${car2.tire_life.toFixed(2)}%`;
+            document.getElementById('player-car-2-fuel').textContent = `Fuel %: ${car2.fuel_level.toFixed(2)}%`;
         }
     }
 
@@ -213,12 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event Listeners for Pit and Strategy Buttons
-    document.getElementById('player-car-1-pit').addEventListener('click', () => handlePitStop(0, player_racer_array[0].number));
-    document.getElementById('player-car-2-pit').addEventListener('click', () => handlePitStop(1, player_racer_array[1].number));
+    document.getElementById('player-car-1-pit').addEventListener('click', () => handlePitStop(0, 2));
+    document.getElementById('player-car-2-pit').addEventListener('click', () => handlePitStop(1, 3));
     document.querySelectorAll('input[name="strategy1"]').forEach(radio => 
-        radio.addEventListener('change', () => handleStrategyChange(0, radio.value)));
+        radio.addEventListener('change', () => handleStrategyChange(2, radio.value)));
     document.querySelectorAll('input[name="strategy2"]').forEach(radio => 
-        radio.addEventListener('change', () => handleStrategyChange(1, radio.value)));
+        radio.addEventListener('change', () => handleStrategyChange(3, radio.value)));
 
     // Lap Button & Reset Button
     document.getElementById('lap-button').addEventListener('click', advanceLap);
