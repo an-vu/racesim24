@@ -59,27 +59,6 @@ def initialize_race():
 
     return jsonify({"status": "success"}), 200
 
-@app.route('/')
-def setup():
-    """
-    Function to bring user to setup.html when navigating to the root directory webpage
-    """
-    return render_template('setup.html')
-
-@app.route('/home')
-def home():
-    """
-    Function to bring user to home.html when navigating to the home subdirectory webpage
-    """
-    return render_template('home.html')
-
-@app.route('/about')
-def about():
-    """
-    Function to bring user to about.html when navigating to the about subdirectory webpage
-    """
-    return render_template('about.html')
-
 # API route to get the current race state using the actual race object
 @app.route('/api/race', methods=['GET'])
 def get_race_state():
@@ -189,7 +168,6 @@ def get_map():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-<<<<<<< HEAD
 # Path for pages
 @app.route('/')
 def setup():
@@ -212,7 +190,7 @@ def about():
     Function to bring user to about.html when navigating to the about subdirectory webpage
     """
     return render_template('about.html')
-=======
+
 @app.route("/end", methods=['POST', 'GET'])
 def end_race():
     """
@@ -222,7 +200,6 @@ def end_race():
         return render_template('end.html')
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
->>>>>>> origin/main
 
 @app.errorhandler(404)
 def page_not_found(error):
