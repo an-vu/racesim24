@@ -19,12 +19,6 @@
                     <input type="text" id="player1-name" name="player1_name" class="input-field" placeholder=" ">
                     <label for="player1-name">Name</label>
                 </div>
-                
-                <!-- Car # Inputs -->
-                <div class="floating-label">
-                    <input type="number" id="car1-number" name="car1_number" class="input-field" placeholder=" ">
-                    <label for="car1-number">Car #</label>
-                </div>
             </div>
 
             <!-- Player 2 Setup card -->
@@ -38,12 +32,6 @@
                 <div class="floating-label">
                     <input type="text" id="player2-name" name="player2_name" class="input-field" placeholder=" ">
                     <label for="player2-name">Name</label>
-                </div>
-
-                <!-- Car # Inputs -->
-                <div class="floating-label">
-                    <input type="number" id="car2-number" name="car2_number" class="input-field" placeholder=" ">
-                    <label for="car2-number">Car #</label>
                 </div>
             </div>
         </div>
@@ -81,24 +69,24 @@
 
         function startRace() {
             const player1Name = document.getElementById("player1-name").value;
-            const player1Car = document.getElementById("car1-number").value;
             const player2Name = document.getElementById("player2-name").value;
-            const player2Car = document.getElementById("car2-number").value;
+
+            // Validate that both player names are provided
+            if (!player1Name || !player2Name) {
+                alert("Please enter names for both Player 1 and Player 2.");
+                return;
+            }
 
             // Save data in localStorage
             localStorage.setItem("player1Name", player1Name);
-            localStorage.setItem("player1Car", player1Car);
             localStorage.setItem("player1Picture", profileImages[player1Index]);
             localStorage.setItem("player2Name", player2Name);
-            localStorage.setItem("player2Car", player2Car);
             localStorage.setItem("player2Picture", profileImages[player2Index]);
 
             // Prepare data for POST request
             const data = {
                 player1_name: player1Name,
-                car1_number: parseInt(player1Car),
                 player2_name: player2Name,
-                car2_number: parseInt(player2Car)
             };
 
             // Send data to Flask backend

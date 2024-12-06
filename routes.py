@@ -43,13 +43,11 @@ def initialize_race():
 
     data = request.json
     player1_name = data.get("player1_name")
-    car1_number = data.get("car1_number")
     player2_name = data.get("player2_name")
-    car2_number = data.get("car2_number")
-    
+
     # Create Car instances based on input
-    player_car_1 = Car(player1_name, car1_number, 30.5, 22.45, -10.65, race, 1)
-    player_car_2 = Car(player2_name, car2_number, 30.5, 22.45, -10.65, race, 2)
+    player_car_1 = Car(player1_name, 2, 30.5, 22.45, -10.65, race, 1)
+    player_car_2 = Car(player2_name, 3, 30.5, 22.45, -10.65, race, 2)
     cars.append(player_car_1)
     cars.append(player_car_2)
 
@@ -60,6 +58,27 @@ def initialize_race():
     list_car_numbers = [car.number for car in race.cars if not isinstance(car, AI)]
 
     return jsonify({"status": "success"}), 200
+
+@app.route('/')
+def setup():
+    """
+    Function to bring user to setup.html when navigating to the root directory webpage
+    """
+    return render_template('setup.html')
+
+@app.route('/home')
+def home():
+    """
+    Function to bring user to home.html when navigating to the home subdirectory webpage
+    """
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    """
+    Function to bring user to about.html when navigating to the about subdirectory webpage
+    """
+    return render_template('about.html')
 
 # API route to get the current race state using the actual race object
 @app.route('/api/race', methods=['GET'])
@@ -170,6 +189,7 @@ def get_map():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+<<<<<<< HEAD
 # Path for pages
 @app.route('/')
 def setup():
@@ -192,6 +212,17 @@ def about():
     Function to bring user to about.html when navigating to the about subdirectory webpage
     """
     return render_template('about.html')
+=======
+@app.route("/end", methods=['POST', 'GET'])
+def end_race():
+    """
+    API Route to end the race and display the final standings
+    """
+    try:
+        return render_template('end.html')
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+>>>>>>> origin/main
 
 @app.errorhandler(404)
 def page_not_found(error):

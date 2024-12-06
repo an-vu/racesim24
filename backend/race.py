@@ -25,6 +25,7 @@ class Race:
         self.lap_count = 267
         self.standings = [] # sorted list of cars
         self.lap_data = {} # init dictionary for lap data
+        self.starting_gaps = [i * 0.2 for i in range(16)]
 
     def add_car(self, car):
         """
@@ -35,6 +36,10 @@ class Race:
         """
 
         self.cars.append(car)
+        random_number = random.choice(self.starting_gaps)
+        car.set_starting_pos(random_number)
+        self.starting_gaps.remove(random_number)
+
 
     def advance_lap(self):
         """
@@ -185,7 +190,6 @@ class Race:
                         0
                     )
                 }
-        print(self.lap_data)
 
 
 def restart(race_instance):
@@ -196,10 +200,10 @@ def restart(race_instance):
         race_instance (Race): The race object to be restarted.
     """
     race_instance.lap = 1
-    for car in race_instance.cars:
-        car.reset_for_race()  # Call reset on each car
+    race_instance.cars = []
     race_instance.standings = []
     race_instance.lap_data = {} # init dictionary for lap data
+    race_instance.starting_gaps = [i * 0.2 for i in range(16)] # re init for reset
     print("Race has been reset.")
 
 def race_end(state):

@@ -19,6 +19,40 @@
 ### Known Issues:
 - yo why tf the js scripts in `setup.html` stop working when moved to `main.js`...
 - Returning to the setup page and changing input values does not update the displayed values in the game interface. This issue seems related to the recent changes in the `setup.html` structure, including the removal of the required attribute and the introduction of floating labels. The backend or JavaScript may be reusing previously stored values instead of capturing the updated inputs.
+# Dec 4 Changelog
+ **race.py**: Added starting_gaps to restart() function
+ **main.js**: Changed player car update functions to use player car numbers instead of index in list
+ **end.html**: Added base.html blocking to have the file use the same css
+ 
+### Next Updates:
+ - An's GUI update
+ - End standings javascript
+
+# Dec 1 Changelog
+### File Updates:
+ **car.py**: Removed reset_for_race, unused.
+ **race.py**: 
+ - Removed test print statements
+ - adjusted restart() to set the race.cars to empty list
+ - removed need for reset_for_race
+
+**main.js**:
+ - added logic to test for race_end
+ - added endRace()
+ - resetRace() now brings user back to '/'
+ - added message for pit stop
+ - removed testing console.log statements
+ - removed unused resetStrategySelections
+ - removed player car numbers
+
+**end.html**: added file with basic info
+**setup.html**: 
+ - removed player car number inputs
+ - added error handling for no names entered
+**routes.py**: 
+ - hard coded in player numbers as 2 and 3
+ - removed race_reset on loading of home.html
+ - added /end route
 
 ---
 
@@ -64,6 +98,8 @@
 - Add support for dark mode/theme options.
 
 ---
+- Update map?
+- Add race ending stuff
 
 # Nov 21 Changelog
 

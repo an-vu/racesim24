@@ -47,6 +47,11 @@ class Car:
         self.to_leader = self.best_race_time - self.total_race_time
         self.ai_or_player = ai_or_player
 
+
+    def set_starting_pos(self, starting_gap):
+        self.total_race_time += starting_gap
+
+
     def drive(self):
         """
         Updates the car's performance based on the current push level (push_tire).
@@ -125,18 +130,6 @@ class Car:
             self.total_race_time += 80
             print(f"{self} Tire blown or ran out of fuel, penalty applied!")
 
-    def reset_for_race(self):
-        """
-        Resets race-specific attributes for the car.
-        """
-        self.total_race_time = 0.0
-        self.tire_life = 100.0
-        self.fuel_level = 100.0
-        self.best_race_time = 0
-        self.to_leader = 0
-        self.push_tire = 3
-        self.last_lap_time = 0
-        self.last_race_time = 0
 
     def __str__(self):
         """
