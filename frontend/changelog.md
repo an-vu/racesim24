@@ -1,11 +1,23 @@
 # Dec 6 Changelog
 
 ## TLDR:
-- public release for new UI.
-- make sure new UI works properly with Dec 4 Update.
-- new UI now works with big screen and small screen. fuck yes.
+- Public release for new UI.
+- Make sure new UI works properly with Dec 4 Update.
+- **New UI now works with big screen and small screen.** Fuck yea!
 
+## File Updates:
 
+**`style.css`**:
+- 
+
+**`end.html`**:
+- Updated to match with the new UI style.
+
+**`main.js`**:
+- 
+
+## Known Issues:
+- Map doesn't work anymore...
 
 ---
 # Dec 4 Changelog
@@ -28,29 +40,29 @@
 **car.py**: Removed reset_for_race, unused.
 
 **race.py**: 
- - Removed test print statements
- - adjusted restart() to set the race.cars to empty list
- - removed need for reset_for_race
+- Removed test print statements
+- adjusted restart() to set the race.cars to empty list
+- removed need for reset_for_race
 
 **main.js**:
- - added logic to test for race_end
- - added endRace()
- - resetRace() now brings user back to '/'
- - added message for pit stop
- - removed testing console.log statements
- - removed unused resetStrategySelections
- - removed player car numbers
+- added logic to test for race_end
+- added endRace()
+- resetRace() now brings user back to '/'
+- added message for pit stop
+- removed testing console.log statements
+- removed unused resetStrategySelections
+- removed player car numbers
 
 **end.html**: added file with basic info
 
 **setup.html**: 
- - removed player car number inputs
- - added error handling for no names entered
+- removed player car number inputs
+- added error handling for no names entered
 
 **routes.py**: 
- - hard coded in player numbers as 2 and 3
- - removed race_reset on loading of home.html
- - added /end route
+- hard coded in player numbers as 2 and 3
+- removed race_reset on loading of home.html
+- added /end route
 
 ## Next Updates:
 - Get map added and working
@@ -123,16 +135,21 @@
 - TLDR: Small update resizing the home screen layout to 80% and moving the "Advance Lap" and "Reset" buttons to the Player Control Center column.
 
 ## File Updates:
- **car.py**: Added lap time calculations
- **race.py**:
+**car.py**: Added lap time calculations
+
+**race.py**:
 - Fixed dirty air, swapped updates_needed from list to dictionary
 - Added map_helper method, creates dictionary for use for map building
+
 **main.js**: created updateMap() function, updates elements on home.html
+
 **home.html**:
 - Created rudimentary map elements
 - Moved Reset and Advance Lap buttons to the Control Center columns
 - Game Layout is now `.home-container` class
+
 **routes.py**: /api/map route created, pulls race.lap_data
+
 **style.css**:
 - Created .track_cars styling for track
 - Added `.home-container` class: scaled down to 80% for smaller screen
