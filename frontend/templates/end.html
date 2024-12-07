@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Home - NASCAR Manager '24{% endblock %}
+{% block title %}Result - NASCAR Manager '24{% endblock %}
 
 {% block content %}
 <body>
-    <div class="content">
-        <h3>Race Over!</h3>
+    <div class="card">
+        <label class="card-label">Finished!</label>
+        
         <h3 id="winner">Winner: TBD</h3>
-        <h3>Here are the standings:</h3>
+
+        <br><p>Here are the standings:</p><br>
+
         <div class="container" style="display: flex; gap: 20px;">
             <table class="standings-table" id="end-standings">
                 <thead>
@@ -25,12 +28,15 @@
                     <!-- Rows will be generated here by JavaScript -->
                 </tbody>
             </table>
-            <div>
-                <button id="reset-button-2" class="button secondary-button">New Game?</button>
-            </div>
+        </div>
+        
+        <br>
+        <div>
+            <button id="reset-button-2" class="button secondary-button">New Game?</button>
         </div>
     </div>
 </body>
+
 <script>
     async function resetRace() {
         try {

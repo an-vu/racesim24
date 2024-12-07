@@ -78,8 +78,8 @@
 - It also fixes the display issue with smaller screen - now it does work on my 13 inch macbook pro now fuck yeah!
 - It also comes with some new bugs... for sum reason html and javascript kinda glitchy right now... example if we got this element <bold>car</bold> it doesnt render as bold anymore... something happening and i dont know what is happening...
 
-
 ## File Updates:
+**`/frontend/static/images/profiles`**:
 - Added 6 new profile pictures.
 
 **`style.css`**:

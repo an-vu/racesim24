@@ -61,7 +61,7 @@ body {
     justify-content: center;
     transition: transform 0.5s;
 }
-  
+
 .left-side {
     transform: rotateY(45deg) translateX(-1000px);
     animation: animate-left 1s forwards;
@@ -364,7 +364,7 @@ body {
 /* Cell Padding and Borders */
 .standings-table th, .standings-table td {
     padding: 10px; /* Uniform padding inside cells */
-    border-bottom: 1px solid rgba(220, 220, 220, 0.1); /* Thin lines between rows */
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2); /* Thin lines between rows */
 }
 
 /* Remove Bottom Border under Header Row and Last Row */
@@ -463,18 +463,16 @@ body {
     }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1600px) {
     .side {
         flex: unset !important;
     }
 
     .center-side {
-        width: 33% !important;
+        width: 40% !important;
     }
 
     .left-side, .right-side {
-        width: 12% !important;
+        width: 14% !important;
     }
 }
-
-
