@@ -289,6 +289,10 @@ body {
     height: 100%;
 }
 
+/* ==========================
+   Input Field Styling
+   ========================== */
+
 /* Floating Label Container */
 .floating-label {
     position: relative; /* Required for positioning the label relative to the input field */
@@ -359,6 +363,11 @@ body {
 /* Table Hover Effect */
 .standings-table:hover {
     background: rgba(0, 0, 0, 0.05); /* Subtle background change on hover */
+}
+
+/* Zebra striping */
+.standings-table tbody tr:nth-child(odd) {
+    background-color: rgba(220, 220, 220, 0.01);
 }
 
 /* Cell Padding and Borders */
@@ -444,6 +453,10 @@ body {
     flex-grow: 1;
     text-align: center;
 }
+
+/* ==========================
+   Animation & Display Styling
+   ========================== */
 
 @keyframes animate-left {
     100% {
