@@ -20,8 +20,6 @@
                         <th>Driver</th>
                         <th>To Leader</th>
                         <th>Total</th>
-                        <th>Tire %</th>
-                        <th>Fuel %</th>
                     </tr>
                 </thead>
                 <tbody id="end-standings-table-body">
@@ -36,8 +34,36 @@
         </div>
     </div>
 </body>
+{% endblock %}
+
+{% block scripts %}
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize elements
+        const tableBody = document.getElementById("end-standings-table-body");
+        // Initialize car standings
+        const carData = Array.from({ length: 16 }, (_, i) => ({
+            position: i + 1,
+            carNumber: '--',
+            driver: '--',
+            toLeader: '--',
+            totalTime: '--',
+            }));
+
+        carData.forEach(car => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${car.position}</td>
+                <td id="car-${car.position}-num">${car.carNumber}</td>
+                <td id="car-${car.position}-driver">${car.driver}</td>
+                <td id="car-${car.position}-to-leader">${car.toLeader}</td>
+                <td id="car-${car.position}-time-total">${car.totalTime}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+
     async function resetRace() {
         try {
             await fetch('/api/race/reset', { method: 'POST' });
@@ -47,6 +73,43 @@
         }
     }
     document.getElementById('reset-button-2').addEventListener('click', resetRace);
+
+    async function getRaceData() {
+        try {
+            const response = await fetch('/api/race');
+            const data = await response.json();
+
+            updateRaceStandings(data)
+            winnerName(data)
+
+            } catch (error) {
+            console.error('Error fetching race data:', error);
+        }
+    }
+
+    function updateRaceStandings(data) {
+        data.cars.forEach((car, index) => {
+            if (car) {
+                document.getElementById(`car-${index + 1}-num`).textContent = car.number;
+                document.getElementById(`car-${index + 1}-driver`).textContent = car.name;
+                document.getElementById(`car-${index + 1}-to-leader`).textContent = car.to_leader.toFixed(2);
+                document.getElementById(`car-${index + 1}-time-total`).textContent = car.total_race_time.toFixed(2);
+            }
+        });
+    }
+
+    async function winnerName(data) {
+        data.cars.forEach((car, index) => {
+            if (car.to_leader == 0 && ![2, 3].includes(car.number)) {
+                document.getElementById(`winner`).textContent = `Winner: ${car.name}, better luck next time!`;
+            } else if (car.to_leader == 0 && [2, 3].includes(car.number)) {
+                document.getElementById(`winner`).textContent = `Winner: ${car.name}, good job!`;
+            }
+        });
+    }
+
+    getRaceData();
+
 </script>
 
 {% endblock %}

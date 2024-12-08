@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/race');
             const data = await response.json();
             updatePlayerCars(data.cars);
+            updateMap()
         } catch (error) {
             console.error('Error starting race:', error);
         }
@@ -181,27 +182,52 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateMap() {
         // Fetch the race map data from the Flask API
         fetch('/api/map')
-            .then(response => response.json())  // Parse JSON response
+            .then(response => response.json()) // Parse JSON response
             .then(data => {
                 // Sort the cars based on their placement
                 const sortedCars = Object.entries(data)
-                    .sort((a, b) => a[1].place - b[1].place);  // Sort by carData["place"]
+                    .sort((a, b) => a[1].place - b[1].place); // Sort by carData["place"]
+    
+                // Get track dimensions and calculate the oval radii
+                const track = document.querySelector(".track");
+                const trackWidth = track.offsetWidth;
+                const trackHeight = track.offsetHeight;
+    
+                const centerX = trackWidth / 2;
+                const centerY = trackHeight / 2;
+                const radiusX = trackWidth / 2.2; // Adjust for horizontal radius
+                const radiusY = trackHeight / 2.5; // Adjust for vertical radius
+                
+                // Use only 75% of the track
+                const startAngle = 1.5; // Starting angle (0 degrees)
+                const endAngle = 2 * Math.PI; // Ending angle (270 degrees)
 
-                // Update each pre-placed car div based on its position in the standings
+                carCount = sortedCars.length
+
+                // Update each car div based on its sorted position
                 sortedCars.forEach(([carNumber, carData], index) => {
-                    const carDiv = document.getElementById((index + 1).toString());  // Get the div by its rank ID
+                    const carDiv = document.getElementById((index + 1).toString()); // Get the div by its rank ID
                     if (carDiv) {
-                        carDiv.textContent = carNumber;  // Display the car number in the div
+                        // Calculate position on the oval based on index
+                        const angle = startAngle + (index / carCount) * (endAngle - startAngle);
 
-                        // Optionally, update other properties like color based on the car's place
+                        const x = centerX + radiusX * Math.cos(angle) - carDiv.offsetWidth / 2;
+                        const y = centerY + radiusY * Math.sin(angle) - carDiv.offsetHeight / 2;
+    
+                        // Set position and update text
+                        carDiv.style.left = `${x}px`;
+                        carDiv.style.top = `${y}px`;
+                        carDiv.textContent = carNumber; // Display car number
+    
+                        // Update color based on the place
                         if (carData.place === 1) {
-                            carDiv.style.backgroundColor = 'gold';  // First place car gets gold
+                            carDiv.style.backgroundColor = 'gold'; // First place
                         } else if (carData.place === 2) {
-                            carDiv.style.backgroundColor = 'silver';  // Second place car gets silver
+                            carDiv.style.backgroundColor = 'silver'; // Second place
                         } else if (carData.place === 3) {
-                            carDiv.style.backgroundColor = 'red';  // Third place car gets bronze
+                            carDiv.style.backgroundColor = 'red'; // Third place
                         } else {
-                            carDiv.style.backgroundColor = 'blue';  // Default color for others
+                            carDiv.style.backgroundColor = 'blue'; // Others
                         }
                     }
                 });
@@ -243,4 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
     startRace();
     getRaceData();
 
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateMap(); // Call updateMap after resizing is complete
+        }, 100); // Adjust debounce delay as needed
+    });
 });
