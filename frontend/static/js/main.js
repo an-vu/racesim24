@@ -276,4 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
             updateMap(); // Call updateMap after resizing is complete
         }, 100); // Adjust debounce delay as needed
     });
+
+    document.getElementById('gitlab-button').addEventListener('click', function () {
+        window.open('https://gitlab.com/24fa-csci4830/group-1', '_blank');
+    });
 });
