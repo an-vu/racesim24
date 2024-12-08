@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize elements
     const aboutButton = document.getElementById('about-button');
-    const navMenu = document.getElementById('nav-menu');
     const clockButton = document.getElementById('clock-button');
     const tableBody = document.getElementById("standings-table-body");
+    
     let showDate = false;
     let player_racer_array = [];
     let pitStops = {
@@ -242,4 +242,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start and fetch initial race data
     startRace();
     getRaceData();
+
 });

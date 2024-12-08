@@ -6,30 +6,22 @@
     <title>{% block title %}NASCAR Manager '24{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <header>
-        <a href="{{ url_for('home') }}" class="main-title" style="text-decoration: none; color: inherit;">
-            CSCI 4830 Project
-        </a>
-    </header>
 
     <!-- Main content area -->
-    <div class="centered-container">
-        <div class="content">
-            {% block content %}
-            <!-- Specific page content will go here -->
-            {% endblock %}
-        </div>
-    </div>
+    {% block content %}
+    <!-- Specific page content will go here -->
+    {% endblock %}
 
-    <!-- Footer -->
+
+    <!-- Footer (hidden in .css) -->
     <footer class="footer">
         <button id="about-button" class="button">About</button>
-        <div class="footer-text">Update November 7, 2024</div>
+        <div class="footer-text">Update November 24, 2024</div>
         <button id="clock-button" class="button">⏳</button>
     </footer>
 
-    
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

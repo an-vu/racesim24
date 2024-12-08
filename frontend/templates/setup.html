@@ -1,62 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Setup - NASCAR Manager '24</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% extends "base.html" %}
+
+{% block title %}Player Setup - NASCAR Manager '24{% endblock %}
+
+{% block content %}
 <body>
-    <div class="centered-container">
-        <div class="content">
-            <h1 class="main-title">NASCAR Manager '24 - Player Setup</h1>
-            
-            <!-- Player Setup Container -->
-            <div class="setup-container" style="display: flex; gap: 20px;">
+    <div class="column-container">
+        <!-- Player Setup Container -->
+        <div class="row-container">
+            <!-- Player 1 Setup card -->
+            <div class="card">
+                <label class="card-label">Player 1</label>
                 
-                <!-- Player 1 Setup Box -->
-                <div class="box box-small">
-                    <h3 class="sub-title">Player 1</h3>
-                    
-                    <!-- Profile Picture Placeholder -->
-                    <div class="profile-picture" id="player1-picture" style="cursor: pointer;">
-                        <!-- Placeholder text replaced by image -->
-                    </div>
-                    
-                    <!-- Player Name Input -->
+                <!-- Profile Picture -->
+                <div class="profile-picture" id="player1-picture" style="cursor: pointer;"></div>
+                
+                <!-- Name Inputs -->
+                <div class="floating-label">
+                    <input type="text" id="player1-name" name="player1_name" class="input-field" placeholder=" ">
                     <label for="player1-name">Name</label>
-                    <input type="text" id="player1-name" name="player1_name" placeholder="Enter name" class="input-field">
-                    
-                </div>
 
-                <!-- Player 2 Setup Box -->
-                <div class="box box-small">
-                    <h3 class="sub-title">Player 2</h3>
-                    
-                    <!-- Profile Picture Placeholder -->
-                    <div class="profile-picture" id="player2-picture" style="cursor: pointer;">
-                        <!-- Placeholder text replaced by image -->
-                    </div>
-                    
-                    <!-- Player Name Input -->
+                <!-- Car # Inputs
+                <div class="floating-label">
+                    <input type="number" id="car1-number" name="car1_number" class="input-field" placeholder=" ">
+                    <label for="car1-number">Car #</label>
+                </div> -->
+                </div>
+            </div>
+
+            <!-- Player 2 Setup card -->
+            <div class="card">
+                <label class="card-label">Player 2</label>
+                
+                <!-- Profile Picture -->
+                <div class="profile-picture" id="player2-picture" style="cursor: pointer;"></div>
+                
+                <!-- Name Inputs -->
+                <div class="floating-label">
+                    <input type="text" id="player2-name" name="player2_name" class="input-field" placeholder=" ">
                     <label for="player2-name">Name</label>
-                    <input type="text" id="player2-name" name="player2_name" placeholder="Enter name" class="input-field">
-                    
+
+                <!-- Car # Inputs 
+                <div class="floating-label">
+                    <input type="number" id="car2-number" name="car2_number" class="input-field" placeholder=" ">
+                    <label for="car2-number">Car #</label>
+                </div> -->
                 </div>
             </div>
-
-            <!-- Start Race Button -->
-            <div style="margin-top: 30px;">
-                <button onclick="startRace()" class="button button-danger">
-                    START THE RACE
-                </button>
-            </div>
+        </div>
+    
+        <!-- Start Race Button -->
+        <div>
+            <button id="start-button" onclick="startRace()" class="button secondary-button">START</button>
         </div>
     </div>
 
     <script>
         // Array of profile image filenames
-        const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png"];
+        const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png", "profile7.png", "profile8.png", "profile9.png", "profile10.png", "profile11.png", "profile12.png"];
 
         // Set random initial image for each player
         const player1Picture = document.getElementById("player1-picture");
@@ -128,4 +128,4 @@
         }
     </script>
 </body>
-</html>
+{% endblock %}

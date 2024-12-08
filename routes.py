@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """ Module to run the flask api """
 
 import csv, random
@@ -6,8 +8,7 @@ from backend.car import Car
 from backend.car_ai import AI
 from backend.race import Race, restart
 
-app = Flask(__name__,  template_folder="frontend/templates", static_folder="frontend/static" )
-
+app = Flask(__name__,  template_folder="frontend/templates", static_folder="frontend/static")
 
 # Initialize the actual race instance
 race = Race()
@@ -15,8 +16,8 @@ list_car_numbers = [] # Define global variable to store non-AI car numbers
 
 @app.route('/favicon.ico')
 def favicon():
-    """ Created to get rid of the favicon load error """
-    return send_from_directory(app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    """Created to get rid of the favicon load error"""
+    return send_from_directory(f"{app.static_folder}/images", 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/initialize_race', methods=['POST'])
 def initialize_race():
@@ -57,29 +58,6 @@ def initialize_race():
     list_car_numbers = [car.number for car in race.cars if not isinstance(car, AI)]
 
     return jsonify({"status": "success"}), 200
-
-@app.route('/')
-def setup():
-    """
-    Function to bring user to setup.html when navigating to the root directory webpage
-    """
-    return render_template('setup.html')
-
-@app.route('/home')
-def home():
-    """
-    Function to bring user to home.html when navigating to the home subdirectory webpage
-    """
-    return render_template('home.html')
-
-@app.route('/about')
-def about():
-    """
-    Function to bring user to about.html when navigating to the about subdirectory webpage
-    """
-    return render_template('about.html')
-
-
 
 # API route to get the current race state using the actual race object
 @app.route('/api/race', methods=['GET'])
@@ -190,6 +168,29 @@ def get_map():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Path for pages
+@app.route('/')
+def setup():
+    """
+    Function to bring user to setup.html when navigating to the root directory webpage
+    """
+    return render_template('setup.html')
+
+@app.route('/home')
+def home():
+    """
+    Function to bring user to home.html when navigating to the home subdirectory webpage
+    """
+    restart_race()
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    """
+    Function to bring user to about.html when navigating to the about subdirectory webpage
+    """
+    return render_template('about.html')
+
 @app.route("/end", methods=['POST', 'GET'])
 def end_race():
     """
@@ -201,7 +202,7 @@ def end_race():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.errorhandler(404)
-def page_not_found():
+def page_not_found(error):
     """
     Function to display 404 error
     """
