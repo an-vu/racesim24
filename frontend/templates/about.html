@@ -3,11 +3,13 @@
 {% block title %}Credits - NASCAR Manager '24{% endblock %}
 
 {% block content %}
-<div class="content" style="text-align: center;">
-    <div class="article" style="display: inline-block; text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
-        <h1>About</h1>
-        <p>NASCAR Manager '24 is a command-based game where players take control of a NASCAR team, manage drivers, pit crews, and race strategy to win the championship.</p>
-        <p>Link to project: https://gitlab.com/24fa-csci4830/group-1</p>
+<body>
+    <div class="card" style="text-align: center;">
+        <label class="card-label">About</label>
+
+        <p>NASCAR Manager '24 is a command-based game where players take control of a NASCAR team,</p>
+        <p>manage drivers, pit crews, and race strategy to win the championship.</p>
+
         <h2>Project Details</h2>
         <ul style="list-style-type: none; padding: 0;">
             <li>CSCI 4830 Introduction to Software Engineering</li>
@@ -17,6 +19,9 @@
             <li>Michael Sutton DePennes</li>
             <li>An Vu</li>
         </ul>
+
+        <button id="gitlab-button" class="button primary-button">Link to Project</button>
+        <button id="reset-button" class="button secondary-button">Home 🏡</button>
     </div>
-</div>
+</body>
 {% endblock %}
