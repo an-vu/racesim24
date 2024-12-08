@@ -50,7 +50,8 @@ def initialize_race():
     player_car_2 = Car(player2_name, 3, 30.5, 22.45, -10.65, race, 2)
     cars.append(player_car_1)
     cars.append(player_car_2)
-
+    for car in cars:
+        print(car.name)
     # Add all cars to the race
     for car in cars:
         race.add_car(car)

@@ -78,3 +78,38 @@ def test_lap_end(race_state):
     assert not race_state.race_end()
     race_state.advance_lap()
     assert race_state.race_end()
+
+def test_calc_strat(race_state):
+    """
+    Tests the calc_strat function
+    """
+    strat = AI("TES", 11, 30.5, 23.42, -13.02, race_state, 3)
+    laps_to_go = 80
+    laps_able_to_go_on_tires = 50
+    base_lap_time = 30.5
+    tire_falloff = 0.05
+    wear_percent = 2.0
+    init_push_level = 3
+
+
+    result = strat.calc_strat(
+        laps_to_go,
+        laps_able_to_go_on_tires,
+        base_lap_time,
+        tire_falloff,
+        wear_percent,
+        init_push_level,
+    )
+
+
+    expected_avg_lap_time = 31.92625
+    expected_stops = 1
+    expected_laps_per_stint = 40
+    expected_push_available = 10
+    expected_init_push_level = init_push_level
+
+    assert result[0] == pytest.approx(expected_avg_lap_time, 0.01)
+    assert result[1] == expected_stops
+    assert result[2] == expected_laps_per_stint
+    assert result[3] == pytest.approx(expected_push_available, 0.01)
+    assert result[4] == expected_init_push_level
