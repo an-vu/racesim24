@@ -1,3 +1,16 @@
+# Dec 8 Changelog
+
+## File Updates:
+
+**`home.html`**:
+- Moved Map card to the middle
+- Edited About card
+- Gitlab Button in About card works now, will take to the project page of course
+- Aligned Pit button to the center of Player Control card
+
+**`about.html`**:
+- Started redesigning the whole thing...
+
 # Dec 6 Changelog
 
 ## TLDR:
