@@ -7,14 +7,9 @@
 
 ## File Updates:
 
-**`style.css`**:
-- 
-
 **`end.html`**:
 - Updated to match with the new UI style.
 
-**`main.js`**:
-- 
 
 ## Known Issues:
 - Map doesn't work anymore...
