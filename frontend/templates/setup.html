@@ -53,7 +53,9 @@
             <button id="start-button" onclick="startRace()" class="button secondary-button">START</button>
         </div>
     </div>
+{% endblock %}
 
+{% block scripts %}
     <script>
         // Array of profile image filenames
         const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png", "profile7.png", "profile8.png", "profile9.png", "profile10.png", "profile11.png", "profile12.png"];
@@ -102,6 +104,7 @@
             };
 
             // Send data to Flask backend
+            console.log("init race")
             fetch("/initialize_race", {
                 method: "POST",
                 headers: {
