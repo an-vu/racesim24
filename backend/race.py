@@ -239,7 +239,7 @@ class Race:
             self.cars.append(crashed_car)
 
             # Add penalty to crashed car
-            crashed_car.total_race_time = self.cars[14].total_race_time + 1
+            crashed_car.total_race_time = self.cars[len(self.cars)-1].total_race_time + 1
 
             # Re-sort after adjustments if needed
             self.get_standings()
