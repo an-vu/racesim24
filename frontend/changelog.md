@@ -6,6 +6,9 @@
 **`test_race.py`**:
  - Added test for new crash mechanics
 
+ **`requirements.txt`**:
+- Added pytest-mock
+
 # Dec 8 Changelog
 
 ## File Updates:
