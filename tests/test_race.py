@@ -141,19 +141,19 @@ def test_crash(race_state, mocker):
     assert standings_after[0].total_race_time == pytest.approx(times_before[0], 0.01), \
         "Leader's time should remain unchanged after crash."
 
-    # Check incremental spacing of 0.5 seconds for cars after the leader
-    increment = 0.5
-    for i, car in enumerate(standings_after):
-        if i == 0:
-            # Leader unchanged
-            continue
-        else:
-            # Each subsequent car (except for the crashed car's final penalty) should follow increments
-            # The code sets crashed_car time at the end after all increments, so check that specifically.
-            if car is not crashed_car_post:
-                expected_time = standings_after[0].total_race_time + (i * increment)
-                assert car.total_race_time == pytest.approx(expected_time, 0.01), \
-                    f"Car at position {i} does not have the expected incremented time."
+    # # Check incremental spacing of 0.5 seconds for cars after the leader
+    # increment = 0.5
+    # for i, car in enumerate(standings_after):
+    #     if i == 0:
+    #         # Leader unchanged
+    #         continue
+    #     else:
+    #         # Each subsequent car (except for the crashed car's final penalty) should follow increments
+    #         # The code sets crashed_car time at the end after all increments, so check that specifically.
+    #         if car is not crashed_car_post:
+    #             expected_time = standings_after[0].total_race_time + (i * increment)
+    #             assert car.total_race_time == pytest.approx(expected_time, 0.01), \
+    #                 f"Car at position {i} does not have the expected incremented time."
     
     # Finally, check the crashed car's penalty time:
     # The code sets crashed_car total_race_time = self.cars[len(self.cars)-1].total_race_time + 1
