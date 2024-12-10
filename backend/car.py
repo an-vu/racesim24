@@ -49,6 +49,9 @@ class Car:
 
 
     def set_starting_pos(self, starting_gap):
+        """
+        Adds a set time to space the first lap of cars
+        """
         self.total_race_time += starting_gap
 
 

@@ -148,3 +148,18 @@ def test_crash(race_state, mocker):
     second_to_last_car_time = times_after[-2]
     assert crashed_car_post.total_race_time == second_to_last_car_time, \
         "Crashed car should have a 1-second penalty added to the next-to-last car's time."
+
+
+def test_force_pit(race_state):
+    """
+    Test if pit stop resets the car's tire and fuel.
+    """
+    car = race_state.cars[0]  # Use the first car (non-AI)
+    car.fuel_level = 0
+    pre_force_pit = car.total_race_time
+    race_state.next_lap()
+    post_force_pit = car.total_race_time
+
+    assert car.tire_life == 100
+    assert car.fuel_level == 100
+    assert pre_force_pit + 80 <= post_force_pit
