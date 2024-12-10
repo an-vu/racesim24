@@ -1,3 +1,14 @@
+# Dec 9 Changelog
+
+**`race.py`**:
+ - Added crash mechanics via two functions, 5% chance each lap a crash could happen.
+
+**`test_race.py`**:
+ - Added test for new crash mechanics
+
+ **`requirements.txt`**:
+- Added pytest-mock
+
 # Dec 8 Changelog
 
 ## File Updates:

@@ -70,7 +70,7 @@ class Race:
                 seconds_of_dirty_air = 40  # Maximum dirty air penalty applied
                 # Apply dirty air penalty
                 updates_needed[car.number] = seconds_of_dirty_air
-                print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
+                # print(f"Force Dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
             else:
                 if gap_ahead <= 0.4:
                     # Still close but less intense dirty air effect
@@ -78,12 +78,12 @@ class Race:
                     odds_no_pass = abs(int((3 - odds_of_pass) * 100))  # Smaller range for less intense effect
                     seconds_of_dirty_air = int(random.randint(0, odds_no_pass) / 2) / 100
                     updates_needed[car.number] = seconds_of_dirty_air
-                    print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
+                    # print(f"Moderate dirty air effect: {seconds_of_dirty_air} seconds applied to {car.name}")
 
                 else:
                     updates_needed[car.number] = 0
                     # Cars are far apart, no dirty air effect
-                    print(f"No dirty air effect applied to {car.name}")
+                    # print(f"No dirty air effect applied to {car.name}")
 
         for car_number, time in updates_needed.items():
             car = next(c for c in sorted_cars if c.number == car_number)
@@ -151,6 +151,7 @@ class Race:
         self.calc_dirty_air()
         for car in self.cars:
             car.force_pit()
+        self.maybe_crash()
         self.get_best_time()
         self.map_helper()
 
@@ -190,6 +191,59 @@ class Race:
                         0
                     )
                 }
+
+    def crash(self):
+        """
+        When a crash happens bring the cars closer together and move the crashed car to last.
+        """
+
+        increment = 0.5
+        standings = self.get_standings()
+        best_time = standings[0].total_race_time
+        current_time = best_time
+
+        # Update each car's time, starting from the leader
+        for i, car in enumerate(standings):
+            if i == 0:
+                # Leader keeps their best time
+                car.total_race_time = best_time
+            else:
+                # Each subsequent car is spaced by increment more than the previous
+                current_time += increment
+                car.total_race_time = current_time
+
+    def maybe_crash(self):
+        """
+        Makes a car crash?
+        """
+        is_crash = random.randint(0,1000)
+
+        if is_crash <= 50: # 5% Chance of crash
+
+            # Choose which car it happened to
+            crashed_index = random.randint(0, 15)
+
+            crashed_car = self.cars[crashed_index]
+            print(f"CRASH! {crashed_car.name} crashed!")
+            # Call the crash method to reposition and tighten the pack
+            self.crash()
+
+            # After crash() has recalibrated times, apply additional logic:
+            # Move the crashed car to last place
+            # First, sort by updated times
+            self.get_standings()
+
+            # Ensure the crashed car is placed at the end
+            # Remove it from its current position and re-insert at the end
+            self.cars.remove(crashed_car)
+            self.cars.append(crashed_car)
+
+            # Add penalty to crashed car
+            crashed_car.total_race_time = self.cars[len(self.cars)-1].total_race_time + 1
+
+            # Re-sort after adjustments if needed
+            self.get_standings()
+
 
 
 def restart(race_instance):

@@ -113,3 +113,53 @@ def test_calc_strat(race_state):
     assert result[2] == expected_laps_per_stint
     assert result[3] == pytest.approx(expected_push_available, 0.01)
     assert result[4] == expected_init_push_level
+
+def test_crash(race_state, mocker):
+    """
+    Tests the crash mechanics by mocking random values to ensure a crash occurs
+    and verifying the resulting standings and time adjustments.
+    """
+    # Ensure deterministic behavior:
+    # First random call (0-1000) must trigger a crash: return a number <= 50, say 10.
+    # Second random call (0-15) chooses the crashed car index, say 1.
+    mocker.patch('random.randint', side_effect=[10, 1])
+
+    standings_before = race_state.get_standings()
+    crashed_car_pre = standings_before[1]  # Car at index 1 will "crash"
+    times_before = [car.total_race_time for car in standings_before]
+
+    # Trigger the crash logic
+    race_state.maybe_crash()
+
+    standings_after = race_state.get_standings()
+    times_after = [car.total_race_time for car in standings_after]
+    crashed_car_post = standings_after[-1]  # The crashed car should now be at the end
+
+    # Check that the same car ended up last
+    assert crashed_car_pre is crashed_car_post, "The expected crashed car did not end up last."
+
+    # Check that the leader's time remains the same
+    assert times_after[0] == times_before[0], \
+        "Leader's time should remain unchanged after crash."
+
+    # The code sets crashed_car total_race_time = self.cars[len(self.cars)-1].total_race_time + 1
+    # After reordering, this should still be correct:
+    # crashed_car_post should be at the end with 1 second more than the time of the (now second-to-last) car.
+    second_to_last_car_time = times_after[-2]
+    assert crashed_car_post.total_race_time == second_to_last_car_time, \
+        "Crashed car should have a 1-second penalty added to the next-to-last car's time."
+
+
+def test_force_pit(race_state):
+    """
+    Test if pit stop resets the car's tire and fuel.
+    """
+    car = race_state.cars[0]  # Use the first car (non-AI)
+    car.fuel_level = 0
+    pre_force_pit = car.total_race_time
+    race_state.next_lap()
+    post_force_pit = car.total_race_time
+
+    assert car.tire_life == 100
+    assert car.fuel_level == 100
+    assert pre_force_pit + 80 <= post_force_pit
