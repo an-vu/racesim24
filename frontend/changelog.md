@@ -1,3 +1,8 @@
+# Dec 9 Changelog
+
+**`race.py`**:
+ - Added crash mechanics via two functions, 5% chance each lap a crash could happen.
+
 # Dec 8 Changelog
 
 ## File Updates:
