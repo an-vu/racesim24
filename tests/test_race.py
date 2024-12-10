@@ -133,7 +133,6 @@ def test_crash(race_state, mocker):
 
     standings_after = race_state.get_standings()
     times_after = [car.total_race_time for car in standings_after]
-    print(times_before, times_after)
     crashed_car_post = standings_after[-1]  # The crashed car should now be at the end
 
     # Check that the same car ended up last
