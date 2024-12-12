@@ -1,7 +1,7 @@
 # Dec 11
 
 **`setup.html`**:
-- Added a hint line (don't snort it pls).
+- Added a hint line.
 
 **`home.html`**:
 - Added some new buttons.
