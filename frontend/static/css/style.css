@@ -1,1 +1,491 @@
-@keyframes animate-left{100%{transform:rotateY(45deg) translateX(0)}}@keyframes animate-right{100%{transform:rotateY(-45deg) translateX(0)}}@keyframes animate-center{100%{transform:rotateX(0) scale(.9) translateY(0)}}*{margin:0;padding:0;box-sizing:border-box}body{background:url(https://images.unsplash.com/photo-1554034483-04fda0d3507b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center/cover no-repeat;perspective:1000px;width:100vw;height:100vh;margin:0;padding:50px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;font-family:sans-serif;color:#fff}.main-title{font-size:2em;font-weight:700;margin-bottom:20px}.row-container{display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;gap:20px;width:100%;flex:1}.card,.footer{border-radius:30px;box-shadow:inset 1px 1.5px 2px rgb(255 255 255 / .6),inset 1px -.5px 2px rgb(255 255 255 / .3019607843),0 .6021873018px .6021873018px -1.25px rgb(0 0 0 / .1803921569),0 2.2885333032px 2.2885333032px -2.5px rgb(0 0 0 / .1607843137),0 10px 10px -3.75px rgb(0 0 0 / .062745098)}.card{width:auto;height:auto;padding:50px 20px 20px;margin:10px 0;background:rgb(0 0 0 / .15);-webkit-backdrop-filter:blur(40px);backdrop-filter:blur(40px);position:relative;transition:background .4s,transform .4s,box-shadow .4s}.column-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}.left-side{transform:rotateY(45deg) translateX(-1000px);animation:1s forwards animate-left;flex:1}.footer{display:none;background:rgb(0 0 0 / .05);color:#333;padding:10px 20px;position:fixed;bottom:0;width:100%;justify-content:space-between;align-items:center;-webkit-backdrop-filter:blur(40px);backdrop-filter:blur(40px)}.card:hover{background:rgb(0 0 0 / .05);transform:scale(1.02)}.center-side .card,.left-side .card{width:100%;height:auto}.home-container{transform:scale(.8);transform-origin:center}.side{display:flex;flex-direction:column;flex:1;height:100%;align-items:center;justify-content:center;transition:transform .5s}.small{width:150px;height:150px}.sub-title{font-size:1.2em;color:#555;margin-bottom:15px}.center-side{transform:rotateX(0) translateY(-1000px);animation:.7s forwards animate-center;flex:2}.card-label{position:absolute;right:15px;top:10px;font-size:26px;color:#fff;margin-bottom:15px}#lap-button,.button:hover{transform:scale(1.1)}.card-map{padding:20px}.button{border-radius:50em;font-size:16px;margin:5px;padding:6px 12px;text-decoration:none;transition:background-color .25s,box-shadow .3s ease-in-out,color .3s ease-in-out,background .4s,transform .4s;cursor:pointer;flex:.3;text-align:center}.right-side{transform:rotateY(-45deg) scale(.9) translateX(1000px);animation:1s forwards animate-right;flex:1}.right-side .card{width:100%;height:auto}#lap-button{transform-origin:center;display:inline-block;margin:0 10px}.primary-button{background-color:#e73e45;border:.5px solid #ff3b30;color:#fff}#lap-button:hover{transform:scale(1.2)}.standings-table,.standings-table tbody tr{position:relative;overflow:visible}.primary-button:hover,.secondary-button:hover{color:#fff;outline:0;box-shadow:0 0 15px 15px #ff3b30 inset}#start-button{transform:scale(1.1);transform-origin:center;display:inline-block;margin:0 10px}.standings-table{width:100%;text-align:left;border-collapse:separate;border-spacing:0;border-radius:20px;background:#fff0;color:rgb(255 255 255 / .9);box-shadow:0 4px 8px rgb(0 0 0 / .1);transition:background-color .25s,box-shadow .3s ease-in-out,color .3s ease-in-out,transform .4s}.primary-button:hover{background-color:#e73e45}.secondary-button{background-color:rgb(255 255 255 / .5);border:1px solid #ff3b30;color:#ff3b30}#start-button:hover{transform:scale(1.2)}.secondary-button:hover{background-color:rgb(255 255 255 / .4)}.standings-table tbody tr:nth-child(odd){background-color:rgb(220 220 220 / .01)}.profile-picture{width:100px;height:100px;border-radius:50%;background-color:#ddd;background-size:cover;background-position:center;background-repeat:no-repeat;border:.5px solid rgb(51 51 51 / .5);display:flex;align-items:center;justify-content:center;font-size:24px;color:#555;margin:0 auto;box-shadow:inset 1px 1.5px 2px rgb(255 255 255 / .6),inset 1px -.5px 2px rgb(255 255 255 / .3019607843),0 .6021873018px .6021873018px -1.25px rgb(0 0 0 / .1803921569),0 2.2885333032px 2.2885333032px -2.5px rgb(0 0 0 / .1607843137),0 10px 10px -3.75px rgb(0 0 0 / .062745098)}.tertiary-button{background-color:rgb(0 0 0 / .05);border:.5px solid #fff0;color:rgb(255 255 255 / .7)}.track{position:relative;aspect-ratio:16/9;width:80%;max-width:600px;margin:auto;border:3px solid #555;border-radius:50%;background:0 0;overflow:hidden}.tertiary-button:hover{background-color:rgb(0 0 0 / .05);color:#fff;outline:0;box-shadow:0 0 15px 15px rgb(0 0 0 / .15) inset}.standings-table tbody tr:last-child td{border-bottom:none!important}.footer-text{flex:.3;flex-grow:1;text-align:center}.standings-table tbody tr:hover{background-color:rgb(0 0 0 / .15);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:scale(1.02);z-index:1;border-radius:10px;clip-path:inset(0 round 10px)}.track_cars{position:absolute;width:20px;height:20px;background-color:blue;border-radius:50%;text-align:center;color:#fff;font-size:12px;display:flex;justify-content:center;align-items:center;transform-origin:center}.standings-table td,.standings-table th{padding:10px;border-bottom:1px solid rgb(220 220 220 / .2)}.car-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%}.floating-label{position:relative;margin-top:25px;margin-bottom:25px}.standings-table:hover{background:rgb(0 0 0 / .05)}.input-field{width:100%;padding:10px;border:1px solid #ccc;border-radius:30px;outline:0;background:rgb(0 0 0 / .1);font-size:16px;color:#fff}.standings-table thead{background-color:#fff0;color:#fff}.floating-label label{position:absolute;top:50%;left:15px;transform:translateY(-50%);font-size:16px;color:#ccc;pointer-events:none;transition:.3s}.standings-table thead tr th{border-bottom:none!important}.standings-table thead tr:hover{background-color:inherit;cursor:default}.input-field:focus{border-color:#fff;background:rgb(255 255 255 / .1)}.input-field:focus~label,.input-field:not(:placeholder-shown)~label{top:-10px;left:10px;font-size:12px;color:#fff}.standings-table thead th:first-child{border-radius:20px 0 0}.standings-table thead th:last-child{border-radius:0 20px 0 0}@media (min-width:1600px){.side{flex:unset!important}.center-side{width:40%!important}.left-side,.right-side{width:14%!important}}
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(https://images.unsplash.com/photo-1554034483-04fda0d3507b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    perspective: 1000px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0; /* Remove default margin */
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex; /* Enable flexbox layout for centering */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    font-family: sans-serif;
+    color: white;
+    /*
+    text-align: center;
+    flex-direction: column;
+    gap: 20px;
+    */
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row; /* Stack the cards and button vertically */
+    align-items: center; /* Center the cards and button horizontally */
+    justify-content: space-evenly;
+    gap:20px;
+    width: 100%;
+    flex: 1;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column; /* Stack the cards and button vertically */
+    align-items: center; /* Center the cards and button horizontally */
+    justify-content: center;
+    gap:20px;
+}
+
+.home-container {
+    transform: scale(0.8); /* Scales the content to 90% */
+    transform-origin: center; /* The scaling originates from the center */
+}
+
+/* Side Styling */
+.side {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s;
+}
+
+.left-side {
+    transform: rotateY(45deg) translateX(-1000px);
+    animation: animate-left 1s forwards;
+    flex: 1;
+}
+
+.left-side .card {
+    width: 100%;
+    height: auto;
+}
+
+.center-side {
+    transform: rotateX(0deg) translateY(-1000px);
+    animation: animate-center 0.7s forwards;
+    flex: 2;
+}
+
+.center-side .card {
+    width: 100%;
+    height: auto;
+}
+
+.right-side {
+    transform: rotateY(-45deg) scale(0.9) translateX(1000px);
+    animation: animate-right 1s forwards;
+    flex: 1;
+}
+
+.right-side .card {
+    width: 100%;
+    height: auto;
+}
+
+.small {
+    width: 150px;
+    height: 150px;
+}
+
+/* Title and Text Styling */
+.main-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sub-title {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.card-label {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* General card Styling */
+.card {
+    width: auto;
+    height: auto;
+    padding: 50px 20px 20px 20px; /* Top Right Bottom Left */
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.15);
+    box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
+        0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
+        0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
+        0 10px 10px -3.75px #00000010;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 30px;
+    position: relative;
+    transition: background 0.4s, transform 0.4s ease, box-shadow 0.4s ease;
+    /*
+    background-color: #fff;
+    border: .1px solid #333;
+    */
+}
+
+.card:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(1.02); /* Slightly enlarges the card */
+    /* Adds a lifted shadow
+    box-shadow: 0 1px 4px #0000004d,
+        0 4px 8px #0000002e,
+        0 10px 20px -5px #00000029;
+    */    
+}
+
+/* Card Map Customization */
+.card-map {
+    padding: 20px; /* Override padding for .card-map */
+}
+
+/* Button Styling */
+.button {
+    border-radius: 50em;
+    font-size: 16px;
+    margin: 5px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: background-color 0.25s,
+                box-shadow 300ms ease-in-out,
+                color 300ms ease-in-out,
+                background 0.4s,
+                transform 0.4s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+.primary-button {
+    background-color: rgba(231, 62, 69);
+    border: .5px solid rgba(255, 59, 48);
+    color: rgba(255, 255, 255);
+}
+
+.primary-button:hover {
+    background-color: rgba(231, 62, 69);
+    color: rgba(255, 255, 255);
+    outline: 0;
+    box-shadow: 0 0 15px 15px rgba(255, 59, 48) inset;
+}
+
+.secondary-button {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 59, 48);
+    color: rgba(255, 59, 48);
+}
+
+.secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255);
+    outline: 0;
+    box-shadow: 0 0 15px 15px rgba(255, 59, 48) inset;
+}
+
+.tertiary-button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: .5px solid rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tertiary-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgba(255, 255, 255);
+    outline: 0;
+    box-shadow: 0 0 15px 15px rgb(0, 0, 0, 0.15) inset;
+}
+
+#lap-button, #start-button {
+    transform: scale(1.1); /* Visually scales the button */
+    transform-origin: center; /* Ensures scaling happens from the center */
+    display: inline-block; /* Makes the button behave consistently */
+    margin: 0 10px; /* Add horizontal spacing between buttons */
+}
+
+#lap-button:hover, #start-button:hover {
+    transform: scale(1.2); /* Visually scales the button */
+}
+
+/* Profile Picture Styling */
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ddd; /* Placeholder color for when no image is set */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.5px solid rgba(51, 51, 51, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #555;
+    margin: 0 auto;
+    box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
+      0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
+      0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
+      0 10px 10px -3.75px #00000010;
+}
+
+/* Track Styling */
+.track {
+    position: relative;
+    aspect-ratio: 16/9; /* Maintain aspect ratio */
+    width: 80%; /* Adaptive width based on parent/container */
+    max-width: 600px; /* Optional: limit the maximum size */
+    margin: auto; /* Center the track horizontally */
+    border: 3px solid #555; /* Outline for the track */
+    border-radius: 50%; /* Circular shape */
+    background: transparent; /* Transparent or optional fill */
+    overflow: hidden; /* Hide any excess elements */
+}
+
+/* Car Styling */
+.track_cars {
+    position: absolute; /* Place cars dynamically */
+    width: 20px;
+    height: 20px;
+    background-color: blue; /* Default car color */
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center; /* Ensures proper rotation */
+}
+
+/* Car Wrapper for Positioning */
+.car-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================
+   Input Field Styling
+   ========================== */
+
+/* Floating Label Container */
+.floating-label {
+    position: relative; /* Required for positioning the label relative to the input field */
+    margin-top: 25px; /* Matches your current setup */
+    margin-bottom: 25px;
+}
+
+/* Floating Label Styling */
+.floating-label label {
+    position: absolute;
+    top: 50%; /* Center the label vertically in the input */
+    left: 15px; /* Space the label from the left */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 16px;
+    color: #ccc; /* Light gray color for the label */
+    pointer-events: none; /* Prevent the label from being interacted with */
+    transition: all 0.3s ease; /* Smooth transition for label movement */
+}
+
+/* Input Field Styling */
+.input-field {
+    width: 100%; /* Ensure it adapts to the container width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    outline: none; /* Remove default focus outline */
+    background: rgb(0, 0, 0, .1); /* Set to transparent background for seamless look */
+    font-size: 16px; /* Consistent text size */
+    color: white; /* Text color inside the input */
+
+}
+
+.input-field:focus {
+    border-color: white; /* Add a focus effect to match the label */
+    background: rgb(255, 255, 255, .1);
+}
+
+.input-field:focus ~ label,
+.input-field:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+/* ==========================
+   Table Styling: Standings Table
+   ========================== */
+
+/* General Table Styling */
+.standings-table {
+    width: 100%; /* Full width of the container */
+    text-align: left; /* Align text to the left */
+    border-collapse: separate; /* Allow independent borders for cells */
+    border-spacing: 0; /* Remove extra spacing between cells */
+    border-radius: 20px; /* Round the table corners */
+    background: rgba(0, 0, 0, 0); /* Transparent background */
+    color: rgba(255, 255, 255, 0.9); /* Text color */
+    overflow: visible; /* Allow hover effects to extend outside */
+    position: relative; /* Stacking context for z-index effects */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for table */
+    transition: background-color 0.25s, /* Smooth background changes */
+                box-shadow 300ms ease-in-out,
+                color 300ms ease-in-out,
+                transform 0.4s ease; /* Scale transition for hover */
+}
+
+/* Table Hover Effect */
+.standings-table:hover {
+    background: rgba(0, 0, 0, 0.05); /* Subtle background change on hover */
+}
+
+/* Zebra striping */
+.standings-table tbody tr:nth-child(odd) {
+    background-color: rgba(220, 220, 220, 0.01);
+}
+
+/* Cell Padding and Borders */
+.standings-table th, .standings-table td {
+    padding: 10px; /* Uniform padding inside cells */
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2); /* Thin lines between rows */
+}
+
+/* Remove Bottom Border under Header Row and Last Row */
+.standings-table thead tr th {
+    border-bottom: none !important; /* No line under header row */
+}
+
+.standings-table tbody tr:last-child td {
+    border-bottom: none !important; /* No line under the last row */
+}
+
+/* Header Styling */
+.standings-table thead {
+    background-color: rgba(0, 0, 0, 0); /* Transparent header background */
+    color: white; /* Header text color */
+}
+
+/* Header Corner Radius */
+.standings-table thead th:first-child {
+    border-radius: 20px 0 0 0; /* Round top-left corner */
+}
+
+.standings-table thead th:last-child {
+    border-radius: 0 20px 0 0; /* Round top-right corner */
+}
+
+/* Body Row Styling */
+.standings-table tbody tr {
+    position: relative; /* Ensure hover effects stack properly */
+    overflow: visible; /* Allow borders and effects to extend outside */
+}
+
+/* Row Hover Effect */
+.standings-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.15); /* Hover effect color */
+    -webkit-backdrop-filter: blur(20px); /* Blur effect (Webkit) */
+    backdrop-filter: blur(20px); /* Blur effect (Standard) */
+    transform: scale(1.02); /* Slightly enlarge the row */
+    z-index: 1; /* Bring row above others */
+    border-radius: 10px; /* Rounded corners for the hover row */
+    clip-path: inset(0 round 10px); /* Applies border-radius to hover background */
+}
+
+/* Disable Header Hover */
+.standings-table thead tr:hover {
+    background-color: inherit; /* Prevent background change */
+    cursor: default; /* Disable pointer cursor on header */
+}
+
+/* Footer Styling*/
+.footer {
+    display: none;
+    /* display: flex; */
+    background: rgba(0, 0, 0, .05);
+    color: #333;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 30px;
+    box-shadow: inset 1px 1.5px 2px #fff9, inset 1px -0.5px 2px #ffffff4d,
+      0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
+      0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
+      0 10px 10px -3.75px #00000010;
+}
+
+.button, .footer-text {
+    flex: .3;
+    text-align: center;
+}
+
+.footer-text {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* ==========================
+   Animation & Display Styling
+   ========================== */
+
+@keyframes animate-left {
+    100% {
+        transform: rotateY(45deg) translateX(0px);
+    }
+}
+
+@keyframes animate-right {
+    100% {
+        transform: rotateY(-45deg) translateX(0px);
+    }
+}
+
+@keyframes animate-center {
+    100% {
+        transform: rotateX(0deg) scale(0.9) translateY(0px);
+    }
+}
+
+@media (min-width: 1600px) {
+    .side {
+        flex: unset !important;
+    }
+
+    .center-side {
+        width: 40% !important;
+    }
+
+    .left-side, .right-side {
+        width: 14% !important;
+    }
+}
