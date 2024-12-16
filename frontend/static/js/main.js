@@ -277,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100); // Adjust debounce delay as needed
     });
 
+    // Go to Gitlab button
     document.getElementById('gitlab-button').addEventListener('click', function () {
         window.open('https://gitlab.com/24fa-csci4830/group-1', '_blank');
     });
