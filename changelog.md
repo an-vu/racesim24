@@ -2,6 +2,7 @@
 
 - Ported to Github
 - Added roadmap.md
+- Added profile.psd to frontend/images/
 
 ---
 # Dec 11 Changelog
