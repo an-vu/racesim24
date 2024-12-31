@@ -1,11 +1,15 @@
 # Dec 31 Changelog
 
-- Ported to Github
-- Added roadmap.md
-- Added profile.psd to frontend/images/
+- Github Public Release.
+
+## New Files:
+- `roadmap.md` at root: keep track of planning
+- `profile.psd` at `frontend/images/`: Photoshop file for profile picture customization
 
 ---
 # Dec 11 Changelog
+
+## File Updates:
 
 **`setup.html`**:
 - Added a hint line.
@@ -16,6 +20,7 @@
 ---
 # Dec 9 Changelog
 
+## File Updates:
 **`race.py`**:
   - Added crash mechanics via two functions, 5% chance each lap a crash could happen.
 
@@ -112,7 +117,7 @@
 # Nov 27 Changelog
 
   - This big ass update brings a whole new look to the simulation: glassmorphism, 3d vision pro vibe,... you name it our project looks 3024 now.
-  - It also fixes the display issue with smaller screen   - now it does work on my 13 inch macbook pro now fuck yeah!
+  - It also fixes the display issue with smaller screen - now it does work on my 13 inch macbook pro now fuck yeah!
   - It also comes with some new bugs... for sum reason html and javascript kinda glitchy right now... example if we got this element <bold>car</bold> it doesnt render as bold anymore... something happening and i dont know what is happening...
 
 ## File Updates:
@@ -120,7 +125,7 @@
   - Added 6 new profile pictures.
 
 **`style.css`**:
-  - Cleaned up, change classes names, this .css is now 90% new.
+  - Cleaned up, change classes names.
 
 **`404.html`**:
   - Redesigned the whole page
@@ -164,12 +169,13 @@
 # Nov 21 Changelog
 
 ## File Updates:
-**main.js**: Fixed player pit functions and stat updates
+**`main.js`**: Fixed player pit functions and stat updates
 
 ---
 # Nov 19 Changelog
 
-  - TLDR: Small update resizing the home screen layout to 80% and moving the "Advance Lap" and "Reset" buttons to the Player Control Center column.
+## TLDR:
+  - Small update resizing the home screen layout to 80% and moving the "Advance Lap" and "Reset" buttons to the Player Control Center column.
 
 ## File Updates:
 **`car.py`**: Added lap time calculations
