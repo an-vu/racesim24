@@ -59,11 +59,11 @@
 ---
 # Dec 4 Changelog
 
-**race.py**: Added starting_gaps to restart() function
+**`race.py`**: Added starting_gaps to restart() function
 
-**main.js**: Changed player car update functions to use player car numbers instead of index in list
+**`main.js`**: Changed player car update functions to use player car numbers instead of index in list
 
-**end.html**: Added base.html blocking to have the file use the same css
+**`end.html`**: Added base.html blocking to have the file use the same css
 
 ## Next Updates:
   - An's GUI update
@@ -74,14 +74,14 @@
 
 ## File Updates:
 
-**car.py**: Removed reset_for_race, unused.
+**`car.py`**: Removed reset_for_race, unused.
 
-**race.py**: 
+**`race.py`**: 
   - Removed test print statements
   - adjusted restart() to set the race.cars to empty list
   - removed need for reset_for_race
 
-**main.js**:
+**`main.js`**:
   - added logic to test for race_end
   - added endRace()
   - resetRace() now brings user back to '/'
@@ -90,13 +90,13 @@
   - removed unused resetStrategySelections
   - removed player car numbers
 
-**end.html**: added file with basic info
+**`end.html`**: added file with basic info
 
-**setup.html**: 
+**`setup.html`**: 
   - removed player car number inputs
   - added error handling for no names entered
 
-**routes.py**: 
+**`routes.py`**: 
   - hard coded in player numbers as 2 and 3
   - removed race_reset on loading of home.html
   - added /end route
@@ -172,22 +172,22 @@
   - TLDR: Small update resizing the home screen layout to 80% and moving the "Advance Lap" and "Reset" buttons to the Player Control Center column.
 
 ## File Updates:
-**car.py**: Added lap time calculations
+**`car.py`**: Added lap time calculations
 
-**race.py**:
+**`race.py`**:
   - Fixed dirty air, swapped updates_needed from list to dictionary
   - Added map_helper method, creates dictionary for use for map building
 
-**main.js**: created updateMap() function, updates elements on home.html
+**`main.js`**: created updateMap() function, updates elements on home.html
 
-**home.html**:
+**`home.html`**:
   - Created rudimentary map elements
   - Moved Reset and Advance Lap buttons to the Control Center columns
   - Game Layout is now `.home-container` class
 
-**routes.py**: /api/map route created, pulls race.lap_data
+**`routes.py`**: /api/map route created, pulls race.lap_data
 
-**style.css**:
+**`style.css`**:
   - Created .track_cars styling for track
   - Added `.home-container` class: scaled down to 80% for smaller screen
 
@@ -205,23 +205,29 @@
 # Nov 13 Changelog
 
 ## New Files and Features
-**.gitignore**:
+**`.gitignore`**:
   - Re-added and will ignore all future cache files to clean repo
 
 ## File Updates:
-**car_AI.py -> car_ai.py**: Renamed for valid snake_case and cleaned up via linter
-**car.py**: Cleaned up via linter
-**race.py**: Cleaned up via linter, removed unused import
-**routes.py**:
+**`car_AI.py` -> `car_ai.py`**: Renamed for valid snake_case and cleaned up via linter
+
+**`car.py`**: Cleaned up via linter
+
+**`race.py`**: Cleaned up via linter, removed unused import
+
+**`routes.py`**:
   - Moved to root directory to clean imports, didn't make sense to have in the frontend
   - Cleanded via linter, 
   - added static and templates references
   - added favicon.ico route
   - removed static player names and numbers
   - added initialize_race route to get player names and numbers and start race
-**test_race.py**: Cleaned up via linter
-**Dockerfile**: Updated reference to routes.py
-**setup.html**: Fixed script to update player names and numbers
+
+**`test_race.py`**: Cleaned up via linter
+
+**`Dockerfile`**: Updated reference to `routes.py`
+
+**`setup.html`**: Fixed script to update player names and numbers
 
 ## Known Issues:
   - **Display Issue on Smaller Screens**: `home.html` layout issues on smaller display devices (e.g., 13" MacBook).
@@ -236,23 +242,24 @@
 # Nov 10 Changelog
 
 ## New Files and Features:
-**setup.html**: Introduced a new player setup page with fields for selecting a profile picture, entering player name, and specifying car number.
+**`setup.html`**: Introduced a new player setup page with fields for selecting a profile picture, entering player name, and specifying car number.
+
 **Profile Picture Selection**: Added six images in `/static/images/profiles` for player selection. Clicking the profile picture cycles through these images.
 **Player Info Input**: Added input fields for **Player Name** and **Car Number**.
 **Start the Race Button**: Navigates to `home.html` upon clicking, launching the main game interface.
 
 ## File Updates:
-**routes.py**: 
+**`routes.py`**: 
   - Updated route mappings: the root path (`/`) now serves `setup.html`, and `home.html` is accessible at `/home` (see lines 46-52 for reference).
 
-**style.css**: 
+**`style.css`**: 
   - Cleaned up and organized styles for a more consistent look across all pages.
 
-**home.html**: 
+**`home.html`**: 
   - Integrated JavaScript to retrieve and display player data from `setup.html`.
   - Moved JavaScript functions from `home.html` to `main.js` for better code management.
 
-**base.html**: 
+**`base.html`**: 
   - Refined header and footer for improved alignment and uniformity.
   - The "About" button is now functional, linking to `about.html`.
 
