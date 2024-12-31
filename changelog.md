@@ -3,14 +3,13 @@
 - Github Public Release.
 
 ## New Files:
-- `roadmap.md` at root: keep track of planning
-- `profile.psd` at `frontend/images/`: Photoshop file for profile picture customization
+- **`roadmap.md`** at root: keep track of planning
+- **`profile.psd`** at `frontend/images/`: Photoshop file for profile picture customization
 
 ---
 # Dec 11 Changelog
 
 ## File Updates:
-
 **`setup.html`**:
 - Added a hint line.
 
@@ -34,7 +33,6 @@
 # Dec 8 Changelog
 
 ## File Updates:
-
 **`home.html`**:
   - Moved Map card to the middle
   - Edited About card
@@ -53,10 +51,8 @@
   - **New UI now works with big screen and small screen.** Fuck yea!
 
 ## File Updates:
-
 **`end.html`**:
   - Updated to match with the new UI style.
-
 
 ## Known Issues:
   - Map doesn't work anymore...
@@ -64,6 +60,7 @@
 ---
 # Dec 4 Changelog
 
+## File Update:
 **`race.py`**: Added starting_gaps to restart() function
 
 **`main.js`**: Changed player car update functions to use player car numbers instead of index in list
@@ -78,7 +75,6 @@
 # Dec 1 Changelog
 
 ## File Updates:
-
 **`car.py`**: Removed reset_for_race, unused.
 
 **`race.py`**: 
@@ -116,7 +112,8 @@
 ---
 # Nov 27 Changelog
 
-  - This big ass update brings a whole new look to the simulation: glassmorphism, 3d vision pro vibe,... you name it our project looks 3024 now.
+## TLDR:
+  - Big update brings a whole new look to the simulation: glassmorphism, 3d vision pro vibe,... you name it our project looks 3024 now.
   - It also fixes the display issue with smaller screen - now it does work on my 13 inch macbook pro now fuck yeah!
   - It also comes with some new bugs... for sum reason html and javascript kinda glitchy right now... example if we got this element <bold>car</bold> it doesnt render as bold anymore... something happening and i dont know what is happening...
 
