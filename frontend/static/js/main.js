@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Go to Gitlab button
-    document.getElementById('gitlab-button').addEventListener('click', function () {
-        window.open('https://gitlab.com/24fa-csci4830/group-1', '_blank');
+    document.getElementById('git-button').addEventListener('click', function () {
+        window.open('https://github.com/an-vu/racesim24', '_blank');
     });
 });
