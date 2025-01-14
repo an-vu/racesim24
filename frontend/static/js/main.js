@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100); // Adjust debounce delay as needed
     });
 
-    // Go to Gitlab button
+    // Go to Github button
     document.getElementById('git-button').addEventListener('click', function () {
         window.open('https://github.com/an-vu/racesim24', '_blank');
     });

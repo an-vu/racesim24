@@ -45,7 +45,6 @@ class Race:
         """
         Advances the race by one lap and updates the state of each car by calling their drive method.
         """
-
         self.lap += 1
         for car in self.cars:
             car.drive()
