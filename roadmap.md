@@ -1,6 +1,8 @@
 - Clean up CI/CD & Docker
 - Clean up Backend
-- Clean up and debug JS errors (can't move codes in main.js)
+- Fix issue when 
+- Clean up and debug JS errors (can't move js codes from base.html to main.js)
+- Add Car number function for player back
 - Redesign map
 - Make buttons functional
 - Add Savegame feature
