@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Race control functions
-    async function startRace() {
+    async function fetchRaceData() {
         try {
             const response = await fetch('/api/race');
             const data = await response.json();
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("player2-profile").style.backgroundImage = `url('/static/images/profiles/${player2Data.pic}')`;
 
     // Start and fetch initial race data
-    startRace();
+    fetchRaceData();
     getRaceData();
 
     let resizeTimeout;
@@ -286,4 +286,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('git-button').addEventListener('click', function () {
         window.open('https://github.com/an-vu/racesim24', '_blank');
     });
+    
 });
