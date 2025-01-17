@@ -1,4 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const bodyId = document.body.id;
+
+    if (bodyId === 'setup-page') {
+        initializeSetupPage();
+    } else if (bodyId === 'home-page') {
+        initializeHomePage();
+    } else if (bodyId === 'end-page') {
+        initializeEndPage();
+    }
+});
+
+// Set Up Page (setup.html)
+function initializeSetupPage() {
+    console.log("Initializing setup.html");
+
+    // Profile image logic
+    const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png"];
+    const player1Picture = document.getElementById("player1-picture");
+    const player2Picture = document.getElementById("player2-picture");
+
+    let player1Index = Math.floor(Math.random() * profileImages.length);
+    let player2Index = Math.floor(Math.random() * profileImages.length);
+
+    if (player1Picture && player2Picture) {
+        player1Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player1Index]}')`;
+        player2Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player2Index]}')`;
+
+        player1Picture.addEventListener("click", () => {
+            player1Index = (player1Index + 1) % profileImages.length;
+            player1Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player1Index]}')`;
+        });
+
+        player2Picture.addEventListener("click", () => {
+            player2Index = (player2Index + 1) % profileImages.length;
+            player2Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player2Index]}')`;
+        });
+    }
+
+    // Start race logic
+    window.startRace = function () {
+        const player1Name = document.getElementById("player1-name").value;
+        const player2Name = document.getElementById("player2-name").value;
+
+        if (!player1Name || !player2Name) {
+            alert("Please enter names for both Player 1 and Player 2.");
+            return;
+        }
+
+        localStorage.setItem("player1Name", player1Name);
+        localStorage.setItem("player1Picture", profileImages[player1Index]);
+        localStorage.setItem("player2Name", player2Name);
+        localStorage.setItem("player2Picture", profileImages[player2Index]);
+
+        const data = {
+            player1_name: player1Name,
+            player2_name: player2Name,
+        };
+
+        fetch("/initialize_race", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                window.location.href = "/home";
+            } else {
+                alert("Error initializing players.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    };
+}
+
+// Home Page (home.html)
+function initializeHomePage() {
+    console.log("Initializing home.html");
+
     // Initialize elements
     const aboutButton = document.getElementById('about-button');
     const clockButton = document.getElementById('clock-button');
@@ -286,5 +369,80 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('git-button').addEventListener('click', function () {
         window.open('https://github.com/an-vu/racesim24', '_blank');
     });
-    
-});
+}
+
+// End Page (end.html)
+function initializeEndPage() {
+    console.log("Initializing End Page...");
+
+    // Initialize car standings
+    const tableBody = document.getElementById("end-standings-table-body");
+    const carData = Array.from({ length: 16 }, (_, i) => ({
+        position: i + 1,
+        carNumber: '--',
+        driver: '--',
+        toLeader: '--',
+        totalTime: '--',
+    }));
+
+    carData.forEach(car => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${car.position}</td>
+            <td id="car-${car.position}-num">${car.carNumber}</td>
+            <td id="car-${car.position}-driver">${car.driver}</td>
+            <td id="car-${car.position}-to-leader">${car.toLeader}</td>
+            <td id="car-${car.position}-time-total">${car.totalTime}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Reset race button logic
+    document.getElementById('reset-button-2').addEventListener('click', async () => {
+        try {
+            await fetch('/api/race/reset', { method: 'POST' });
+            window.location.href = "/";
+        } catch (error) {
+            console.error('Error resetting race:', error);
+        }
+    });
+
+    // Fetch and update race data
+    async function getRaceData() {
+        try {
+            const response = await fetch('/api/race');
+            const data = await response.json();
+            updateRaceStandings(data);
+            updateWinnerName(data);
+        } catch (error) {
+            console.error('Error fetching race data:', error);
+        }
+    }
+
+    function updateRaceStandings(data) {
+        data.cars.forEach((car, index) => {
+            if (car) {
+                document.getElementById(`car-${index + 1}-num`).textContent = car.number;
+                document.getElementById(`car-${index + 1}-driver`).textContent = car.name;
+                document.getElementById(`car-${index + 1}-to-leader`).textContent = car.to_leader.toFixed(2);
+                document.getElementById(`car-${index + 1}-time-total`).textContent = car.total_race_time.toFixed(2);
+            }
+        });
+    }
+
+    function updateWinnerName(data) {
+        const winnerElement = document.getElementById('winner');
+        data.cars.forEach(car => {
+            if (car.to_leader === 0) {
+                if ([2, 3].includes(car.number)) {
+                    winnerElement.textContent = `Winner: ${car.name}, good job!`;
+                } else {
+                    winnerElement.textContent = `Winner: ${car.name}, better luck next time!`;
+                }
+            }
+        });
+    }
+
+    // Initial call to fetch and display data
+    getRaceData();
+}

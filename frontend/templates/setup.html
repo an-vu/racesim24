@@ -3,7 +3,7 @@
 {% block title %}Player Setup - NASCAR Manager '24{% endblock %}
 
 {% block content %}
-<body>
+<body id="setup-page">
     <div class="column-container">
         <!-- Player Setup Container -->
         <div class="row-container">
@@ -54,84 +54,6 @@
         <div>
             <button id="start-button" onclick="startRace()" class="button secondary-button">START</button>
         </div>
-
     </div>
-{% endblock %}
-
-{% block scripts %}
-    <script>
-        // Array of profile image filenames
-        const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png", "profile7.png", "profile8.png", "profile9.png", "profile10.png", "profile11.png", "profile12.png"];
-
-        // Set random initial image for each player
-        const player1Picture = document.getElementById("player1-picture");
-        const player2Picture = document.getElementById("player2-picture");
-
-        let player1Index = Math.floor(Math.random() * profileImages.length);
-        let player2Index = Math.floor(Math.random() * profileImages.length);
-
-        player1Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player1Index]}')`;
-        player2Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player2Index]}')`;
-
-        // Cycle to the next image on click
-        player1Picture.addEventListener("click", () => {
-            player1Index = (player1Index + 1) % profileImages.length;
-            player1Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player1Index]}')`;
-        });
-
-        player2Picture.addEventListener("click", () => {
-            player2Index = (player2Index + 1) % profileImages.length;
-            player2Picture.style.backgroundImage = `url('/static/images/profiles/${profileImages[player2Index]}')`;
-        });
-
-        function startRace() {
-            const player1Name = document.getElementById("player1-name").value;
-            const player2Name = document.getElementById("player2-name").value;
-
-            // Validate that both player names are provided
-            if (!player1Name || !player2Name) {
-                alert("Please enter names for both Player 1 and Player 2.");
-                return;
-            }
-
-            // Save data in localStorage
-            localStorage.setItem("player1Name", player1Name);
-            localStorage.setItem("player1Picture", profileImages[player1Index]);
-            localStorage.setItem("player2Name", player2Name);
-            localStorage.setItem("player2Picture", profileImages[player2Index]);
-
-            // Prepare data for POST request
-            const data = {
-                player1_name: player1Name,
-                player2_name: player2Name,
-            };
-
-            // Send data to Flask backend
-            console.log("init race")
-            fetch("/initialize_race", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    // Redirect to home.html after successful initialization
-                    window.location.href = "/home";
-                } else {
-                    alert("Error initializing players.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-
-
-            // Redirect to home.html
-            window.location.href = "/home";
-        }
-    </script>
 </body>
 {% endblock %}

@@ -1,26 +1,51 @@
-## v1.0 Public Release
+# Roadmap for NASCAR Manager '24
 
-## v1.1 Clean up JavaScript
-    - `main.js`
-    - Move JS codes from `setup.html` and `end.html` to `main.s`
+## v1.0 - **Public Release**
+- Initial release with core gameplay functionality.
 
-## v1.2 Clean up Frontend
-    - `404.html`
-    - `about.html`
+---
+
+## v1.1 - **JavaScript Cleanup**
+- Consolidate and organize JavaScript into `main.js`.
+  - Move inline scripts from:
+    - `setup.html`
     - `end.html`
 
-## v1.3 Clean up Backend
-    - Re-add Player car number feature
+---
 
-## v1.4 Lap Switcher
-    - Go back to previous laps
-    - Skip to Final Lap button
-    - Advance Lap x10 button
+## v1.2 - **Frontend Cleanup**
+- Improve and finalize UI for:
+  - `404.html`
+  - `about.html`
+  - `end.html`
 
-## v1.5 Stability Update
-    - Clean up CI/CD & Docker
+---
 
-## v1.6 Map
-    - Redesign map
+## v1.3 - **Backend Cleanup**
+- Reintroduce the **Player Car Number** feature for better customization.
 
-## v1.7 Save/Load Feature
+---
+
+## v1.4 - **Lap Controls**
+- Add advanced lap-switching options:
+  - **Go Back** to previous laps.
+  - **Skip to Final Lap** button.
+  - **Advance Lap x10** button for faster progression.
+
+---
+
+## v1.5 - **Stability Update**
+- Refactor and optimize CI/CD pipelines.
+- Finalize Docker configurations for seamless deployment.
+
+---
+
+## v1.6 - **Map Redesign**
+- Revamp the race map to improve visuals and functionality.
+
+---
+
+## v1.7 - **Save/Load Feature**
+- Introduce game save and load functionality to preserve player progress.
+
+---

@@ -3,12 +3,14 @@
 {% block title %}🐒{% endblock %}
 
 {% block content %}
-<div class="card" style="text-align: center;">
-    <label class="card-label" style="display: block; margin-bottom: 20px;">Oops!</label>
-    <h1 class="title-404" style="font-size: 24px; margin: auto;">404 👉👈</h1>
-    <h2 class="message-404" style="font-size: 21px; margin: auto;">The race track is not here...</h2>
-    <h3 style="font-size: 18px; display: inline; margin-right: 5px;">Country roads, take me</h3>
-        <a href="{{ url_for('setup') }}" class="button secondary-button" style="font-size: 18px; text-decoration: none;">Home</a>
-    <h3 style="font-size: 18px; display: inline; margin-left: 5px;">...</h3>
-</div>
+<body id="404-page">
+    <div class="card" style="text-align: center;">
+        <label class="card-label" style="display: block; margin-bottom: 20px;">Oops!</label>
+        <h1 class="title-404" style="font-size: 24px; margin: auto;">404 👉👈</h1>
+        <h2 class="message-404" style="font-size: 21px; margin: auto;">The race track is not here...</h2>
+        <h3 style="font-size: 18px; display: inline; margin-right: 5px;">Country roads, take me</h3>
+            <a href="{{ url_for('setup') }}" class="button secondary-button" style="font-size: 18px; text-decoration: none;">Home</a>
+        <h3 style="font-size: 18px; display: inline; margin-left: 5px;">...</h3>
+    </div>
+</body>
 {% endblock %}

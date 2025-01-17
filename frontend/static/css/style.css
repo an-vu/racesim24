@@ -461,6 +461,7 @@ body {
    Animation & Display Styling
    ========================== */
 
+/* Gradient Animation for Background */
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -475,24 +476,28 @@ body {
     }
 }
 
+/*  Animation for Side Cards */
 @keyframes animate-left {
     100% {
         transform: rotateY(45deg) translateX(0px);
     }
 }
 
+/*  Animation for Center Card */
 @keyframes animate-right {
     100% {
         transform: rotateY(-45deg) translateX(0px);
     }
 }
 
+/*  Animation for Center Card */
 @keyframes animate-center {
     100% {
         transform: rotateX(0deg) scale(0.9) translateY(0px);
     }
 }
 
+/* Media Query for Responsive Design */
 @media (min-width: 1600px) {
     .side {
         flex: unset !important;
