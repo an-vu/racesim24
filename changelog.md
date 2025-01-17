@@ -8,6 +8,7 @@
   - New background
 
 ---
+
 # 2024
 
 ## Dec 31 Changelog
@@ -19,6 +20,7 @@
 - **`profile.psd`** at `frontend/images/`: Photoshop file for profile picture customization
 
 ---
+
 ## Dec 11 Changelog
 
 ### File Updates:
@@ -29,6 +31,7 @@
 - Added some new buttons.
 
 ---
+
 ## Dec 9 Changelog
 
 ### File Updates:
@@ -42,6 +45,7 @@
   - Added pytest-mock
 
 ---
+
 ## Dec 8 Changelog
 
 ### File Updates:
@@ -55,6 +59,7 @@
   - Started on redesigning the whole thing...
 
 ---
+
 ## Dec 6 Changelog
 
 ### TLDR:
@@ -70,6 +75,7 @@
   - Map doesn't work anymore...
 
 ---
+
 # Dec 4 Changelog
 
 ### File Update:
@@ -84,6 +90,7 @@
   - End standings javascript
 
 ---
+
 ## Dec 1 Changelog
 
 ### File Updates:
@@ -122,6 +129,7 @@
   - Add support for dark mode/theme options.
 
 ---
+
 ## Nov 27 Changelog
 
 ### TLDR:
@@ -144,6 +152,7 @@
   - Returning to the setup page and changing input values does not update the displayed values in the game interface. This issue seems related to the recent changes in the `setup.html` structure, including the removal of the required attribute and the introduction of floating labels. The backend or JavaScript may be reusing previously stored values instead of capturing the updated inputs.
 
 ---
+
 ## Nov 24 Changelog
 
 ### File Updates:
@@ -175,12 +184,14 @@
   - Add race ending stuff
 
 ---
+
 ## Nov 21 Changelog
 
 ### File Updates:
 **`main.js`**: Fixed player pit functions and stat updates
 
 ---
+
 ## Nov 19 Changelog
 
 ### TLDR:
@@ -217,6 +228,7 @@
   - Add support for dark mode/theme options.
 
 ---
+
 ## Nov 13 Changelog
 
 ### New Files and Features
@@ -254,6 +266,7 @@
   - Add support for dark mode/theme options.
 
 ---
+
 ## Nov 10 Changelog
 
 ### New Files and Features:
