@@ -4,8 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const clockButton = document.getElementById('clock-button');
     const tableBody = document.getElementById("standings-table-body");
     
+    // Flag to toggle between showing time and date on the clock button
     let showDate = false;
+
+    // Array to store information about player-controlled cars (populated from game data)
     let player_racer_array = [];
+    
+    // Object to track whether each player's car has entered a pit stop
     let pitStops = {
         player_car_1: false,
         player_car_2: false
@@ -25,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         updateClock();
     });
 
+    setInterval(updateClock, 1000);
+
     // About button toggle
     aboutButton.onclick = function () {
         window.location.href = '/about';
     };
-
-    setInterval(updateClock, 1000);
 
     // Initialize car standings
     const carData = Array.from({ length: 16 }, (_, i) => ({
