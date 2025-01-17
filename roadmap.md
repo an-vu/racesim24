@@ -1,11 +1,11 @@
 # Roadmap for NASCAR Manager '24
 
-## v1.0 - **Public Release**
+## v1.0 - **Public Release** ✅
 - Initial release with core gameplay functionality.
 
 ---
 
-## v1.1 - **JavaScript Cleanup**
+## v1.1 - **JavaScript Cleanup** ✅
 - Consolidate and organize JavaScript into `main.js`.
   - Move inline scripts from:
     - `setup.html`
