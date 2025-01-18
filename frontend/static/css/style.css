@@ -149,7 +149,7 @@ body {
 
 .card:hover {
     background: rgba(0, 0, 0, 0.05);
-    transform: scale(1.02); /* Slightly enlarges the card */
+    transform: scale(1.05); /* Slightly enlarges the card */
     /* Adds a lifted shadow
     box-shadow: 0 1px 4px #0000004d,
         0 4px 8px #0000002e,
@@ -178,7 +178,7 @@ body {
 }
 
 .button:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .primary-button {
@@ -210,7 +210,7 @@ body {
 .tertiary-button {
     background-color: rgba(0, 0, 0, 0.05);
     border: .5px solid rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .tertiary-button:hover {
@@ -228,7 +228,7 @@ body {
 }
 
 #lap-button:hover, #start-button:hover {
-    transform: scale(1.2); /* Visually scales the button */
+    transform: scale(1.25); /* Visually scales the button */
 }
 
 /* Profile Picture Styling */
@@ -251,6 +251,15 @@ body {
       0 0.6021873017743928px 0.6021873017743928px -1.25px #0000002e,
       0 2.288533303243457px 2.288533303243457px -2.5px #00000029,
       0 10px 10px -3.75px #00000010;
+    transition: background-color 0.2s,
+      box-shadow 300ms ease-in-out,
+      color 300ms ease-in-out,
+      background 0.2s,
+      transform 0.2s ease;
+}
+
+.profile-picture:hover {
+    transform: scale(1.15);
 }
 
 /* Track Styling */

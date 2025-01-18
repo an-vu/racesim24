@@ -15,7 +15,7 @@ function initializeSetupPage() {
     console.log("Initializing setup.html");
 
     // Profile image logic
-    const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png"];
+    const profileImages = ["profile1.png", "profile2.png", "profile3.png", "profile4.png", "profile5.png", "profile6.png", "profile7.png", "profile8.png", "profile9.png", "profile10.png", "profile11.png", "profile12.png"];
     const player1Picture = document.getElementById("player1-picture");
     const player2Picture = document.getElementById("player2-picture");
 
