@@ -50,10 +50,10 @@
 
 ---
 
-## v1.7 - **(QoL) and Miscellaneous Improvements**
+## v1.7 - **QoL and Miscellaneous Improvements**
 - Code Organization and Optimization:
   - Refactor and modularize JavaScript:
-    - Split main.js into smaller, page-specific files (home.js, setup.js, etc.).
+    - Split `main.js` into smaller, page-specific files (`home.js`, `setup.js`, etc.).
     - Implement a build system (e.g., Webpack, Rollup) to compile and bundle files for improved performance in production.
   - Optimize CSS for consistency and maintainability.
 - Enhanced Debugging:
