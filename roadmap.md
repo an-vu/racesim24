@@ -50,7 +50,7 @@
 
 ---
 
-## v1.7 - **QoL and Miscellaneous Improvements**
+## v1.8 - **QoL and Miscellaneous Improvements**
 - Code Organization and Optimization:
   - Refactor and modularize JavaScript:
     - Split `main.js` into smaller, page-specific files (`home.js`, `setup.js`, etc.).
@@ -67,3 +67,10 @@
   - Streamline project structure.
 
 ---
+
+## v1.9 - **Mobile Design**
+- Full functionality and responsiveness across all device types.
+
+---
+
+## v2.0 - **TBD**
