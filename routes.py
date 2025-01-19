@@ -185,13 +185,6 @@ def home():
     restart_race()
     return render_template('home.html')
 
-@app.route('/about')
-def about():
-    """
-    Function to bring user to about.html when navigating to the about subdirectory webpage
-    """
-    return render_template('about.html')
-
 @app.route("/end", methods=['POST', 'GET'])
 def end_race():
     """

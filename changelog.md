@@ -1,11 +1,22 @@
 # 2025
 
+## Jan 18 Changelog
+
+- **Removed `about.html`**:
+  - The About section is now integrated into `home.html` for a more streamlined user experience.
+  - Updated `routes.py` to reflect this change.
+- **Updated "Learn More" Button**:
+  - Replaced with a "Send Feedback/Contact" button in `home.html`.
+  - Logic for this button will be added in the next update.
+
+---
+
 ## Jan 17 Changelog
 
 ### File Updates:
 
 **`style.css`**:
-  - New background
+  - New animated gradient background.
 
 ---
 
