@@ -1,53 +1,91 @@
-# Race Simulation Dashboard
+# NASCAR Manager '24
 
-A Flask-based web application that simulates a race, including multiple cars with dynamic attributes such as lap time, tire life, and fuel levels. The web interface allows users to view race data, advance laps, and interact with the race via an API.
+**NASCAR Manager '24** is a Flask-based race simulation platform using **real-world racer data**. Players step into the role of a race strategist, managing drivers, pit crews, and race-day strategies to lead their team to victory.
 
-Temporary Development Link:
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [API Endpoints](#api-endpoints)
-- [Running the Application](#running-the-application)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [License](#license)
-
-## Overview
-
-This application simulates a car race with a dynamic dashboard that displays the race status. Users can interact with the race by advancing laps and viewing each car's performance metrics such as lap time, tire life, and fuel level.
-
-The application includes:
-- A Flask-based backend API that allows users to push and pull race data.
-- A dynamic HTML front-end that fetches race data using JavaScript and displays it in real-time.
+---
 
 ## Features
 
-- **Race Simulation**: Advance through laps and track the performance of different cars.
-- **API Integration**: Push and pull data through RESTful API endpoints.
-- **Interactive Dashboard**: View race status and car performance metrics in real-time on the web interface.
+- **Race Simulation**: Advance laps, manage pit stops, and monitor car performance metrics like lap times, tire wear, and fuel levels.
+- **API Integration**: Interact with race data via RESTful API endpoints for customization and automation.
+- **Dynamic Dashboard**: View real-time race status and car metrics on a seamless, responsive web interface.
+- **Real-World Data**: Built on actual racer performance for an authentic experience.
+
+---
 
 ## Technologies Used
 
 - **Backend**: Flask (Python)
 - **Frontend**: HTML5, JavaScript (Fetch API)
-- **Database**: (None - Using in-memory data structures for simulation)
 - **Testing**: Pytest
-- **CI/CD**: GitLab CI
+- **CI/CD**: GitLab CI pipelines
+- **Containerization**: Docker for deployment
+
+---
 
 ## Getting Started
 
 ### Prerequisites
-
-Docker to run the docker image
+- Docker installed on your machine.
 
 ### Installation
-
 1. Clone this repository:
-
    ```bash
-   git clone https://gitlab.com/24fa-csci4830/group-1.git
-   cd group-1
+   git clone https://github.com/an-vu/racesim24.git
+   cd racesim24
+   ```
+
+2. Build and run the Docker image:
+   ```bash
+   docker build -t nascar-manager .
+   docker run -p 5000:5000 nascar-manager
+   ```
+
+3. Access the application:
+   - Open `http://localhost:5000` in your browser.
+
+---
+
+## API Endpoints
+
+- **GET `/api/race`**: Retrieve current race data.
+- **POST `/api/race/lap`**: Advance the race by one lap.
+- **POST `/api/race/pit`**: Request a pit stop for a specific car.
+- **POST `/api/race/reset`**: Reset the race simulation.
+
+---
+
+## Running the Application
+
+1. Start the application using Docker or a local Flask server:
+   ```bash
+   flask run
+   ```
+
+2. Access the web interface at `http://localhost:5000`.
+
+---
+
+## Testing
+
+Run unit tests using Pytest:
+```bash
+pytest
+```
+
+---
+
+## Deployment
+
+To deploy with Docker:
+1. Build the Docker image:
+   ```bash
+   docker build -t nascar-manager .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -p 5000:5000 nascar-manager
+   ```
+
+---
