@@ -87,7 +87,7 @@
 
 ---
 
-# Dec 4 Changelog
+## Dec 4 Changelog
 
 ### File Update:
 **`race.py`**: Added starting_gaps to restart() function
